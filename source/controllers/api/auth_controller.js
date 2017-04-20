@@ -197,7 +197,7 @@ module.exports = {
         }
 
         // Check password length
-        if(password.length < process.env.AUTH_PASSWORD_MIN_LENGTH) {
+        if(password.length < 8) {
           return res.status(HttpCodes.BAD_REQUEST).json({
             invalid: ['password'],
             message: I18n.term('passwords_need_to_be_at_least_eight_characters_long')
