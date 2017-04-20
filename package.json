@@ -36,7 +36,7 @@
     "adaro": "^1.0.4",
     "animate.css": "^3.5.2",
     "autolinker": "^1.4.2",
-    "bcrypt": "^0.8.7",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.15.2",
     "bootstrap": "^4.0.0-alpha.6",
     "chalk": "^1.1.3",

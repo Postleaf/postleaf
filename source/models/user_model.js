@@ -1,6 +1,6 @@
 'use strict';
 
-const Bcrypt = require('bcrypt');
+const Bcrypt = require('bcryptjs');
 const Crypto = require('crypto');
 const Extend = require('extend');
 const Jwt = require('jsonwebtoken');
