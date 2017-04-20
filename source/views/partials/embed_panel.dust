@@ -1,0 +1,35 @@
+{! Embed panel !}
+<div id="embed-panel" class="panel panel-right">
+  <form autocomplete="off">
+    {! Close button !}
+    <button type="button" class="close btn btn-link" data-panel-hide>
+      <i class="fa fa-remove"></i>
+    </button>
+
+    {! Panel header !}
+    <header class="panel-header">
+      <h3>{@i18n term="embed"/}</h3>
+    </header>
+
+    {! Panel body !}
+    <div class="panel-body">
+      {! Code !}
+      <div class="form-group">
+        <label for="embed-code">{@i18n term="code"/}</label>
+        <span class="badge badge-info pull-right">{@i18n term="html"/}</span>
+        <textarea class="form-control code" id="embed-code" rows="8" spellcheck="false"></textarea>
+        <small class="text-muted">{@i18n term="paste_embed_code_or_a_url_here"/}</small>
+      </div>
+    </div>
+
+    {! Panel footer !}
+    <footer class="panel-footer">
+      {! Delete !}
+      <button class="btn btn-icon pull-right" type="button" data-embed="delete" title="{@i18n term="delete"/}"><i class="fa fa-trash-o"></i></button>
+
+      {! Insert / cancel !}
+      <button class="btn btn-primary" type="submit">{@i18n term="insert"/}</button>
+      <button class="btn btn-link" type="button" data-panel-hide>{@i18n term="cancel"/}</button>
+    </footer>
+  </form>
+</div>

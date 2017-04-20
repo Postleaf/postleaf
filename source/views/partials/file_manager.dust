@@ -1,0 +1,80 @@
+<div id="file-manager-overlay" hidden></div>
+<div
+  id="file-manager"
+  data-load-action="{@url type="api" path="uploads"/}"
+  data-upload-action="{@url type="api" path="uploads"/}"
+  hidden
+>
+
+  {! Toolbar !}
+  <div id="file-manager-toolbar">
+    <div class="row">
+      {! Search !}
+      <div class="file-manager-toolbar-search col-sm-6">
+        <input
+          type="search"
+          class="form-control"
+          id="file-manager-search"
+          placeholder="{@i18n term="search"/}"
+        >
+      </div>
+
+      {! Controls !}
+      <div class="file-manager-toolbar-controls col-sm-6 text-sm-right text-center">
+        <div class="btn-group">
+          {! Upload !}
+          <label class="btn btn-icon btn-file" data-file-manager-upload title="{@i18n term="upload"/}">
+            <i class="fa fa-upload"></i>
+            <input type="file" accept="image/*" hidden>
+          </label>
+
+          {! Download !}
+          <button type="button" class="btn btn-icon" data-file-manager-download title="{@i18n term="download"/}">
+            <i class="fa fa-download"></i>
+          </button>
+
+          {! Copy !}
+          <button type="button" class="btn btn-icon" data-file-manager-copy data-copied="{@i18n term="copied_to_clipboard"/}" title="{@i18n term="copy"/}">
+            <i class="fa fa-clipboard"></i>
+          </button>
+
+          {! Delete !}
+          <button
+            type="button"
+            class="btn btn-icon"
+            data-file-manager-delete
+            data-confirm="{@i18n term="are_you_sure_you_want_to_delete_the_selected_files"/}"
+            title="{@i18n term="delete"/}"
+          >
+            <i class="fa fa-trash"></i>
+          </button>
+        </div>
+
+        {! Select !}
+        <button type="button" class="btn btn-primary" data-file-manager-select hidden>
+          {@i18n term="select"/}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {! Upload items !}
+  <div id="file-manager-items"></div>
+
+  {! Empty state !}
+  <div id="file-manager-empty" class="empty-state empty-state-md" hidden>
+    <div class="empty-state-message">
+      {@i18n term="no_files"/}
+    </div>
+  </div>
+
+  {! Dropzone !}
+
+  <div id="file-manager-dropzone" hidden>
+    <div class="file-manager-dropzone-body">
+      <div class="file-manager-dropzone-instructions">
+        {@i18n term="drop_files_to_upload"/}
+      </div>
+    </div>
+  </div>
+</div>

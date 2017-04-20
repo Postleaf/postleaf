@@ -1,0 +1,16 @@
+{name},
+
+{welcomeToPostleaf}
+
+{yourUsernameIs}
+{yourPasswordIs}
+
+{followTheLinkBelow}
+
+{adminUrl}
+
+{changeYourPassword}
+
+-----
+
+{websiteTitle} <{websiteUrl}>

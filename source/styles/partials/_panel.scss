@@ -1,0 +1,126 @@
+//
+// A simple panel implementation.
+//
+// Example:
+//
+//  <div id="my-panel" class="panel panel-right">
+//    <header class="panel-header">
+//      <h3>My Panel</h3>
+//    </header>
+//
+//    <button type="button" class="close btn btn-link" data-panel-hide>
+//      <i class="fa fa-remove"></i>
+//    </button>
+//
+//    <div class="panel-body">
+//        ...
+//    </div>
+//
+//    <footer class="panel-footer">
+//      ...
+//    </footer>
+//
+//  </div>
+//
+// Notes:
+//  - Use the panel-left and panel-right modifiers to adjust the panel's position.
+//  - Any element with the data-panel-hide attribute will hide the panel on click.
+//
+.panel {
+  position: fixed;
+  z-index: 500;
+  top: 0;
+  bottom: 0;
+  width: 30rem;
+  background: white;
+  box-shadow: -.5rem 0 5rem rgba(black, .05);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  visibility: hidden;
+  transition: .2s all;
+  user-select: none;
+
+  &.panel-right {
+    right: 0;
+    left: auto;
+    border-left: solid 1px darken($body-bg, 10%);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  &.panel-left {
+    right: auto;
+    left: 0;
+    border-right: solid 1px darken($body-bg, 10%);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  &.active {
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+    transition-delay: 0s;
+  }
+
+  .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.2rem;
+    color: $text-muted;
+    transition: .2s color;
+
+    &:hover {
+      color: darken($text-muted, 10%);
+    }
+  }
+
+  .panel-header {
+    padding: 2rem 2rem 0 2rem;
+    margin-top: -.5rem;
+
+    h1,
+    h2,
+    h3 {
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .panel-body {
+    padding: 0 2rem;
+  }
+
+  .panel-footer {
+    padding: 0 2rem 2rem 2rem;
+    margin-top: 2rem;
+  }
+
+  .nav {
+    margin-bottom: 2rem;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+
+  .panel {
+    width: 100%;
+    padding: 1rem;
+
+    .close {
+      top: .5rem;
+      right: .5rem;
+    }
+
+    .panel-header {
+      padding: .5rem 0 0 0;
+    }
+
+    .panel-body {
+      padding: 0;
+    }
+
+    .panel-footer {
+      padding: 0 0 1rem 0;
+    }
+  }
+
+}

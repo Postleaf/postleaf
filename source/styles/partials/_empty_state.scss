@@ -1,0 +1,47 @@
+//
+// Empty State
+//
+// A basic empty state container.
+//
+// Example:
+//
+//  <div class="empty-state">
+//    <div class="empty-state-message">
+//      No items found
+//    </div>
+//  </div>
+//
+// Notes:
+//
+//  - Uses the current element's text size by default
+//  - Add the empty-state-xs|sm|md|lg|xl modifiers to adjust the text size.
+//
+
+.empty-state {
+  width: 100%;
+  height: 100%;
+  display: table;
+  user-select: none;
+}
+
+.empty-state-message {
+  color: $text-muted;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.empty-state-icon {
+  font-size: 200%;
+  display: block;
+}
+
+.empty-state-xl .empty-state-message { font-size: 3rem; }
+
+.empty-state-lg .empty-state-message { font-size: 2.5rem; }
+
+.empty-state-md .empty-state-message { font-size: 2rem; }
+
+.empty-state-sm .empty-state-message { font-size: 1.5rem; }
+
+.empty-state-xs .empty-state-message { font-size: 1rem; }

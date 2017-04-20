@@ -1,0 +1,45 @@
+{#users}
+  <div class="tag-card col-xl-3 col-lg-4 col-sm-6">
+    <div
+      class="card card-cover"
+      data-value="{id}"
+      data-open-action="{@url type="author" username="{username}"/}"
+      {! Only let the owner edit the owner profile !}
+      {@in key=role value="owner"}
+        {@in key=User.role value="owner"}
+          data-edit-action="{@url type="admin" path="users/edit/{id}"/}"
+        {/in}
+      {:else}
+        data-edit-action="{@url type="admin" path="users/edit/{id}"/}"
+      {/in}
+      data-delete-action="{@url type="api" path="users/{id}"/}"
+    >
+      <div class="card-cover-header">
+        <div
+          class="card-cover-image"
+          {?image}style="background-image: url('{@dynamicImage src=image width="500" blur="20"/}');"{/image}
+        >
+        </div>
+        {?avatar}
+          <div class="card-cover-avatar">
+            <img src="{@dynamicImage src=avatar thumbnail="500"/}" alt="{name}">
+          </div>
+        {/avatar}
+      </div>
+      <div class="card-block">
+        <span class="badge badge-info pull-right">
+          {@postCount author=username/}
+        </span>
+        <h4 class="card-title">{name}</h4>
+        <p class="card-subtitle mb-2 text-muted">
+          {@select key=role}
+            {@eq value="owner"}{@i18n term="owner"/}{/eq}
+            {@eq value="admin"}{@i18n term="administrator"/}{/eq}
+            {@eq value="editor"}{@i18n term="editor"/}{/eq}
+            {@eq value="contributor"}{@i18n term="contributor"/}{/eq}
+          {/select}
+        </p>
+      </div>
+    </div>
+  </div>
+{/users}

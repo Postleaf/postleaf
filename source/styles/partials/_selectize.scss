@@ -1,0 +1,148 @@
+// The main control
+.selectize-control {
+  position: relative;
+
+  // Make the form control transparent so it just wraps the selectize input
+  &.form-control {
+    padding: 0;
+    height: auto;
+    border: none;
+    background: none;
+    border-radius: 0;
+  }
+}
+
+// Input
+.selectize-input {
+  // Simulate a form control's appearance
+  @extend .form-control;
+  height: auto;
+  cursor: text;
+  min-height: $input-height;
+
+  &.has-items {
+    padding: .25rem .5rem;
+  }
+
+  &.dropdown-active {
+    border-radius: $border-radius;
+  }
+
+  &.dropdown-active::before {
+    display: none;
+  }
+
+  &.focus {
+    border-color: $input-border-focus;
+  }
+
+  &.disabled {
+    background: white;
+    opacity: .5;
+    cursor: default !important;
+
+    > .item,
+    > .item.active {
+      background: white;
+      border: 0 solid transparent;
+    }
+  }
+
+  &::after {
+    content: ' ';
+    display: block;
+    clear: left;
+  }
+
+  > * {
+    vertical-align: baseline;
+    display: inline-block;
+  }
+
+  > input {
+    display: inline-block !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    text-indent: 0 !important;
+    border: 0 none !important;
+    background: none !important;
+    line-height: inherit !important;
+    box-shadow: none !important;
+  }
+
+  > input::-ms-clear {
+    display: none;
+  }
+
+  > input:focus {
+    outline: none !important;
+  }
+
+  > .item {
+    color: $input-color;
+    background: darken($body-bg, 2.5%);
+    border: 0 solid rgba(0, 0, 0, 0);
+    border-radius: $border-radius;
+    padding: .15rem .25rem;
+    margin: .1rem .25rem .1rem 0;
+    cursor: pointer;
+  }
+
+  > .item.active {
+    background: $brand-primary;
+    color: white;
+    border: 0 solid rgba(0, 0, 0, 0);
+  }
+}
+
+// Input when a parent element has an error state
+.has-error .selectize-input {
+  border-color: $brand-warning;
+
+  &:focus {
+    border-color: $brand-warning;
+  }
+
+  &.has-items {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+}
+
+// Dropdown
+.selectize-dropdown {
+  position: absolute;
+  z-index: 1000;
+  height: auto;
+  background: $dropdown-bg;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  box-shadow: $dropdown-box-shadow;
+  padding: 0;
+  margin: 0;
+
+  [data-selectable] {
+    cursor: pointer;
+    overflow: hidden;
+    padding: .25rem .75rem;
+
+    .highlight {
+      background: rgba(255, 237, 40, 0.4);
+    }
+  }
+
+  .active {
+    background-color: $link-color;
+    color: white;
+  }
+
+  .selectize-dropdown-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 12rem;
+    padding: .25rem 0;
+  }
+}

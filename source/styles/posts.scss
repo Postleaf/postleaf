@@ -1,0 +1,168 @@
+@import "partials/variables";
+
+.main-container {
+  padding: 0;
+
+  // Height needs to be 100% for all the preview frame's containers
+  > .row {
+    height: 100%;
+    margin-left: 0;
+    margin-right: 0;
+
+    > [class^="col-"] {
+      height: 100%;
+      padding: 0;
+    }
+  }
+}
+
+#posts {
+  height: 100%;
+  border-right: solid 1px darken($body-bg, 10%);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#empty {
+  border-right: solid 1px darken($body-bg, 10%);
+}
+
+#none-selected,
+#many-selected {
+  height: 100%;
+}
+
+@keyframes preview-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#preview {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  user-select: none;
+  padding: 2rem;
+
+  // Preview spinner
+  &.loading::after {
+    position: absolute;
+    top: calc(50% - 1.5rem);
+    right: calc(50% - 1.5rem);
+    width: 3rem;
+    height: 3rem;
+    content: '';
+    border: solid 4px transparent;
+    border-top-color: $brand-primary;
+    border-left-color: $brand-primary;
+    border-radius: 50%;
+    animation: preview-spinner 500ms linear infinite;
+  }
+
+  &.loading #preview-frame {
+    display: none;
+  }
+
+  #preview-wrap {
+    position: relative;
+    width: 200%;
+    height: 200%;
+    transform: scale(.5);
+    transform-origin: 0 0;
+    box-shadow: 0 .2rem .2rem rgba($postleaf-black, .05);
+    transition: .1s box-shadow;
+
+    &:hover {
+      box-shadow: 0 0 0 .5rem $link-color;
+    }
+  }
+
+  #preview-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: white;
+    overflow-y: auto;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  #preview {
+    padding: 1rem;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  #preview {
+    padding: 0;
+  }
+}
+
+// Post items
+.post-item {
+  @include clearfix;
+  color: inherit;
+  background: white;
+  box-shadow: 0 .1rem .1rem rgba($postleaf-black, .05);
+  border-left: solid 0 $link-color;
+  margin-bottom: 1px;
+  padding: 1.25rem 1.5rem;
+  display: block;
+  cursor: pointer;
+  user-select: none;
+  transition: .1s border, .1s padding;
+
+  &.selected {
+    border-left-width: .5rem;
+    padding-right: 1rem;
+  }
+
+  .post-item-title {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-bottom: .5rem;
+  }
+
+  .post-item-details {
+    font-size: .9rem;
+    color: $text-muted;
+  }
+
+  .post-item-avatar {
+    width: 1.5em;
+    height: auto;
+    vertical-align: bottom;
+    border-radius: $border-radius;
+    margin-right: .25rem;
+  }
+
+  .post-item-meta {
+    float: right;
+  }
+}
+
+// Dropdown filter
+#post-filter {
+
+  &.active {
+    .dropdown-toggle i {
+      color: $link-color;
+    }
+  }
+
+  .dropdown-item {
+    padding: .1rem 1rem;
+
+    &:hover {
+      background: transparent;
+    }
+
+    label {
+      display: block;
+      margin: 0;
+    }
+  }
+
+}

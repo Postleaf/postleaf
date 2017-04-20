@@ -1,0 +1,166 @@
+@import 'partials/variables';
+@import 'bootstrap/scss/normalize';
+@import 'bootstrap/scss/reboot';
+@import 'bootstrap/scss/type';
+@import 'bootstrap/scss/code';
+
+body {
+  // Day theme
+  font-size: 20px;
+  font-family: Lora, serif;
+  font-weight: 300;
+  background-color: white;
+  color: rgba(black, .75);
+  padding: 4rem 2rem;
+  line-height: 1.8;
+  transition: .4s background-color, .4s color;
+
+  // Night theme
+  &[data-theme="night"] {
+    background-color: darken($postleaf-black, 2.5%);
+    color: rgba(white, .75);
+  }
+}
+
+// Hide outlines
+body [data-postleaf-region] {
+  outline: none;
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 18px;
+    padding: 2rem 1rem;
+  }
+}
+
+.container {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: Lato, sans-serif;
+  font-size: 3rem;
+  margin: 0 0 3rem 0;
+}
+
+a,
+a:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2:not(:first-child),
+h3:not(:first-child),
+h4:not(:first-child) {
+  margin-top: 3rem;
+}
+
+hr {
+  border-top: solid .25rem $body-bg;
+  margin: 4rem 0;
+}
+
+pre {
+  background-color: $code-bg;
+  color: $code-color;
+  border-radius: $border-radius;
+  padding: 1.5rem;
+}
+
+// Images
+img {
+  max-width: 100%;
+}
+
+figure.image {
+  display: block;
+}
+
+figure.image img {
+  width: 100%;
+  display: block;
+}
+
+// Full-width images
+figure.image:not(.align-left):not(.align-right):not(.align-center) {
+  max-width: none;
+  width: calc(100% + 4rem);
+  margin-left: -2rem;
+}
+
+// Left-aligned images
+figure.image.align-left {
+  width: 50%;
+  float: left;
+  margin-right: 1rem;
+  margin-left: -2rem;
+}
+
+// Right-aligned images
+figure.image.align-right {
+  width: 50%;
+  float: right;
+  margin-left: 1rem;
+  margin-right: -2rem;
+}
+
+// Center-aligned images
+figure.image.align-center {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.image figcaption {
+  font-family: Lato, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  text-align: center;
+  color: #999;
+  margin-top: .25rem;
+}
+
+// Responsive embeds
+[data-embed] iframe {
+  width: 100%;
+}
+
+// YouTube and Vimeo videos via oEmbed
+[data-embed-provider="Vimeo"],
+[data-embed-provider="YouTube"] {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+[data-embed-provider="Vimeo"] iframe,
+[data-embed-provider="YouTube"] iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

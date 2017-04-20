@@ -1,0 +1,78 @@
+{#posts}
+  <div
+    class="post-item"
+    data-value="{id}"
+    data-open-action=
+      {@postIsPublic}
+        "{@url type="post" slug=slug/}"
+      {:else}
+        "{@url type="api" path="posts/{id}/preview"/}"
+      {/postIsPublic}
+    data-edit-action="{@url type="admin" path="posts/edit/{id}"/}"
+    data-delete-action="{@url type="api" path="posts/{id}"/}"
+    data-preview-action="{@url type="api" path="posts/{id}/preview"/}"
+  >
+    {! Title !}
+    <h4 class="post-item-title">
+      {title}
+    </h4>
+
+    {! Details !}
+    <div class="post-item-details">
+      {! Avatar !}
+      {?author.avatar}
+        <img class="post-item-avatar" src="{@dynamicImage src=author.avatar thumbnail="100"/}" alt="{author.name}">
+      {/author.avatar}
+
+      {! Date !}
+      <span class="post-item-date" title="{@date date=publishedAt format="LLLL"/}" data-placement="right">
+        {@date date=publishedAt relative="true"/}
+      </span>
+
+      {! Post meta !}
+      <div class="post-item-meta">
+        {! No index !}
+        {?isPage}
+          {@htmlPostBadge type="page"/}
+        {/isPage}
+
+        {! Featured !}
+        {?isFeatured}
+          {@htmlPostBadge type="featured"/}
+        {/isFeatured}
+
+        {! Sticky !}
+        {?isSticky}
+          {@htmlPostBadge type="sticky"/}
+        {/isSticky}
+
+        {! Status !}
+        {@select key=status}
+          {! Live / scheduled !}
+          {@eq value="published"}
+            {@postIsPublic}
+              {@htmlPostBadge type="live"/}
+            {:else}
+              {@htmlPostBadge type="scheduled"/}
+            {/postIsPublic}
+          {/eq}
+
+          {! Draft !}
+          {@eq value="draft"}
+            {@htmlPostBadge type="draft"/}
+          {/eq}
+
+          {! Pending !}
+          {@eq value="pending"}
+            {@htmlPostBadge type="pending"/}
+          {/eq}
+
+          {! Rejected !}
+          {@eq value="rejected"}
+            {@htmlPostBadge type="rejected"/}
+          {/eq}
+        {/select}
+      </div>
+    </div>
+  </div>
+{/posts}

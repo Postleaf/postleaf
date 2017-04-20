@@ -1,0 +1,16 @@
+<div class="nav-item">
+  {! Label !}
+  <div class="nav-item-field">
+    <input type="text" class="form-control" name="label" value="{label}" placeholder="{@i18n term="label"/}">
+  </div>
+  {! Link !}
+  <div class="nav-item-field">
+    <input type="text" class="form-control" name="link" value="{link}" placeholder="{@i18n term="link"/}" data-autocomplete>
+  </div>
+  {! Delete button !}
+  <div class="nav-item-remove">
+    <button type="button" class="btn btn-icon" data-remove title="{@i18n term="delete"/}">
+      <i class="fa fa-trash"></i>
+    </button>
+  </div>
+</div>

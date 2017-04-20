@@ -1,0 +1,48 @@
+@import 'partials/variables';
+
+$pl-toolbar-image-size: 28px;
+$pl-toolbar-padding: 8px;
+
+// Basic reset for toolbar
+.pl-toolbar,
+.pl-toolbar * {
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  transition: none;
+}
+
+// Toolbar
+.pl-toolbar {
+  position: fixed;
+  z-index: 9999;
+  bottom: 24px;
+  left: 24px;
+  background: $postleaf-black;
+  border-radius: $border-radius;
+  color: white;
+}
+
+// Toolbar items
+.pl-item {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  float: left;
+  display: inline-block;
+  cursor: pointer;
+  transition: .1s transform;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  img {
+    width: auto;
+    height: $pl-toolbar-image-size + ($pl-toolbar-padding * 2);
+    vertical-align: middle;
+    padding: $pl-toolbar-padding;
+  }
+}

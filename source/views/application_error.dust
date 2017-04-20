@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{title}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="shortcut icon" href="{@url path="assets/images/favicon.png"/}">
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: #173846;
+      text-align: center;
+      background: #f3f7f9;
+    }
+    img {
+      width: 10rem;
+      margin: 0 auto 1rem auto;
+      display: block;
+    }
+    h1 {
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: 2.5rem;
+      color: inherit;
+      margin: 0 0 1rem 0;
+    }
+    p {
+      color: #8aaab9;
+      margin: 1rem 0 0 0;
+    }
+    .container {
+      height: 100vh;
+      display: table;
+      max-width: 40rem;
+      margin: 0 auto;
+    }
+    .content {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <img src="{@url path="assets/images/postleaf_logo.svg"/}" alt="Logo">
+      <h1>{title}</h1>
+      <p>{message}</p>
+    </div>
+  </div>
+</body>
+</html>

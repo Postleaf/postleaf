@@ -1,0 +1,89 @@
+{>"layout"/}
+
+{! No header for this page !}
+{<header}{/header}
+
+{! Body !}
+{<body}
+  <main class="main-container stretch-down">
+
+    <div class="row">
+      <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
+        <form
+          id="quick-post-form"
+          action="{@url type="api" path="posts"/}"
+          method="POST"
+          data-redirect="{@url type="admin" path="posts"/}"
+          autocomplete="off"
+        >
+          <div class="quick-post-header">
+            <div class="row">
+              {! Title !}
+              <div class="col-8">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  name="title"
+                  placeholder="{Settings.defaultPostTitle}"
+                  value="{Request.query.title}"
+                  autofocus
+                >
+              </div>
+
+              {! Template !}
+              <div class="col-4 text-right">
+                {?templates}
+                  <select class="form-control" id="template" name="template">
+                    <optgroup label="{@i18n term="template"/}">
+                      <option value="">{@i18n term="default"/}</option>
+                      {#templates}
+                        <option value="{filename}">{name}</option>
+                      {/templates}
+                    </optgroup>
+                  </select>
+                {/templates}
+              </div>
+            </div>
+          </div>
+
+          {! Content !}
+          <div class="quick-post-body">
+            <textarea
+              class="form-control"
+              id="content"
+              name="content"
+              rows="8"
+              placeholder="{Settings.defaultPostContent|markdownToText}"
+            >{Request.query.content}</textarea>
+          </div>
+
+          <div class="quick-post-footer">
+            {! Save for later !}
+            <button type="button" class="btn btn-link" data-save>
+              {@i18n term="save_for_later"/}
+            </button>
+
+            {! Publish now !}
+            <button type="button" class="btn btn-primary" data-publish>
+              {@i18n term="publish_now"/}
+            </button>
+          </div>
+
+          {! Mobile tip !}
+          <p class="form-text hidden-md-up">
+            {@i18n term="post_things_faster_by_adding_this_page_to_your_device"/}
+          </p>
+
+          {! Hidden fields !}
+          <input type="hidden" id="slug" name="slug" value="">
+          <input type="hidden" id="user-id" name="user-id" value="{User.id}">
+          <input type="hidden" id="published-at" name="published-at" value="{@date format="YYYY-MM-DD HH:mm:ss"/}">
+          <input type="hidden" id="status" name="status" value="">
+          <input type="hidden" name="content-format" value="markdown">
+        </form>
+      </div>
+    </div>
+
+  </main>
+{/body}

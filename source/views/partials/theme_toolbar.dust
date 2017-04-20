@@ -1,0 +1,35 @@
+<div class="pl-toolbar">
+  {! Dashboard !}
+  <a class="pl-home pl-item" href="{@url type="admin"/}" title="{@i18n term="dashboard"/}">
+    <img src="{@url path="assets/images/postleaf_logo.svg"/}">
+  </a>
+
+  {! New post!}
+  <a class="pl-home pl-item" href="{@url type="admin" path="posts/new"/}" title="{@i18n term="new_post"/}">
+    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc5MiIgaGVpZ2h0PSIxNzkyIiB2aWV3Qm94PSIwIDAgMTc5MiAxNzkyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xNjAwIDczNnYxOTJxMCA0MC0yOCA2OHQtNjggMjhoLTQxNnY0MTZxMCA0MC0yOCA2OHQtNjggMjhoLTE5MnEtNDAgMC02OC0yOHQtMjgtNjh2LTQxNmgtNDE2cS00MCAwLTY4LTI4dC0yOC02OHYtMTkycTAtNDAgMjgtNjh0NjgtMjhoNDE2di00MTZxMC00MCAyOC02OHQ2OC0yOGgxOTJxNDAgMCA2OCAyOHQyOCA2OHY0MTZoNDE2cTQwIDAgNjggMjh0MjggNjh6IiBmaWxsPSIjZmZmIi8+PC9zdmc+">
+  </a>
+
+  {! Only show edit buttons to owners/admins/editors !}
+  {@in key=User.role value="owner,admin,editor"}
+    {! Edit post !}
+    {?post}
+      <a class="pl-home pl-item" href="{@url type="admin" path="posts/edit/{post.id}"/}" title="{@i18n term="edit"/}">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc5MiIgaGVpZ2h0PSIxNzkyIiB2aWV3Qm94PSIwIDAgMTc5MiAxNzkyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik00OTEgMTUzNmw5MS05MS0yMzUtMjM1LTkxIDkxdjEwN2gxMjh2MTI4aDEwN3ptNTIzLTkyOHEwLTIyLTIyLTIyLTEwIDAtMTcgN2wtNTQyIDU0MnEtNyA3LTcgMTcgMCAyMiAyMiAyMiAxMCAwIDE3LTdsNTQyLTU0MnE3LTcgNy0xN3ptLTU0LTE5Mmw0MTYgNDE2LTgzMiA4MzJoLTQxNnYtNDE2em02ODMgOTZxMCA1My0zNyA5MGwtMTY2IDE2Ni00MTYtNDE2IDE2Ni0xNjVxMzYtMzggOTAtMzggNTMgMCA5MSAzOGwyMzUgMjM0cTM3IDM5IDM3IDkxeiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==">
+      </a>
+    {/post}
+
+    {! Edit tag !}
+    {?tag}
+      <a class="pl-home pl-item" href="{@url type="admin" path="tags/edit/{tag.id}"/}" title="{@i18n term="edit"/}">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc5MiIgaGVpZ2h0PSIxNzkyIiB2aWV3Qm94PSIwIDAgMTc5MiAxNzkyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik00OTEgMTUzNmw5MS05MS0yMzUtMjM1LTkxIDkxdjEwN2gxMjh2MTI4aDEwN3ptNTIzLTkyOHEwLTIyLTIyLTIyLTEwIDAtMTcgN2wtNTQyIDU0MnEtNyA3LTcgMTcgMCAyMiAyMiAyMiAxMCAwIDE3LTdsNTQyLTU0MnE3LTcgNy0xN3ptLTU0LTE5Mmw0MTYgNDE2LTgzMiA4MzJoLTQxNnYtNDE2em02ODMgOTZxMCA1My0zNyA5MGwtMTY2IDE2Ni00MTYtNDE2IDE2Ni0xNjVxMzYtMzggOTAtMzggNTMgMCA5MSAzOGwyMzUgMjM0cTM3IDM5IDM3IDkxeiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==">
+      </a>
+    {/tag}
+
+    {! Edit author !}
+    {?author}
+      <a class="pl-home pl-item" href="{@url type="admin" path="users/edit/{author.id}"/}" title="{@i18n term="edit"/}">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc5MiIgaGVpZ2h0PSIxNzkyIiB2aWV3Qm94PSIwIDAgMTc5MiAxNzkyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik00OTEgMTUzNmw5MS05MS0yMzUtMjM1LTkxIDkxdjEwN2gxMjh2MTI4aDEwN3ptNTIzLTkyOHEwLTIyLTIyLTIyLTEwIDAtMTcgN2wtNTQyIDU0MnEtNyA3LTcgMTcgMCAyMiAyMiAyMiAxMCAwIDE3LTdsNTQyLTU0MnE3LTcgNy0xN3ptLTU0LTE5Mmw0MTYgNDE2LTgzMiA4MzJoLTQxNnYtNDE2em02ODMgOTZxMCA1My0zNyA5MGwtMTY2IDE2Ni00MTYtNDE2IDE2Ni0xNjVxMzYtMzggOTAtMzggNTMgMCA5MSAzOGwyMzUgMjM0cTM3IDM5IDM3IDkxeiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==">
+      </a>
+    {/author}
+  {/in}
+</div>

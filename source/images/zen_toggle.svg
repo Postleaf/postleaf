@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="225px" height="224px" viewBox="0 0 225 224" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>zen_toggle</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.63 0.725 224.295 224.39 224.295 0.43"></polygon>
+        <polygon id="path-3" points="0.63 0.725 224.295 224.39 224.295 0.43"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="zen_toggle" transform="translate(-1.000000, -1.000000)">
+            <g id="Day" transform="translate(113.671875, 112.863281) rotate(-90.000000) translate(-113.671875, -112.863281) translate(1.171875, 0.363281)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="path-1"></g>
+                <polygon id="path-1" stroke="#888888" stroke-width="4" fill="#FFFFFF" fill-rule="nonzero" mask="url(#mask-2)" points="0.63 0.725 224.295 224.39 224.295 0.43"></polygon>
+            </g>
+            <g id="Night" transform="translate(113.471875, 112.804375) rotate(-270.000000) translate(-113.471875, -112.804375) translate(0.971875, 0.304375)">
+                <mask id="mask-4" fill="white">
+                    <use xlink:href="#path-3"></use>
+                </mask>
+                <g id="path-3"></g>
+                <polygon id="path-3" stroke="#888888" stroke-width="4" fill="#272F33" fill-rule="nonzero" mask="url(#mask-4)" points="0.63 0.725 224.295 224.39 224.295 0.43"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

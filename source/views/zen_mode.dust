@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{post.metaTitle}</title>
+  <meta name="description" content="{post.metaDescription}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700%7CLato:300,700">
+  <link rel="stylesheet" href="{@url path="assets/css/zen_mode.css"/}">
+  {@head/}
+</head>
+<body data-theme="{Request.cookies.zenTheme}">
+  {#post}
+    <article class="container">
+      <h1 class="title">{@title editable="true"/}</h1>
+      <div class="content">{@content editable="true"/}</div>
+    </article>
+  {/post}
+
+  {@foot/}
+</body>
+</html>

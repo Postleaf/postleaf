@@ -1,0 +1,126 @@
+//
+// Image Control
+//
+// Draws an control for working with images. Shows a placeholder when the control is empty, and
+// shows the image in cover mode when style="background-image" is set.
+//
+// Example:
+//
+//  <div class="image-control">
+//    <div class="image-control-controls">
+//      <div class="btn-group">
+//          <button class="btn btn-black" type="button"><i class="fa fa-upload"></i></button>
+//          <button class="btn btn-black" type="button"><i class="fa fa-picture-o"></i></button>
+//          <button class="btn btn-black" type="button"><i class="fa fa-remove"></i></button>
+//      </div>
+//    </div>
+//  </div>
+//
+// Notes:
+//
+//  - There are xs, sm, lg, and xl variations.
+//  - The `image-control-contain` modifier can be used to contain rather than cover the block.
+//
+
+$image-control-height-xs: 5rem;
+$image-control-height-sm: 10rem;
+$image-control-height-md: 15rem;
+$image-control-height-lg: 20rem;
+$image-control-height-xl: 25rem;
+$image-control-icon-color: #8aaabb;
+
+.image-control {
+  position: relative;
+  height: $image-control-height-md;
+  border-radius: .25rem;
+  background-color: $body-bg;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: .5rem;
+
+  // Modifier to contain rather than cover
+  &.image-control-contain {
+    background-size: contain;
+  }
+
+  // Image placeholder
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    content: '\f03e';
+    font-family: FontAwesome;
+    color: $image-control-icon-color;
+    font-size: 6rem;
+    line-height: $image-control-height-md;
+    text-align: center;
+    opacity: .25;
+  }
+
+  // Dropzone
+  &.image-control-dragging {
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      content: '';
+      border: solid .5rem $brand-primary;
+      border-radius: $border-radius;
+    }
+  }
+
+  // Hide placeholder when a background image is set
+  &[style]:not([style=""])::before {
+    display: none;
+  }
+
+  .image-control-controls {
+    position: absolute;
+    right: .5rem;
+    bottom: .5rem;
+  }
+
+  // XS variation
+  &.image-control-xs {
+    height: 5rem;
+
+    &::before  {
+      font-size: 2rem;
+      line-height: $image-control-height-xs;
+    }
+  }
+
+  // Small variation
+  &.image-control-sm {
+    height: $image-control-height-sm;
+
+    &::before  {
+      font-size: 4rem;
+      line-height: $image-control-height-sm;
+    }
+  }
+
+  // Large variation
+  &.image-control-lg {
+    height: $image-control-height-lg;
+
+    &::before  {
+      font-size: 8rem;
+      line-height: $image-control-height-lg;
+    }
+  }
+
+  // XL variation
+  &.image-control-xl {
+    height: $image-control-height-xl;
+
+    &::before  {
+      font-size: 10rem;
+      line-height: $image-control-height-xl;
+    }
+  }
+}

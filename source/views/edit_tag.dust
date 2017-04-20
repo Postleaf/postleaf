@@ -1,0 +1,158 @@
+{>"layout"/}
+
+{! Header !}
+{<header}
+  <header class="admin-toolbar">
+    <div class="admin-toolbar-group">
+      {! Toolbar title !}
+      <h2 class="admin-toolbar-title">
+        <a href="{@url type="admin" path="tags"/}">{@i18n term="tags"/}</a>
+        <i class="fa fa-angle-right"></i>
+        {?tag}
+          {tag.name}
+        {:else}
+          {@i18n term="new_tag"/}
+        {/tag}
+      </h2>
+    </div>
+    <div class="admin-toolbar-group text-right">
+      {! Save / cancel !}
+      <a class="btn btn-link" href="{@url type="admin" path="tags"/}">{@i18n term="cancel"/}</a>
+      <button class="btn btn-primary" type="button" data-save>{@i18n term="save"/}</button>
+    </div>
+  </header>
+{/header}
+
+{! Body !}
+{<body}
+  <main class="main-container stretch-down">
+    {! Sidebar !}
+    <div id="sidebar">
+      <nav class="nav nav-pills flex-md-column flex-row flex-wrap">
+        <a class="nav-link active" data-toggle="tab" href="#tag">{@i18n term="tag"/}</a>
+        <a class="nav-link" data-toggle="tab" href="#meta-data">{@i18n term="metadata"/}</a>
+      </nav>
+    </div>
+
+    {! Main content !}
+    <form
+      id="tag-form"
+      class="tab-content box"
+      data-tag-id="{tag.id}"
+      data-tag-created="{@i18n term="[name]_has_been_created" name=":name"/}"
+      data-changes-saved="{@i18n term="your_changes_have_been_saved"/}"
+      data-create-action="{@url type="api" path="tags"/}"
+      data-save-confirmation="{@i18n term="your_changes_havent_been_saved_yet"/}"
+      data-update-action="{@url type="api" path="tags/:id"/}"
+    >
+      {! Website !}
+      <div id="tag" class="tab-pane active">
+        <div class="row">
+          <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
+
+            {! Name !}
+            <div class="form-group">
+              <label for="name">{@i18n term="name"/}</label>
+              <input class="form-control" type="text" name="name" id="name" value="{tag.name}" autofocus>
+            </div>
+
+            {! Description !}
+            <div class="form-group">
+              <label for="description">{@i18n term="description"/}</label>
+              <span class="badge badge-info pull-right">{@i18n term="markdown"/}</span>
+              <textarea class="form-control" name="description" id="description" rows="6">{tag.description}</textarea>
+            </div>
+
+            {! Slug !}
+            <div class="form-group">
+              <label for="slug">{@i18n term="slug"/}</label>
+              <input class="form-control" type="text" name="slug" id="slug" value="{tag.slug}">
+              <p class="form-text">
+                {@i18n term="slugs_must_start_with_a_letter_and_can_only_contain"/}
+              </p>
+            </div>
+
+            {! Image !}
+            <div class="form-group">
+              <label>{@i18n term="image"/}</label>
+              <div
+                class="image-control"
+                data-upload-action="{@url type="api" path="uploads"/}"
+                {?tag.image}style="background-image: url('{@url path=tag.image/}');"{/tag.image}
+              >
+                {! Hidden input !}
+                <input type="hidden" name="image" value="{tag.image}">
+                <div class="image-control-controls">
+                  <div class="btn-group">
+                    {! Upload !}
+                    <label class="btn btn-black btn-file" title="{@i18n term="upload"/}">
+                      <i class="fa fa-upload"></i>
+                      <input type="file" accept="image/*" hidden>
+                    </label>
+
+                    {! Browse !}
+                    <button class="btn btn-black" type="button" data-browse title="{@i18n term="browse"/}">
+                      <i class="fa fa-picture-o"></i>
+                    </button>
+
+                    {! Remove !}
+                    <button class="btn btn-black" type="button" data-remove title="{@i18n term="remove"/}" {^tag.image}hidden{/tag.image}>
+                      <i class="fa fa-remove"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <p class="form-text">
+                {@i18n term="cover_images_are_used_by_themes_to_provide_a_unique_visual_experience"/}
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {! Meta data !}
+      <div id="meta-data" class="tab-pane">
+        <div class="row">
+          <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
+
+            {! Meta data !}
+            <h3>{@i18n term="metadata"/}</h3>
+            <p class="form-text">
+              {@i18n term="metadata_is_used_by_search_engines_and_other_apps"/}
+            </p>
+
+            {! Meta title !}
+            <div class="form-group">
+              <label for="meta-title">{@i18n term="meta_title"/}</label>
+              <input class="form-control" type="text" name="meta-title" id="meta-title" value="{tag.metaTitle}">
+            </div>
+
+            {! Meta description !}
+            <div class="form-group">
+              <label for="meta-description">{@i18n term="meta_description"/}</label>
+              <textarea class="form-control" name="meta-description" id="meta-description" rows="6">{tag.metaDescription}</textarea>
+            </div>
+
+            {! Preview !}
+            <h3>{@i18n term="preview"/}</h3>
+            <div class="search-engine-preview">
+              <div class="search-engine-preview-title"></div>
+              <div class="search-engine-preview-url">
+                {@url type="tag" slug="" absolute="true"/}<span class="slug"></span>
+              </div>
+              <div class="search-engine-preview-description"></div>
+            </div>
+            <p class="form-text">
+              {@i18n term="this_is_how_search_engines_might_display_your_content"/}
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+      {! Hidden button so ENTER will trigger form submits !}
+      <button type="submit" hidden></button>
+    </form>
+  </main>
+{/body}

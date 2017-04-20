@@ -1,0 +1,104 @@
+@import "partials/variables";
+@import "partials/box";
+
+.sortable-ghost {
+  opacity: 0;
+}
+
+.nav-item {
+  position: relative;
+  width: 100%;
+  background: white;
+  box-shadow: 0 .1rem .1rem rgba($postleaf-black, .05);
+  margin-bottom: 1px;
+  display: table;
+  cursor: move;
+  padding-left: 1.5rem;
+
+  &:first-child {
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+
+  // Grip
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 2rem;
+    content: '';
+    background-image: str-replace(url('data:image/svg+xml;charset=utf8,<?xml version="1.0" encoding="UTF-8"?><svg width="5px" height="21px" viewBox="0 0 5 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="grip" fill="#{$input-border-color}"><circle id="Oval" cx="2.5" cy="2.5" r="2.5"></circle><circle id="Oval" cx="2.5" cy="18.5" r="2.5"></circle><circle id="Oval" cx="2.5" cy="10.5" r="2.5"></circle></g></g></svg>'), '#', '%23');
+    background-position: 1rem 50%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+
+  .nav-item-field {
+    width: calc(50% - 1.5rem);
+    padding: 1rem;
+    display: table-cell;
+
+    &:first-child {
+      padding-right: .5rem;
+    }
+
+    &:nth-child(2) {
+      padding-left: .5rem;
+    }
+  }
+
+  .nav-item-remove {
+    width: 3rem;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding-right: 1rem;
+  }
+}
+
+.nav-create {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+@include media-breakpoint-down(xs) {
+
+  .nav-item {
+    position: relative;
+    padding-left: 1.5rem;
+    padding-right: 3rem;
+    display: block;
+
+    .nav-item-field {
+      width: auto;
+      display: block;
+
+      &:first-child {
+        padding: 1rem 1rem .25rem 1rem;
+      }
+
+      &:nth-child(2) {
+        padding: .25rem 1rem 1rem 1rem;
+      }
+    }
+
+    .nav-item-remove {
+      position: absolute;
+      top: 50%;
+      right: .5rem;
+      margin-top: $input-height / -2;
+    }
+
+  }
+
+}
+
+.empty-state {
+  height: 20vh;
+}

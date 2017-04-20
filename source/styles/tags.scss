@@ -1,0 +1,14 @@
+@import "partials/variables";
+@import "partials/box";
+@import "partials/card_cover";
+
+// Make cards selectable
+.card {
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 2rem;
+
+  .badge {
+    margin-left: .5rem;
+  }
+}

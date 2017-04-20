@@ -1,0 +1,78 @@
+{>"layout"/}
+
+{! Header !}
+{<header}
+  <header class="admin-toolbar admin-toolbar-collapse-xs">
+    <div class="admin-toolbar-group">
+      <input
+        type="search"
+        class="form-control"
+        data-search
+        data-action="{@url type="api" path="users"/}"
+        placeholder="{@i18n term="search_users"/}"
+        autofocus
+      >
+    </div>
+    <div class="admin-toolbar-group text-right">
+      <div class="btn-group">
+        {! Open !}
+        <button
+          class="btn btn-icon"
+          type="button"
+          data-open
+          title="{@i18n term="open"/}"
+          disabled
+        >
+          <i class="fa fa-external-link-square"></i>
+        </button>
+
+        {! Edit !}
+        <button
+        class="btn btn-icon"
+          type="button"
+          data-edit
+          title="{@i18n term="edit"/}"
+          disabled
+        >
+          <i class="fa fa-pencil"></i>
+        </button>
+
+        {! Delete !}
+        <button
+          class="btn btn-icon"
+          type="button"
+          data-delete
+          data-confirm="{@i18n term="are_you_sure_you_want_to_delete_the_selected_users"/}"
+          title="{@i18n term="delete"/}"
+          disabled
+        >
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+
+      {! New user !}
+      <a class="btn btn-create" href="{@url type="admin" path="users/new"/}">
+        {@i18n term="new_user"/}
+      </a>
+    </div>
+  </header>
+{/header}
+
+{! Body !}
+{<body}
+  <main class="main-container stretch-down">
+
+    {! Users !}
+    <div id="users" class="row">
+      {>"partials/user_cards"/}
+    </div>
+
+    {! Empty !}
+    <div id="empty" class="empty-state empty-state-lg" hidden>
+      <div class="empty-state-message">
+        {@i18n term="no_users"/}
+      </div>
+    </div>
+
+  </main>
+{/body}

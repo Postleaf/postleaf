@@ -1,0 +1,133 @@
+$locater-width: 35rem;
+$locater-width-xs: 90%;
+
+#locater-overlay {
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba($postleaf-black, .3);
+}
+
+#locater {
+  position: fixed;
+  z-index: 901;
+  top: 2rem;
+  left: 50%;
+  margin-left: -$locater-width / 2;
+  width: $locater-width;
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: 0 1rem 2.5rem rgba($postleaf-black, .2);
+
+  .input-group {
+    padding: .5rem;
+  }
+
+  input[type="search"] {
+    border: none;
+    padding-left: .5rem;
+    padding-right: .5rem;
+  }
+
+  .input-group-addon {
+    position: relative;
+    border: none;
+    background: transparent;
+    color: $text-muted;
+    font-size: 1.6rem;
+  }
+
+  // Loading state
+  &.loading {
+    // Hide the search icon
+    .input-group-addon {
+      color: transparent;
+    }
+
+    // Animated spinner
+    .input-group-addon::after {
+      position: absolute;
+      top: calc(50% - .75rem);
+      right: calc(50% - .75rem);
+      width: 1.5rem;
+      height: 1.5rem;
+      content: '';
+      border: solid 3px transparent;
+      border-top-color: $text-muted;
+      border-left-color: $text-muted;
+      border-radius: 50%;
+      animation: main-container-spinner 500ms linear infinite;
+    }
+  }
+
+}
+
+#locater-results {
+  position: relative;
+  z-index: 902;
+  max-height: 50vh;
+  border-top: solid 1px $input-border-color;
+  border-bottom-right-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+  overflow-y: auto;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.locater-result {
+  @include text-truncate;
+  position: relative;
+  color: $body-color;
+  display: block;
+  padding: .5rem .5rem .5rem 4rem;
+
+  .locater-result-icon,
+  .locater-result-image {
+    position: absolute;
+    top: calc(50% - 1.25rem);
+    left: .75rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: $text-muted;
+    text-align: center;
+    border-radius: $border-radius;
+  }
+
+  .locater-result-icon {
+    top: calc(50% - 1rem);
+    font-size: 2rem;
+  }
+
+  .locater-result-description {
+    color: $text-muted;
+    font-size: .8rem;
+  }
+
+  &:hover,
+  &:focus {
+    color: inherit;
+    background-color: $body-bg;
+  }
+
+  &.active {
+    background-color: $postleaf-blue;
+    color: white;
+    text-decoration: none;
+    .locater-result-icon,
+    .locater-result-description {
+      color: white;
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  #locater {
+    width: $locater-width-xs;
+    margin-left: -$locater-width-xs / 2;
+  }
+}

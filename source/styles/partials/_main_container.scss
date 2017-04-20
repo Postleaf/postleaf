@@ -1,0 +1,39 @@
+$main-container-padding: 2rem;
+$main-container-padding-xs: 1rem;
+
+@keyframes main-container-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.main-container,
+.main-container-fluid {
+  @extend .container-fluid;
+  position: relative;
+  padding: $main-container-padding;
+
+  // Loading state
+  &.loading {
+    // Animated spinner
+    &::after {
+      position: absolute;
+      top: calc(50% - 1.5rem);
+      right: calc(50% - 1.5rem);
+      width: 3rem;
+      height: 3rem;
+      content: '';
+      border: solid 4px transparent;
+      border-top-color: $brand-primary;
+      border-left-color: $brand-primary;
+      border-radius: 50%;
+      animation: main-container-spinner 500ms linear infinite;
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .main-container,
+  .main-container-fluid {
+    padding: $main-container-padding-xs;
+  }
+}

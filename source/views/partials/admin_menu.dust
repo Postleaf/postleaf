@@ -1,0 +1,109 @@
+{! Main menu !}
+<nav class="admin-menu">
+  <div class="admin-menu-header">
+    {! Dropdown !}
+    <div class="admin-menu-dropdown dropdown">
+      {! Admin menu icon !}
+      <a class="admin-menu-item admin-menu-logo" data-toggle="dropdown">
+        <img src="{@url path="assets/images/postleaf_logo.svg"/}" alt="{@i18n term="logo"/}">
+      </a>
+
+      {! Dropdown menu !}
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        {! User !}
+        <div class="admin-menu-user">
+          <img
+            class="admin-menu-user-avatar"
+            alt="{User.name}"
+            src=
+              {?User.avatar}
+                "{@dynamicImage src=User.avatar thumbnail="100"/}"
+              {:else}
+                "{@url path="assets/images/postleaf_logo.svg"/}"
+              {/User.avatar}
+          >
+          <div class="admin-menu-user-name">{User.name}</div>
+          <div class="admin-menu-user-username">{User.username}</div>
+        </div>
+
+        <div class="dropdown-divider"></div>
+
+        {! Quick post !}
+        <a class="dropdown-item" href="{@url type="admin" path="posts/quick"/}">
+          {@i18n term="quick_post"/}
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        {! Homepage !}
+        <a class="dropdown-item" href="{@url/}">
+          {@i18n term="homepage"/}
+        </a>
+
+        {! Edit profile !}
+        <a class="dropdown-item" href="{@url type="admin" path="users/edit/{User.id}"/}">
+          {@i18n term="edit_profile"/}
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        {! Postleaf.org !}
+        <a class="dropdown-item" href="https://www.postleaf.org/" target="_blank">
+          Postleaf.org
+        </a>
+
+        {! Postleaf on Twitter !}
+        <a class="dropdown-item" href="https://twitter.com/postleafapp" target="_blank">
+          {@i18n term="postleaf_on_twitter"/}
+        </a>
+
+        {! Help and support !}
+        <a class="dropdown-item" href="https://community.postleaf.org/" target="_blank">
+          {@i18n term="help_and_support"/}
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        {! Logout !}
+        <a class="dropdown-item" href="{@url type="admin" path="logout"/}">
+          {@i18n term="logout"/}
+        </a>
+      </div>
+    </div>
+
+    {! Navicon !}
+    <a class="admin-menu-toggle" href="#">
+      <i class="fa fa-navicon"></i>
+    </a>
+
+    {! Title !}
+    <div class="admin-menu-title">{meta.title}</div>
+  </div>
+
+  {! Menu items !}
+  <div class="admin-menu-items">
+    {! Iterate menu item groups !}
+    {#adminMenu}
+      {! Iterate menu items !}
+      {#.}
+        <a
+          class="admin-menu-item {class} {@urlCompare url=link}admin-menu-current{/urlCompare}"
+          href="{link}"
+          title="{label}"
+        >
+          {?image}
+            {! Image !}
+            <img src="{image}" alt="{label}">
+          {:else}
+            {! Icon !}
+            <i class="{icon}"></i>
+          {/image}
+          <span class="admin-menu-label">{label}</span>
+        </a>
+      {/.}
+
+      {! Draw a divider between each group !}
+      {@sep}<hr class="admin-menu-divider">{/sep}
+    {/adminMenu}
+  </div>
+</nav>

@@ -1,0 +1,72 @@
+{! Revisions table !}
+<table class="table revisions-table" {^revisions}hidden{/revisions}>
+  <tbody>
+    {#revisions}
+      <tr>
+        <td class="revisions-table-details">
+          {! Date !}
+          <div class="revisions-table-date">
+            <span class="hidden-xs-down">{@date date=createdAt format="LLL"/}</span>
+            <span class="hidden-sm-up">{@date date=createdAt format="LL"/}</span>
+          </div>
+
+          {! Author !}
+          <div class="revisions-table-author">
+            {?author.avatar}
+              <img
+                class="revisions-table-avatar"
+                src="{@dynamicImage src=author.avatar thumbnail="100"/}"
+                alt="{author.name}"
+              >
+            {/author.avatar}
+            {author.name}
+          </div>
+        </td>
+        <td class="revisions-table-controls">
+          <div class="btn-group">
+            {! Open !}
+            <button
+              data-open-revision="{@url type="api" path="revisions/{id}/preview"/}"
+              type="button"
+              class="btn btn-icon"
+              title="{@i18n term="open"/}"
+            >
+              <i class="fa fa-external-link-square"></i>
+            </button>
+
+            {! Revert !}
+            <button
+              data-edit-revision="{@url type="api" path="revisions/{id}"/}"
+              type="button"
+              class="btn btn-icon"
+              title="{@i18n term="revert"/}"
+            >
+              <i class="fa fa-undo"></i>
+            </button>
+
+            {! Delete !}
+            <button
+              type="button"
+              class="btn btn-icon"
+              data-delete-revision="{@url type="api" path="revisions/{id}"/}"
+              data-confirm="{@i18n term="are_you_sure_you_want_to_delete_the_selected_revisions"/}"
+              title="{@i18n term="delete"/}"
+            >
+              <i class="fa fa-trash-o"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    {/revisions}
+  </tbody>
+</table>
+
+{! No revisions !}
+<div id="no-revisions" class="empty-state empty-state-sm" {?revisions}hidden{/revisions}>
+  <div class="empty-state-message">
+    <div class="empty-state-icon">
+      <i class="fa fa-clock-o"></i>
+    </div>
+    {@i18n term="no_revisions"/}
+  </div>
+</div>

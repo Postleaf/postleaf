@@ -1,0 +1,12 @@
+{?User}
+  <div id="locater-overlay" hidden></div>
+  <div id="locater" data-action="{@url type="api" path="search"/}" hidden>
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-search"></i>
+      </span>
+      <input id="locater-input" type="search" class="form-control form-control-lg" placeholder="{@i18n term="search"/}">
+    </div>
+    <div id="locater-results"></div>
+  </div>
+{/User}

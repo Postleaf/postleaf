@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{meta.title}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-title" content="Postleaf">
+  {! Meta description !}
+  {?meta.description}
+    <meta name="description" content="{meta.description}">
+  {/meta.description}
+  <meta name="mobile-web-app-capable" content="yes">
+  {! Robots !}
+  {?meta.noIndex}
+    <meta name="robots" content="noindex, nofollow">
+  {/meta.noIndex}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="{@url path="assets/images/favicon.png"/}">
+  <link rel="apple-touch-icon" href="{@url path="assets/images/app_icon.png"/}">
+  <link rel="stylesheet" href="{@url path="assets/css/lib.css" absolute="true"/}">
+  {! Styles !}
+  {#styles}
+    <link rel="stylesheet" href="{@url path=./}">
+  {/styles}
+</head>
+<body class="preload {meta.bodyClass}">
+
+  {! Default nav !}
+  {+nav}
+    {>"partials/admin_menu"/}
+  {/nav}
+
+  {! Header !}
+  {+header}{/header}
+
+  {! Body !}
+  {+body}{/body}
+
+  {! Panels !}
+  {+panels}
+    {! Shortcuts !}
+    {>"partials/shortcuts.dust"/}
+
+    {! Locater !}
+    {>"partials/locater.dust"/}
+
+    {! File manager !}
+    {>"partials/file_manager.dust"/}
+  {/panels}
+
+  <script src="{@url path="assets/js/lib.bundle.js"/}"></script>
+  {! Scripts !}
+  {#scripts}
+    <script src="{@url path=./}"></script>
+  {/scripts}
+</body>
+</html>

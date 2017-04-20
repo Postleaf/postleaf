@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    {! Channel info !}
+    <title>{Settings.title}</title>
+    <atom:link href="{@url type="feed" absolute="true"/}" rel="self" type="application/rss+xml" />
+    <link>http://example.com/</link>
+    <description>{Settings.tagline}</description>
+    <language>{Settings.language}</language>
+    <pubDate>{@date format="ddd, DD MMM YYYY HH:mm:ss ZZ"/}</pubDate>
+    <lastBuildDate>{@date format="ddd, DD MMM YYYY HH:mm:ss ZZ"/}</lastBuildDate>
+
+    {! Loop through post items !}
+    {#posts}
+      <item>
+        <title>{title}</title>
+        <link>{@url type="post" slug=slug absolute="true"/}</link>
+        <guid>{@url type="post" slug=slug absolute="true"/}</guid>
+        <pubDate>{@date date=publishedAt format="ddd, DD MMM YYYY HH:mm:ss ZZ"/}</pubDate>
+        <description><![CDATA[
+          {content}
+        ]]></description>
+      </item>
+    {/posts}
+  </channel>
+</rss>

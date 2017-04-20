@@ -1,0 +1,68 @@
+{>"layout"/}
+
+{! Header !}
+{<header}
+  <header class="admin-toolbar">
+    <div class="admin-toolbar-group">
+      <h2 class="admin-toolbar-title">{meta.title}</h2>
+    </div>
+    <div class="admin-toolbar-group text-right">
+      <button class="btn btn-icon" type="button" data-undo disabled title="{@i18n term="undo"/}"><i class="fa fa-undo"></i></button>
+      <button class="btn btn-icon" type="button" data-redo disabled title="{@i18n term="redo"/}"><i class="fa fa-repeat"></i></button>
+      <button class="btn btn-primary ml-3" data-save type="button">{@i18n term="save"/}</button>
+    </div>
+  </header>
+{/header}
+
+{! Body !}
+{<body}
+  <main class="main-container stretch-down">
+
+    {! Navigation items !}
+    <form
+      id="navigation-form"
+      action="{@url type="api" path="navigation"/}"
+      method="PUT"
+      data-link-suggestions="{linkSuggestions|js}"
+      data-changes-saved="{@i18n term="your_changes_have_been_saved"/}"
+      data-save-confirmation="{@i18n term="your_changes_havent_been_saved_yet"/}"
+    >
+      <div class="row">
+        <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
+          {! Nav items !}
+          <div id="nav-items">
+            {#navigation}
+              {>"partials/nav_item"/}
+            {/navigation}
+          </div>
+
+          {! Empty !}
+          <div id="empty" class="empty-state empty-state-lg" hidden>
+            <div class="empty-state-message">
+              <span class="empty-state-icon">
+                <i class="fa fa-map"></i>
+              </span>
+              {@i18n term="no_menu_items"/}
+            </div>
+          </div>
+
+          {! Create button !}
+          <div class="nav-create">
+            <button type="button" class="btn btn-create" data-create>
+              {@i18n term="new_menu_item"/}
+            </button>
+          </div>
+
+          {! Nav item template !}
+          <div id="nav-item-template" hidden>
+            {>"partials/nav_item"/}
+          </div>
+        </div>
+      </div>
+
+      {! Hidden button so ENTER will trigger form submits !}
+      <button type="submit" hidden></button>
+    </form>
+
+  </main>
+{/body}

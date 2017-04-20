@@ -1,0 +1,283 @@
+//
+// Admin Menu
+//
+// Draws the admin menu for all devices.
+//
+// Example:
+//
+//  See source/views/partials/admin_menu.dust
+//
+
+// Menu variables
+$admin-menu-width: 3.75rem;
+$mobile-menu-height: 2.75rem;
+
+// Menu variables
+$admin-menu-width: 3.75rem;
+$mobile-menu-height: 2.75rem;
+
+// Main menu
+@include media-breakpoint-up(md) {
+
+  body:not(.no-menu) {
+    padding-left: $admin-menu-width;
+  }
+
+  .admin-menu {
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: $admin-menu-width;
+    background: $postleaf-black;
+    color: white;
+    padding: .4rem 0 4rem 0;
+    user-select: none;
+    overflow-y: auto;
+
+    .admin-menu-dropdown {
+      .dropdown-menu {
+        position: fixed;
+        top: 3.5rem;
+        left: .75rem;
+      }
+
+      .admin-menu-user {
+        position: relative;
+        line-height: 1.2;
+        padding: .25rem 1rem .25rem 4rem;
+        cursor: default;
+
+        img {
+          position: absolute;
+          top: .25rem;
+          left: 1rem;
+          width: 2.25rem;
+          height: 2.25rem;
+          height: auto;
+          border-radius: $border-radius;
+        }
+
+        .admin-menu-user-username {
+          font-size: .9rem;
+          color: $text-muted;
+        }
+      }
+    }
+
+    .admin-menu-item {
+      text-align: center;
+      font-size: 1.5rem;
+      color: white;
+      transition: color .1s;
+      padding: .4rem;
+      display: block;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        color: $postleaf-blue;
+      }
+
+      &.admin-menu-current {
+        color: $postleaf-blue;
+      }
+
+      img {
+        width: 2rem;
+        height: auto;
+        border-radius: $border-radius;
+      }
+
+      &.admin-menu-logo {
+        margin-bottom: .25rem;
+        img {
+          border-radius: 0;
+        }
+      }
+    }
+
+    .admin-menu-title,
+    .admin-menu-toggle,
+    .admin-menu-label {
+      display: none;
+    }
+
+    .admin-menu-divider {
+      border: none;
+      border-top: solid 1px darken($postleaf-black, 5%);
+      border-bottom: solid 1px lighten($postleaf-black, 5%);
+      margin: .5rem 0;
+    }
+  }
+
+}
+
+// Mobile menu
+@include media-breakpoint-down(sm) {
+
+  body:not(.no-menu) {
+    padding-left: 0;
+    padding-top: $mobile-menu-height;
+  }
+
+  .admin-menu {
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    width: 100%;
+    user-select: none;
+
+    .admin-menu-header {
+      position: relative;
+      z-index: 202;
+      height: $mobile-menu-height;
+      background: $postleaf-black;
+      color: white;
+      @include clearfix;
+    }
+
+    .admin-menu-title {
+      @include text-truncate;
+      line-height: $mobile-menu-height;
+      text-align: center;
+      margin: 0 3rem;
+      display: block;
+    }
+
+    .admin-menu-toggle {
+      float: right;
+      height: $mobile-menu-height;
+      font-size: 1.2rem;
+      color: white;
+      padding: .45rem .8rem;
+      cursor: pointer;
+      display: block;
+
+      &:hover,
+      &:focus {
+        color: inherit;
+      }
+    }
+
+    .admin-menu-dropdown {
+      .dropdown-menu {
+        position: fixed;
+        top: $mobile-menu-height;
+        left: .5rem;
+      }
+
+      .admin-menu-user {
+        position: relative;
+        line-height: 1.2;
+        padding: .25rem 1rem .25rem 4rem;
+        cursor: default;
+
+        img {
+          position: absolute;
+          top: .25rem;
+          left: 1rem;
+          width: 2.25rem;
+          height: 2.25rem;
+          height: auto;
+          border-radius: $border-radius;
+        }
+
+        .admin-menu-user-username {
+          font-size: .9rem;
+          color: $text-muted;
+        }
+      }
+    }
+
+    .admin-menu-items {
+      position: fixed;
+      z-index: 201;
+      top: $mobile-menu-height;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba($postleaf-black, .97);
+      padding: 1rem 0;
+      opacity: 1;
+      overflow-y: auto;
+      transform: scale(1) translateX(100%);
+
+      &.transition {
+        // Don't apply transitions by default to prevent the menu from animating when the browser
+        // gets resized.
+        transition: .3s opacity, .3s transform;
+      }
+      &.on {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+      }
+    }
+
+    .admin-menu-item {
+      color: white;
+      transition: color .1s;
+      height: 6rem;
+      font-size: .9rem;
+      display: block;
+      width: 33.33%;
+      text-align: center;
+      float: left;
+      padding: 1rem .2rem;
+      cursor: pointer;
+
+      i {
+        font-size: 2.5rem;
+        margin-bottom: .4rem;
+        display: block;
+      }
+
+      img {
+        width: 2.5rem;
+        height: auto;
+        margin-bottom: .4rem;
+      }
+
+      &.admin-menu-logo {
+        float: left;
+        width: auto;
+        height: $mobile-menu-height;
+        padding: .4rem;
+
+        img {
+          height: 100%;
+          vertical-align: baseline;
+        }
+      }
+
+      &.admin-menu-current,
+      &.admin-menu-current .admin-menu-label {
+        color: $postleaf-blue;
+      }
+
+      &:hover,
+      &:focus
+      &:hover .admin-menu-label,
+      &:focus .admin-menu-label {
+        color: $postleaf-blue;
+        text-decoration: none;
+      }
+    }
+
+    .admin-menu-label {
+      display: block;
+      @include text-truncate;
+      color: $gray-light;
+      transition: color .1s;
+    }
+
+    .admin-menu-divider {
+      display: none;
+    }
+  }
+
+}

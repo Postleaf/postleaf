@@ -1,0 +1,239 @@
+{! Settings panel !}
+<div id="settings-panel" class="panel panel-right">
+  <form class="settings-form" autocomplete="off">
+
+    {! Close button !}
+    <button type="button" class="close btn btn-link" data-panel-hide>
+      <i class="fa fa-remove"></i>
+    </button>
+
+    {! Panel header !}
+    <header class="panel-header">
+      <h3>{@i18n term="post_settings"/}</h3>
+    </header>
+
+    {! Panel body !}
+    <div class="panel-body">
+      {! Tabs !}
+      <ul class="nav nav-tabs">
+        {! Settings !}
+        <li class="nav-item">
+          <a class="nav-link active" href="#settings" data-toggle="tab">
+            {@i18n term="settings"/}
+          </a>
+        </li>
+
+        {! Metadata !}
+        <li class="nav-item">
+          <a class="nav-link" href="#meta" data-toggle="tab">
+            {@i18n term="metadata"/}
+          </a>
+        </li>
+
+        {! Revisions !}
+        <li class="nav-item">
+          <a class="nav-link" href="#revisions" data-toggle="tab">
+            {@i18n term="revisions"/}
+          </a>
+        </li>
+      </ul>
+
+      {! Tab panes !}
+      <div class="tab-content">
+        {! Settings !}
+        <div class="tab-pane active" id="settings">
+          {! Slug !}
+          <div class="form-group">
+            <label for="slug">{@i18n term="slug"/}</label>
+            <input class="form-control" type="text" name="slug" id="slug" value="{post.slug}">
+          </div>
+
+          <div class="row">
+            {! Date !}
+            <div class="col-6">
+              <div class="form-group">
+                <label for="pub-date">{@i18n term="date"/}</label>
+                <input class="form-control" type="date" name="pub-date" id="pub-date" value="{@date date=post.publishedAt format="YYYY-MM-DD"/}">
+              </div>
+            </div>
+
+            {! Time !}
+            <div class="col-6">
+              <div class="form-group">
+                <label for="pub-time">{@i18n term="time"/}</label>
+                <input class="form-control" type="time" name="pub-time" id="pub-time" value="{@date date=post.publishedAt format="HH:mm"/}">
+              </div>
+            </div>
+          </div>
+
+          {! Template !}
+          <div class="form-group" {^templates}hidden{/templates}>
+            <label for="template">{@i18n term="template"/}</label>
+            <select name="template" id="template" class="form-control">
+              <option value="">{@i18n term="default"/}</option>
+              {#templates}
+                <option value="{filename}" {@eq key=filename value=post.template}selected{/eq}>
+                  {name}
+                </option>
+              {/templates}
+            </select>
+          </div>
+
+          {! Tags !}
+          <div class="form-group">
+            <label for="tags">{@i18n term="tags"/}</label>
+            <input
+              class="form-control"
+              type="text"
+              name="tags"
+              id="tags"
+              data-all-tags="{tags|js}"
+              data-current-tags="{post.tags|js}"
+            >
+          </div>
+
+          <div class="row">
+            {! Status !}
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="status">{@i18n term="status"/}</label>
+                <select class="form-control" name="status" id="status">
+                  {#statuses}
+                    <option value="{status}"{@eq key=post.status value=status} selected{/eq}>{@i18n term=term/}</option>
+                  {/statuses}
+                </select>
+              </div>
+            </div>
+
+            {! Author !}
+            {@in key=User.role value="owner,admin,editor"}
+              {! Owners/admins/editors can assign posts to anyone !}
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="author">{@i18n term="author"/}</label>
+                  <select class="form-control" name="author" id="author">
+                    {#authors}
+                      <option value="{id}"
+                        {?post.author.username}
+                          {! Existin post, select post author !}
+                          {@eq key=username value=post.author.username} selected{/eq}
+                        {:else}
+                          {! New post, select current user !}
+                          {@eq key=username value=User.username} selected{/eq}
+                        {/post.author.username}
+                      >
+                        {name}
+                      </option>
+                    {/authors}
+                  </select>
+                </div>
+              </div>
+            {:else}
+              {! Contributors can only assign posts to themselves !}
+              <input type="hidden" name="author" id="author" value="{User.id}">
+            {/in}
+          </div>
+
+          {! Flags !}
+          <div class="form-group post-flags">
+            {! Featured !}
+            {@htmlCheckbox name="is-featured" id="is-featured" value="1" checked=post.isFeatured}
+              {@i18n term="featured"/}
+              <span class="form-text">
+                {@i18n term="featured_posts_are_given_special_attention_by_your_theme"/}
+              </span>
+            {/htmlCheckbox}
+
+            {! Sticky !}
+            {@htmlCheckbox name="is-sticky" id="is-sticky" value="1" checked=post.isSticky}
+              {@i18n term="sticky"/}
+              <span class="form-text">
+                {@i18n term="sticky_posts_show_up_first_in_your_blog_index"/}
+              </span>
+            {/htmlCheckbox}
+
+            {! Page !}
+            {@htmlCheckbox name="is-page" id="is-page" value="1" checked=post.isPage}
+              {@i18n term="page"/}
+              <span class="form-text">
+                {@i18n term="pages_dont_show_up_in_the_blog_index"/}
+              </span>
+            {/htmlCheckbox}
+          </div>
+        </div>
+
+        {! Metadata !}
+        <div class="tab-pane" id="meta">
+          {! Meta title !}
+          <div class="form-group">
+            <label for="meta-title">{@i18n term="meta_title"/}</label>
+            <input class="form-control" type="text" name="meta-title" id="meta-title" value="{post.metaTitle}" autofocus>
+          </div>
+
+          {! Meta description !}
+          <div class="form-group">
+            <label for="meta-description">{@i18n term="meta_description"/}</label>
+            <textarea class="form-control" name="meta-description" id="meta-description" rows="4">{post.metaDescription}</textarea>
+          </div>
+
+          {! Post image !}
+          <div class="form-group">
+            <label>{@i18n term="image"/}</label>
+            <div
+              class="image-control image-control-md"
+              data-upload-action="{@url type="api" path="uploads"/}"
+              {?post.image}style="background-image: url('{@url path=post.image/}');"{/post.image}
+            >
+              {! Hidden input !}
+              <input type="hidden" name="image" id="image" value="{post.image}">
+              <div class="image-control-controls">
+                <div class="btn-group">
+                  {! Upload !}
+                  <label class="btn btn-black btn-file" title="{@i18n term="upload"/}">
+                    <i class="fa fa-upload"></i>
+                    <input type="file" accept="image/*" hidden>
+                  </label>
+
+                  {! Browse !}
+                  <button class="btn btn-black" type="button" title="{@i18n term="browse"/}" data-browse>
+                    <i class="fa fa-picture-o"></i>
+                  </button>
+
+                  {! Remove !}
+                  <button class="btn btn-black" type="button" title="{@i18n term="remove"/}" data-remove {^post.image}hidden{/post.image}>
+                    <i class="fa fa-remove"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {! Preview !}
+          <div class="form-group">
+            <label>{@i18n term="preview"/}</label>
+            <div class="search-engine-preview">
+              <div class="search-engine-preview-title">{post.title}</div>
+              <div class="search-engine-preview-url">
+                {@url type="post" slug="" absolute="true"/}<span class="search-engine-preview-slug">{post.slug}</span>
+              </div>
+              <div class="search-engine-preview-description"></div>
+            </div>
+            <p class="form-text">
+              {@i18n term="this_is_how_search_engines_might_display_your_content"/}
+            </p>
+          </div>
+        </div>
+
+        {! Revisions !}
+        <div class="tab-pane" id="revisions">
+          {! Dynamically loaded !}
+        </div>
+      </div>
+
+      <input type="hidden" name="post" value="{post.id}">
+
+      {! Allow forms to be submitted with ENTER !}
+      <button type="submit" hidden></button>
+    </div>
+  </form>
+</div>

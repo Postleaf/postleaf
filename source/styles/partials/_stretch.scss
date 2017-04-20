@@ -1,0 +1,11 @@
+//
+// Stretch
+//
+// A component for a simple stretch container that gets stretched down to the bottom of the
+// viewport using a script (see lib.js).
+//
+
+.stretch-down {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}

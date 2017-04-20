@@ -1,0 +1,79 @@
+$shortcuts-width: 35rem;
+$shortcuts-width-xs: 90%;
+
+#shortcuts-overlay {
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba($postleaf-black, .3);
+}
+
+#shortcuts {
+  position: fixed;
+  z-index: 901;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#shortcuts-body {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -$shortcuts-width / 2;
+  width: $shortcuts-width;
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: 0 1rem 2.5rem rgba($postleaf-black, .2);
+  padding: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.2rem;
+    color: $text-muted;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .table {
+    caption {
+      font-size: .9rem;
+      caption-side: top;
+      text-align: center;
+    }
+
+    td {
+      border-top: none;
+      padding: .5rem;
+
+      &:first-child {
+        width: 50%;
+        text-align: right;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  #shortcuts-body {
+    width: $shortcuts-width-xs;
+    margin-left: -$shortcuts-width-xs / 2;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+}

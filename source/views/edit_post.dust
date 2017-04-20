@@ -1,0 +1,227 @@
+{>"layout"/}
+
+{! Header !}
+{<header}
+  <header class="admin-toolbar admin-toolbar-collapse-xs disabled">
+    <div class="admin-toolbar-group">
+      <div class="btn-group">
+        {! View options !}
+        <div class="dropdown">
+          <button class="btn btn-icon" type="button" data-toggle="dropdown" title="{@i18n term="view"/}">
+            <i class="fa fa-tv"></i>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-no-min">
+            <button type="button" class="dropdown-item" data-fullscreen title="{@i18n term="fullscreen"/}">{@i18n term="fullscreen"/}</button>
+            <button type="button" class="dropdown-item" data-zen-mode title="{@i18n term="zen_mode"/}">{@i18n term="zen_mode"/}</button>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="dropdown-item" data-word-count>{@i18n term="word_count"/}</button>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="dropdown-item" data-shortcuts="show">{@i18n term="keyboard_shortcuts"/}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        {! Undo !}
+        <button class="btn btn-icon" type="button" data-editor="command:undo" title="{@i18n term="undo"/}">
+          <i class="fa fa-undo"></i>
+        </button>
+
+        {! Redo !}
+        <button class="btn btn-icon" type="button" data-editor="command:redo" title="{@i18n term="redo"/}">
+          <i class="fa fa-repeat"></i>
+        </button>
+      </div>
+
+      <div class="btn-group">
+        {! Paragraph !}
+        <div class="dropdown">
+          <button class="btn btn-icon" type="button" data-toggle="dropdown" title="{@i18n term="block"/}">
+            <i class="fa fa-paragraph"></i>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-no-min">
+            <div class="dropdown-btn-group">
+              <button type="button" class="btn btn-icon h2" data-editor="format:h2" title="{@i18n term="heading"/}"><i class="fa fa-header"></i></button>
+              <button type="button" class="btn btn-icon h3" data-editor="format:h3" title="{@i18n term="heading"/}"><i class="fa fa-header"></i></button>
+              <button type="button" class="btn btn-icon h4" data-editor="format:h4" title="{@i18n term="heading"/}"><i class="fa fa-header"></i></button>
+            </div>
+            <div class="dropdown-btn-group">
+              <button type="button" class="btn btn-icon" data-editor="format:p" title="{@i18n term="paragraph"/}"><i class="fa fa-paragraph"></i></button>
+              <button type="button" class="btn btn-icon" data-editor="format:blockquote" title="{@i18n term="quote"/}"><i class="fa fa-quote-right"></i></button>
+              <button type="button" class="btn btn-icon" data-editor="format:pre" title="{@i18n term="preformatted_text"/}"><i class="fa fa-code"></i></button>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-btn-group">
+              {! Divider !}
+              <button class="btn btn-icon btn-block" type="button" data-editor="insert" data-content="&lt;hr/&gt;">
+                {@i18n term="new_section"/}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {! Text !}
+        <div class="dropdown">
+          <button class="btn btn-icon" type="button" data-toggle="dropdown" title="{@i18n term="format"/}">
+            <i class="fa fa-font"></i>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-no-min">
+            <div class="dropdown-btn-group">
+              <button type="button" class="btn btn-icon" data-editor="format:bold" title="{@i18n term="bold"/}"><i class="fa fa-bold"></i></button>
+              <button type="button" class="btn btn-icon" data-editor="format:italic" title="{@i18n term="italic"/}"><i class="fa fa-italic"></i></button>
+              <button type="button" class="btn btn-icon" data-editor="format:strikethrough" title="{@i18n term="strikethrough"/}"><i class="fa fa-strikethrough"></i></button>
+            </div>
+            <div class="dropdown-btn-group">
+              <button type="button" class="btn btn-icon" data-editor="format:subscript" title="{@i18n term="subscript"/}"><i class="fa fa-subscript"></i></button>
+              <button type="button" class="btn btn-icon" data-editor="format:superscript" title="{@i18n term="superscript"/}"><i class="fa fa-superscript"></i></button>
+              <button type="button" class="btn btn-icon" data-editor="format:code" title="{@i18n term="code"/}"><i class="fa fa-code"></i></button>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-btn-group">
+              <button type="button" class="btn btn-block btn-icon" data-editor="command:removeTextFormatting" title="{@i18n term="clear_formatting"/}"><i class="fa fa-eraser"></i></button>
+            </div>
+          </div>
+        </div>
+
+        {! Lists !}
+        <div class="dropdown">
+          <button class="btn btn-icon" type="button" data-toggle="dropdown" title="{@i18n term="list"/}">
+            <i class="fa fa-list-ul"></i>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-no-min">
+            <div class="dropdown-btn-group">
+              <button type="button" class="btn btn-icon" data-editor="command:toggleUnorderedList" title="{@i18n term="bulleted_list"/}"><i class="fa fa-list-ul"></i></button>
+              <button type="button" class="btn btn-icon" data-editor="command:toggleOrderedList" title="{@i18n term="numbered_list"/}"><i class="fa fa-list-ol"></i></button>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-btn-group">
+              <button type="button" class="btn btn-icon" data-editor="command:indent" title="{@i18n term="increase_indent"/}"><i class="fa fa-indent"></i></button>
+              <button type="button" class="btn btn-icon" data-editor="command:outdent" title="{@i18n term="decrease_indent"/}"><i class="fa fa-outdent"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        {! Link !}
+        <button class="btn btn-icon" type="button" data-editor="panel:link" data-panel-show="#link-panel" title="{@i18n term="link"/}">
+          <i class="fa fa-link"></i>
+        </button>
+
+        {! Image !}
+        <button class="btn btn-icon" type="button" data-editor="panel:image" data-panel-show="#image-panel" title="{@i18n term="image"/}">
+          <i class="fa fa-picture-o"></i>
+        </button>
+
+        {! Embed !}
+        <button class="btn btn-icon" type="button" data-editor="panel:embed" data-panel-show="#embed-panel" title="{@i18n term="embed"/}">
+          <i class="fa fa-cube"></i>
+        </button>
+      </div>
+
+      <div class="btn-group">
+        {! Post settings !}
+        <button class="btn btn-icon" type="button" data-panel-show="#settings-panel" title="{@i18n term="post_settings"/}">
+          <i class="fa fa-cog"></i>
+        </button>
+      </div>
+    </div>
+    <div class="admin-toolbar-group admin-toolbar-nowrap text-right">
+      {! Cancel !}
+      <a class="btn btn-link" href="{@url type="admin" path="posts"/}">{@i18n term="cancel"/}</a>
+
+      {! Save !}
+      <button class="btn btn-primary" type="button" data-save>{@i18n term="save"/}</button>
+    </div>
+  </header>
+{/header}
+
+{! Body !}
+{<body}
+  <main class="main-container stretch-down loading">
+
+    {! Missing helper !}
+    <div id="missing-helper" class="empty-state empty-state-md" hidden>
+      <div class="empty-state-message">
+        <div class="empty-state-icon">
+          <i class="fa fa-exclamation-triangle"></i>
+        </div>
+        <p>
+          {@i18n term="your_template_is_missing_a_required_helper"/}
+        </p>
+        <code class="text-danger"></code>
+      </div>
+    </div>
+
+    {! Editor frame !}
+    <iframe
+      id="editor-frame"
+      data-base-url="{@url/}"
+      data-changes-saved="{@i18n term="your_changes_have_been_saved"/}"
+      data-create-action="{@url type="api" path="/posts"/}"
+      data-caption-placeholder="{@i18n term="enter_a_caption"/}"
+      data-default-content="{Settings.defaultPostContent|markdownToHtml}"
+      data-default-title="{Settings.defaultPostTitle}"
+      data-link-suggestions="{linkSuggestions|js}"
+      data-oembed-action="{@url type="api" path="oembed"/}"
+      data-post-created="{@i18n term="[name]_has_been_created" name=":name"/}"
+      data-post-id="{post.id}"
+      data-preview-action=
+        {?post.id}
+          "{@url type="api" path="posts/{post.id}/preview"/}"
+        {:else}
+          "{@url type="api" path="posts/:blank/preview"/}"
+        {/post.id}
+      data-revision-table-action="{@url type="api" path="revisions"/}"
+      data-save-confirmation="{@i18n term="your_changes_havent_been_saved_yet"/}"
+      data-src=
+        {^post.id}
+          {! Create !}
+          "{@url type="api" path="posts/:blank/preview" query="isEditor=true&isZenMode={Request.cookies.zenMode}"/}"
+        {:else}
+          {! Update !}
+          "{@url type="api" path="posts/{post.id}/preview" query="isEditor=true&isZenMode={Request.cookies.zenMode}"/}"
+        {/post.id}
+      data-update-action="{@url type="api" path="/posts/:id"/}"
+      data-upload-action="{@url type="api" path="uploads"/}"
+      hidden
+    ></iframe>
+
+    {! Status bar !}
+    <div id="status-bar">
+      {! Word count !}
+      <div id="word-count" hidden>
+        <span class="word-count-none">{@i18n term="no_words"/}</span>
+        <span class="word-count-one">{@i18n term="1_word"/}</span>
+        <span class="word-count-many">{@i18n term="[count]_words" count="<span class=\"word-count\"></span>" allowHtml="true"/}</span>
+      </div>
+
+      {! Zen mode theme !}
+      <div id="zen-mode-theme" hidden>
+        <button class="btn btn-link" type="button" data-zen-theme="{Request.cookies.zenTheme}" title="{@i18n term="toggle_night_mode"/}">
+          <img src="{@url path="/assets/images/zen_toggle.svg"/}">
+        </button>
+      </div>
+    </div>
+
+    {! Dropzone !}
+    <div id="dropzone" hidden>
+      <div class="dropzone-target" data-target="post:image">
+        <div class="dropzone-text">{@i18n term="set_post_image"/}</div>
+      </div>
+      <div class="dropzone-target" data-target="post:content">
+        <div class="dropzone-text">{@i18n term="insert_into_post"/}</div>
+      </div>
+    </div>
+
+    {! Panels !}
+    {>"partials/embed_panel.dust"/}
+    {>"partials/image_panel.dust"/}
+    {>"partials/link_panel.dust"/}
+    {>"partials/settings_panel.dust"/}
+  </main>
+{/body}

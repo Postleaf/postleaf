@@ -1,0 +1,84 @@
+@import 'partials/variables';
+
+body {
+  // Prevent iPhone from rendering huge text when the page is scaled way down
+  -webkit-text-size-adjust: none;
+}
+
+// Show not-allowed cursor on all links
+a[href] {
+  cursor: not-allowed;
+}
+
+// Hide the ghost container when dragging embeds
+.mce-drag-container {
+  display: none !important;
+}
+
+// Image selections
+img[data-mce-selected] {
+  outline: none !important;
+}
+
+// HR selections
+hr[data-mce-selected] {
+  outline: none !important;
+}
+
+// Content regions
+[data-postleaf-region] {
+  // Don't disappear when empty
+  min-width: 1rem;
+  min-height: 1rem;
+
+  // Disable focus ring
+  outline: none;
+
+  a[href] {
+    cursor: text;
+  }
+}
+
+// Embeds
+[data-embed] {
+  position: relative !important;
+  margin-bottom: 1rem;
+
+  // Create an invisible overlay on top of embedded elements to prevent interaction
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background: $brand-primary;
+    opacity: 0;
+    cursor: text;
+  }
+
+  // Highlight the embed when selected
+  &[data-mce-selected] {
+    outline: solid 2px $brand-primary;
+    outline-offset: .25rem;
+  }
+}
+
+// Figures
+figure.image {
+  &[data-mce-selected] img {
+    outline: solid 2px $brand-primary;
+    outline-offset: .25rem;
+  }
+
+  figcaption:focus {
+    outline: none;
+  }
+}
+
+// When a <figure> is selected in Chrome, an mce-offscreen-selection appears below the post content
+// causing the browser to scroll in a strange way. Simply hiding the element seems to fix it. Added
+// for TinyMCE 4.5.5.
+.mce-offscreen-selection {
+  display: none;
+}

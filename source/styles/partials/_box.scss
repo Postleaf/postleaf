@@ -1,0 +1,37 @@
+//
+// Box
+//
+// A simple, styled box component.
+//
+// Example:
+//
+//  <div class="box">...</div>
+//
+
+.box {
+  background: white;
+  border-radius: .25rem;
+  box-shadow: 0 .1rem .1rem rgba($postleaf-black, .05);
+  padding: 3rem;
+  margin-bottom: 2rem;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+
+  .box {
+    padding: 2rem;
+  }
+
+}
+
+@include media-breakpoint-down(xs) {
+
+  .box {
+    padding: 1.5rem;
+  }
+
+}

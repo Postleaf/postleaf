@@ -1,0 +1,175 @@
+{>"layout"/}
+
+{! Header !}
+{<header}
+  <header class="admin-toolbar admin-toolbar-collapse-xs">
+    <div class="admin-toolbar-group">
+      <div class="input-group">
+        <input
+          type="search"
+          class="form-control"
+          data-search
+          data-action="{@url type="api" path="posts"/}"
+          data-items-per-page="{itemsPerPage}"
+          placeholder="{@i18n term="search_posts"/}"
+          autofocus
+        >
+        {! Filter !}
+        <div id="post-filter" class="input-group-btn dropdown">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-filter"></i>
+          </button>
+          <div class="dropdown-menu">
+            {! Draft !}
+            <div class="dropdown-item" data-filter="status">
+              {@htmlCheckbox value="draft"}
+                {@i18n term="draft"/}
+              {/htmlCheckbox}
+            </div>
+
+            {! Pending !}
+            <div class="dropdown-item" data-filter="status">
+              {@htmlCheckbox value="pending"}
+                {@i18n term="pending"/}
+              {/htmlCheckbox}
+            </div>
+
+            {! Rejected !}
+            <div class="dropdown-item" data-filter="status">
+              {@htmlCheckbox value="rejected"}
+                {@i18n term="rejected"/}
+              {/htmlCheckbox}
+            </div>
+
+            {! Live !}
+            <div class="dropdown-item" data-filter="status">
+              {@htmlCheckbox value="published"}
+                {@i18n term="published"/}
+              {/htmlCheckbox}
+            </div>
+
+            {! Divider !}
+            <div class="dropdown-divider"></div>
+
+            {! Page !}
+            <div class="dropdown-item" data-filter="flag">
+              {@htmlCheckbox value="isPage"}
+                {@i18n term="page"/}
+              {/htmlCheckbox}
+            </div>
+
+            {! Featured !}
+            <div class="dropdown-item" data-filter="flag">
+              {@htmlCheckbox value="isFeatured"}
+                {@i18n term="featured"/}
+              {/htmlCheckbox}
+            </div>
+
+            {! Sticky !}
+            <div class="dropdown-item" data-filter="flag">
+              {@htmlCheckbox value="isSticky"}
+                {@i18n term="sticky"/}
+              {/htmlCheckbox}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="admin-toolbar-group text-right">
+      <div class="btn-group">
+        {! Open !}
+        <button
+          class="btn btn-icon"
+          type="button"
+          data-open
+          title="{@i18n term="open"/}"
+          disabled
+        >
+          <i class="fa fa-external-link-square"></i>
+        </button>
+
+        {! Edit !}
+        <button
+          class="btn btn-icon"
+          type="button"
+          data-edit
+          title="{@i18n term="edit"/}"
+          disabled
+        >
+          <i class="fa fa-pencil"></i>
+        </button>
+
+        {! Delete !}
+        <button
+        class="btn btn-icon"
+          type="button"
+          data-delete
+          data-confirm="{@i18n term="are_you_sure_you_want_to_delete_the_selected_posts"/}"
+          title="{@i18n term="delete"/}"
+          disabled
+        >
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+
+      {! New post !}
+      <a class="btn btn-create" href="{@url type="admin" path="posts/new"/}">
+        {@i18n term="new_post"/}
+      </a>
+    </div>
+  </header>
+{/header}
+
+{! Body !}
+{<body}
+  <main class="main-container stretch-down">
+    <div class="row">
+
+      {! Posts !}
+      <div class="col-md-5">
+        <div id="posts">
+          {>"partials/post_items"/}
+        </div>
+
+        {! Empty !}
+        <div id="empty" class="empty-state empty-state-sm" hidden>
+          <div class="empty-state-message">
+            {@i18n term="no_posts"/}
+          </div>
+        </div>
+      </div>
+
+      {! Preview !}
+      <div class="col-md-7 hidden-sm-down">
+        {! No posts selected !}
+        <div id="none-selected">
+          <div class="empty-state empty-state-sm">
+            <div class="empty-state-message">
+              {@i18n term="no_posts_selected"/}
+            </div>
+          </div>
+        </div>
+
+        {! Many selected !}
+        <div id="many-selected" hidden>
+          <div class="empty-state empty-state-sm">
+            <div class="empty-state-message">
+              <div class="empty-state-icon">
+                <i class="fa fa-thumb-tack"></i>
+              </div>
+              {@i18n term="[count]_posts_selected" count="<span class=\"num-selected\"></span>" allowHtml="true"/}
+            </div>
+          </div>
+        </div>
+
+        {! Preview frame !}
+        <div id="preview" hidden>
+          <div id="preview-wrap">
+            <iframe id="preview-frame" src="about:blank" tabindex="-1"></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+{/body}

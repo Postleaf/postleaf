@@ -1,0 +1,73 @@
+{>"layout"/}
+
+{! No nav for this page !}
+{<nav}{/nav}
+
+{! Body !}
+{<body}
+  <main class="main-container">
+    {! Logo !}
+    <img class="logo" src="{@url path="assets/images/postleaf_wordmark.svg"/}" alt="{@i18n term="logo"/}">
+
+    <p class="form-text text-center">
+      {@i18n term="lets_create_your_account"/}
+    </p>
+
+    {! Install form !}
+    <form
+      id="install-form"
+      class="box"
+      action="{@url type="api" path="install"/}"
+      method="POST"
+      data-redirect="{@url type="admin"/}"
+      autocomplete="off"
+    >
+      {! Name !}
+      <div class="form-group">
+        <label for="name">{@i18n term="name"/}</label>
+        <input class="form-control" type="text" name="name" id="name" value="{user.name}" autofocus>
+      </div>
+
+      {! Email !}
+      <div class="form-group">
+        <label for="email">{@i18n term="email"/}</label>
+        <input class="form-control" type="email" name="email" id="email" value="{user.email}">
+      </div>
+
+      {! Username !}
+      <div class="form-group">
+        <label for="username">{@i18n term="username"/}</label>
+        <input class="form-control" type="text" name="username" id="username" value="{user.username}">
+        <p class="form-text">
+          {@i18n term="usernames_must_be_lowercase_and_can_only_contain"/}
+        </p>
+      </div>
+
+      {! Password !}
+      <div class="form-group">
+        <label for="password">{@i18n term="password"/}</label>
+        <div class="input-group">
+          <input class="form-control" type="password" name="password" id="password">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-secondary" data-toggle-password="#password">
+              <i class="fa fa-eye"></i>
+            </button>
+          </span>
+        </div>
+        <p class="form-text">
+          {@i18n term="passwords_need_to_be_at_least_eight_characters_long"/}
+        </p>
+      </div>
+
+      {! Create my account !}
+      <div class="form-group">
+        <button type="submit" class="btn btn-block btn-primary">
+          {@i18n term="create_my_account"/}
+        </button>
+      </div>
+    </form>
+  </main>
+{/body}
+
+{! No panels for this page !}
+{<panels}{/panels}

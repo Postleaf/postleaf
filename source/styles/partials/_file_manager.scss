@@ -1,0 +1,207 @@
+$file-manager-height: 60vh;
+
+#file-manager-overlay {
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: transparent;
+}
+
+#file-manager {
+  position: fixed;
+  z-index: 901;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: white;
+  background: darken($postleaf-black, 5%);
+
+  // Loading state
+  &.loading {
+    // Animated spinner
+    &::after {
+      position: absolute;
+      top: calc(50% - 1.5rem);
+      right: calc(50% - 1.5rem);
+      width: 3rem;
+      height: 3rem;
+      content: '';
+      border: solid 4px transparent;
+      border-top-color: $brand-primary;
+      border-left-color: $brand-primary;
+      border-radius: 50%;
+      animation: main-container-spinner 500ms linear infinite;
+    }
+  }
+
+  [data-file-manager-select] {
+    margin-left: 1rem;
+  }
+
+  .btn-icon {
+    color: white;
+
+    &:hover:not(:disabled) {
+      color: $brand-primary;
+    }
+  }
+}
+
+#file-manager-toolbar {
+  padding: 2rem 2rem 1.5rem 2rem;
+
+  input[type="search"] {
+    background: lighten($postleaf-black, 2%);
+    border-color: lighten($postleaf-black, 2%);
+    color: white;
+
+    &::placeholder {
+      color: lighten($postleaf-black, 25%);
+    }
+  }
+}
+
+#file-manager-items {
+  position: relative;
+  padding: 1rem;
+  height: $file-manager-height;
+  overflow-y: auto;
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+
+  .file-manager-item {
+    width: calc(20% - 2rem);
+    height: 10rem;
+    float: left;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: .25rem;
+    margin: 0 1rem 2rem 1rem;
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+
+    // Enable hardware acceleration in supportive browsers to prevent extra large images from making
+    // scrolling sluggish.
+    transform: translate3d(0, 0, 0);
+
+    &.selected {
+      box-shadow: 0 0 0 .5rem $link-color;
+    }
+
+    .file-manager-item-body {
+      width: 100%;
+      height: 100%;
+      display: table;
+    }
+
+    // Hide the body for images
+    &[data-mime-type^="image/"] .file-manager-item-body {
+      display: none;
+    }
+
+    .file-manager-item-details {
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+      padding: 1rem;
+    }
+
+    .file-manager-item-name {
+      margin-bottom: .25rem;
+    }
+
+    .file-manager-item-size {
+      font-size: .9rem;
+      color: $text-muted;
+    }
+  }
+}
+
+#file-manager-empty {
+  height: $file-manager-height;
+}
+
+#file-manager-dropzone {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $brand-primary;
+  color: white;
+
+  .file-manager-dropzone-body {
+    width: 100%;
+    height: 100%;
+    display: table;
+  }
+
+  .file-manager-dropzone-instructions {
+    font-size: 2rem;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+  }
+}
+
+// Reduce chrome padding
+@include media-breakpoint-down(sm) {
+  #file-manager-toolbar {
+    padding: 1rem 1rem .5rem 1rem;
+
+    .file-manager-toolbar-search {
+      margin-bottom: .5rem;
+    }
+  }
+
+
+  #file-manager-items {
+    padding: .5rem;
+
+    .file-manager-item {
+      margin: 0 .5rem 1rem  .5rem;
+    }
+  }
+}
+
+// Five columns for large screens
+@include media-breakpoint-only(lg) {
+  #file-manager-items {
+    .file-manager-item {
+      width: calc(20% - 2rem);
+    }
+  }
+}
+
+// Four columns for medium screens
+@include media-breakpoint-only(md) {
+  #file-manager-items {
+    .file-manager-item {
+      width: calc(25% - 2rem);
+    }
+  }
+}
+
+// Three columns for small screens
+@include media-breakpoint-only(sm) {
+  #file-manager-items {
+    .file-manager-item {
+      width: calc(33.33% - 1rem);
+    }
+  }
+}
+
+// Two columns for xs screens
+@include media-breakpoint-only(xs) {
+  #file-manager-items {
+    .file-manager-item {
+      width: calc(50% - 1rem);
+    }
+  }
+}

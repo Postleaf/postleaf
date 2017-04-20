@@ -1,0 +1,23 @@
+{#results}
+  <a href="{link}" class="locater-result">
+
+    {! Image or icon !}
+    {?image}
+      <img class="locater-result-image" src="{@dynamicImage src=image thumbnail="100"/}" alt="{description}">
+    {:else}
+      <i class="locater-result-icon {icon}"></i>
+    {/image}
+
+    {! Title !}
+    <div class="locater-result-title">
+      {title}
+    </div>
+
+    {! Description !}
+    {?description}
+      <div class="locater-result-description">
+        {description}
+      </div>
+    {/description}
+  </a>
+{/results}

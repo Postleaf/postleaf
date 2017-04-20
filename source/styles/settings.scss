@@ -1,0 +1,64 @@
+@import "partials/variables";
+@import "partials/box";
+
+$sidebar-width: 12rem;
+
+#sidebar {
+  width: $sidebar-width;
+  float: left;
+}
+
+#settings-form {
+  margin-left: $sidebar-width + 2rem;
+
+  h3 {
+    margin-bottom: 1rem;
+    &:not(:first-child) {
+      margin-top: 4rem;
+    }
+  }
+}
+
+#about {
+  // Postleaf logo
+  h3:first-child {
+    color: $text-muted;
+
+    img {
+      width: 15rem;
+      vertical-align: top;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  #about {
+    td:first-child {
+      display: block;
+    }
+
+    td:last-child {
+      border-top: none;
+      display: block;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  #sidebar {
+    width: 100%;
+    float: none;
+    margin-bottom: 1rem;
+  }
+
+  #settings-form {
+    margin: 0;
+  }
+}
+
+// Make cards selectable
+#theme .card {
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 2rem;
+}

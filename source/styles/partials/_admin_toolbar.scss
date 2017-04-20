@@ -1,0 +1,121 @@
+//
+// Page Toolbar
+//
+// Draws the toolbar that appears at the top of each admin panel page.
+//
+// Example:
+//
+//  <div class="admin-toolbar">
+//    <div class="admin-toolbar-group">
+//      <h2 class="admin-toolbar-title">Page Title</h2>
+//    </div>
+//    <div class="admin-toolbar-group">
+//      ...
+//    </div>
+//  </div>
+//
+// Notes:
+//
+//  - A toolbar can have one or multiple admin-toolbar-group elements.
+//  - You can force groups to collapse on XS screens using the admin-toolbar-collapse-xs modifier.
+//  - You can use the disabled class on .admin-toolbar to disable interaction dynamically without
+//    changing the state of each individual button.
+//
+
+$admin-toolbar-padding-x: 1rem;
+$admin-toolbar-padding-y: 1rem;
+
+.admin-toolbar {
+  position: relative;
+  background: white;
+  border-bottom: solid 1px darken($body-bg, 10%);
+  line-height: 1.5;
+  display: table;
+  width: 100%;
+  user-select: none;
+
+  // Disable toolbar buttons by appenbuttons while the toolbar is in a loading state
+  &.disabled {
+    pointer-events: none;
+
+    // Make buttons appear disabled
+    .btn {
+      opacity: .5
+    }
+  }
+
+  .admin-toolbar-title {
+    font-size: 1.4rem;
+    margin-bottom: 0;
+
+    i {
+      color: $text-muted;
+      margin-left: .5rem;
+      margin-right: .5rem;
+    }
+
+    img {
+      max-height: 1.6em;
+      max-width: 1.6em;
+      border-radius: $border-radius;
+      vertical-align: middle;
+    }
+  }
+
+  .admin-toolbar-group {
+    padding: $admin-toolbar-padding-y $admin-toolbar-padding-x;
+    margin: 0;
+    vertical-align: middle;
+    display: table-cell;
+  }
+
+  .admin-toolbar-nowrap {
+    white-space: nowrap;
+  }
+
+  .btn-group:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+  // Reduce gap between grouped dropdown buttons
+  .dropdown > [data-toggle="dropdown"] {
+    padding-right: .5rem;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+
+  .admin-toolbar {
+    .admin-toolbar-title {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+
+  .admin-toolbar {
+    .admin-toolbar-title {
+      font-size: 1rem;
+    }
+
+    .admin-toolbar-group {
+      padding: ($admin-toolbar-padding-y / 2) ($admin-toolbar-padding-x / 2);
+    }
+  }
+
+  .admin-toolbar-collapse-xs {
+    display: block;
+
+    .admin-toolbar-group {
+      max-width: none;
+      padding-bottom: 0;
+      display: block;
+    }
+
+    .admin-toolbar-group:last-child {
+      padding-bottom: $admin-toolbar-padding-y / 2;
+    }
+  }
+
+}

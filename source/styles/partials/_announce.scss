@@ -1,0 +1,45 @@
+//
+// Announce
+//
+// Custom styles for the jQuery Announce plugin.
+//
+
+.announce {
+  position: fixed;
+  z-index: 9999;
+  top: .5rem;
+  right: .5rem;
+  max-width: 30rem;
+  border-radius: $border-radius;
+  padding: 1rem;
+  user-select: none;
+
+  &.announce-danger {
+    color: white;
+    background-color: rgba($brand-danger, .9);
+  }
+
+  &.announce-info {
+    color: white;
+    background-color: rgba($postleaf-black, .9);
+  }
+
+  &.announce-success {
+    color: white;
+    background-color: rgba($brand-success, .9);
+  }
+
+  &.announce-warning {
+    color: white;
+    background-color: rgba($brand-warning, .9);
+  }
+}
+
+@media screen and(max-width: 30rem) {
+  .announce {
+    width: 100%;
+    border-radius: 0;
+    top: 0;
+    right: 0;
+  }
+}

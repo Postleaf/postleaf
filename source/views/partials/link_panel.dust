@@ -1,0 +1,68 @@
+{! Link panel !}
+<div id="link-panel" class="panel panel-right">
+  <form autocomplete="off" novalidate>
+    {! Close button !}
+    <button type="button" class="close btn btn-link" data-panel-hide>
+      <i class="fa fa-remove"></i>
+    </button>
+
+    {! Panel header !}
+    <header class="panel-header">
+      <h3>{@i18n term="link"/}</h3>
+    </header>
+
+    {! Panel body !}
+    <div class="panel-body">
+      {! URL !}
+      <div class="form-group">
+        <label for="link-href">{@i18n term="url"/}</label>
+        <div class="input-group">
+          <input class="form-control" type="url" id="link-href" data-autocomplete="links">
+
+          {! Upload !}
+          <span class="input-group-btn">
+            <label class="btn btn-secondary" title="{@i18n term="upload"/}">
+              <i class="fa fa-upload"></i>
+              <input type="file" style="display: none;">
+            </label>
+          </span>
+
+          {! Browse !}
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" data-link="browse" title="{@i18n term="browse"/}">
+              <i class="fa fa-picture-o"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+
+      {! Title !}
+      <div class="form-group">
+        <label for="link-title">{@i18n term="title"/}</label>
+        <input class="form-control" type="text" id="link-title">
+        <p class="form-text">
+          {@i18n term="the_title_provides_additional_information_about_a_link"/}
+        </p>
+      </div>
+
+      {! New window !}
+      <div class="form-group">
+        {@htmlCheckbox id="link-new-window"}
+          {@i18n term="open_in_a_new_window"/}
+        {/htmlCheckbox}
+      </div>
+    </div>
+
+    {! Panel footer !}
+    <footer class="panel-footer">
+      {! Remove link !}
+      <button class="btn btn-icon pull-right" type="button" data-link="remove" title="{@i18n term="remove_link"/}">
+        <i class="fa fa-unlink"></i>
+      </button>
+
+      {! Insert / cancel !}
+      <button class="btn btn-primary" type="submit">{@i18n term="insert"/}</button>
+      <button class="btn btn-link" type="button" data-panel-hide>{@i18n term="cancel"/}</button>
+    </footer>
+  </form>
+</div>

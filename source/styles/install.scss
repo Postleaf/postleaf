@@ -1,0 +1,13 @@
+@import "partials/variables";
+@import "partials/box";
+
+.logo {
+  width: 15rem;
+  margin: 2rem auto;
+  display: block;
+}
+
+.install .box {
+  max-width: 28rem;
+  margin: 0 auto;
+}

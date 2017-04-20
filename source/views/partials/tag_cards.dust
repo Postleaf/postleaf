@@ -1,0 +1,28 @@
+{#tags}
+  <div class="tag-card col-xl-3 col-lg-4 col-sm-6">
+    <div
+      class="card card-cover"
+      data-value="{id}"
+      data-open-action="{@url type="tag" slug="{slug}"/}"
+      data-edit-action="{@url type="admin" path="tags/edit/{id}"/}"
+      data-delete-action="{@url type="api" path="tags/{id}"/}"
+    >
+      <div class="card-cover-header">
+        <div
+          class="card-cover-image"
+          {?image}style="background-image: url('{@dynamicImage src=image width="500"/}');"{/image}
+        >
+        </div>
+      </div>
+      <div class="card-block">
+        <span class="badge badge-info pull-right">
+          {@postCount tag=slug/}
+        </span>
+        <h4 class="card-title">{name}</h4>
+        <p class="card-subtitle mb-2 text-muted">
+          {@truncateWords text="{description|markdownToText}" chars="50"/}
+        </p>
+      </div>
+    </div>
+  </div>
+{/tags}

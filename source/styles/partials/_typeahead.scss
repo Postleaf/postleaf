@@ -1,0 +1,42 @@
+.twitter-typeahead {
+  width: 100%;
+  cursor: default;
+
+  .tt-input {
+    width: 100%;
+  }
+
+  .tt-menu {
+    width: 100%;
+    border: solid 1px $dropdown-border-color;
+    background: $dropdown-bg;
+    box-shadow: $dropdown-box-shadow;
+    border-radius: $border-radius;
+    padding: .25rem 0;
+  }
+
+  .tt-suggestion {
+    padding: .25rem .75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+
+    .fa {
+      color: $text-muted;
+      margin-right: .25rem;
+    }
+
+    &.tt-cursor {
+      background-color: lighten($text-muted, 30%);
+    }
+
+    &:hover {
+      background-color: $dropdown-link-hover-bg;
+      color: $dropdown-link-hover-color;
+      .fa,
+      strong {
+        color: inherit;
+      }
+    }
+  }
+}

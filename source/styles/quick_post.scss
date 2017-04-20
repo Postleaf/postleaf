@@ -1,0 +1,61 @@
+@import "partials/variables";
+
+.quick-post {
+  // Header
+  .quick-post-header {
+    background: white;
+    border-bottom: solid 1px lighten($input-border-color, 10%);
+    padding: .5rem;
+
+    // Title
+    input[name="title"] {
+      font-size: 1.2rem;
+      border: none;
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    // Template
+    select[name="template"] {
+      color: $text-muted;
+      font-size: .9rem;
+      border-color: transparent;
+      background-color: transparent;
+      background-image: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='#{$text-muted}' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E"), "#", "%23");
+      cursor: pointer;
+    }
+  }
+
+  // Body
+  .quick-post-body {
+    background: white;
+    padding: .5rem;
+
+    // Content
+    textarea[name="content"] {
+      border: none;
+      border-radius: 0;
+      resize: none;
+    }
+  }
+
+  // Footer
+  .quick-post-footer {
+    background: white;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    text-align: right;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (min-height: 30rem) {
+
+  .quick-post {
+    padding-top: 10vh;
+  }
+
+}

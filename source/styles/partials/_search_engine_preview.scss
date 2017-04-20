@@ -1,0 +1,39 @@
+//
+// Search Engine Preview
+//
+// Draws a search engine preview with title, URL, and description.
+//
+// Example:
+//
+//  <div class="search-engine-preview">
+//    <div class="search-engine-preview-title"></div>
+//    <div class="search-engine-preview-url">
+//      {@url type="tag" slug="" absolute="true"/}<span class="slug"></span>
+//    </div>
+//    <div class="search-engine-preview-description"></div>
+//  </div>
+//
+.search-engine-preview {
+  border: solid .5rem $body-bg;
+  border-radius: $border-radius-lg;
+  padding: 2rem;
+
+  .search-engine-preview-title {
+    font-size: 1.5rem;
+    color: $postleaf-blue;
+    margin-bottom: .25rem;
+  }
+
+  .search-engine-preview-url {
+    @include text-truncate;
+    font-size: 1rem;
+    color: $postleaf-green;
+  }
+
+  .search-engine-preview-description {
+    @include text-truncate;
+    font-size: 1rem;
+    color: $body-color;
+    margin-top: .25rem;
+  }
+}

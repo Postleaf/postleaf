@@ -1,0 +1,36 @@
+.revisions-table {
+
+  tr:first-child td {
+    border-top: none;
+  }
+
+  td {
+    vertical-align: middle;
+  }
+
+  td:not(:first-child) {
+    text-align: right;
+  }
+
+  .revisions-table-controls {
+    white-space: nowrap;
+  }
+
+  .revisions-table-date {
+    margin-bottom: .25rem;
+  }
+
+  .revisions-table-author {
+    font-size: .9rem;
+    color: $text-muted;
+  }
+
+  .revisions-table-avatar {
+    width: 1.5em;
+    height: auto;
+    vertical-align: bottom;
+    border-radius: $border-radius;
+    margin-right: .25rem;
+  }
+
+}

@@ -1,0 +1,93 @@
+{! Image panel !}
+<div id="image-panel" class="panel panel-right">
+  <form autocomplete="off" novalidate>
+    {! Close button !}
+    <button type="button" class="close btn btn-link" data-panel-hide><i class="fa fa-remove"></i></button>
+
+    {! Panel header !}
+    <header class="panel-header">
+      <h3>{@i18n term="image"/}</h3>
+    </header>
+
+    {! Panel body !}
+    <div class="panel-body">
+      {! URL !}
+      <div class="form-group">
+        <label for="image-src">{@i18n term="url"/}</label>
+        <div class="input-group">
+          <input class="form-control" type="url" name="src" id="image-src">
+
+          {! Upload !}
+          <span class="input-group-btn">
+            <label class="btn btn-secondary" title="{@i18n term="upload"/}">
+              <i class="fa fa-upload"></i>
+              <input type="file" accept="image/*" style="display: none;">
+            </label>
+          </span>
+
+          {! Browse !}
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" data-image="browse" title="{@i18n term="browse"/}">
+              <i class="fa fa-picture-o"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+
+      {! Description !}
+      <div class="form-group">
+        <label for="image-alt">{@i18n term="description"/}</label>
+        <input class="form-control" type="text" name="alt" id="image-alt">
+        <p class="form-text">
+          {@i18n term="enter_a_description_for_users_who_cant_see_images"/}
+        </p>
+      </div>
+
+      {! Caption !}
+      <div class="form-group">
+        {@htmlCheckbox name="caption" id="image-caption"}
+          {@i18n term="caption"/}
+        {/htmlCheckbox}
+      </div>
+
+      {! Alignment !}
+      <div class="form-group">
+        <label>{@i18n term="alignment"/}</label>
+        <div class="radio">
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-secondary active" title="{@i18n term="none"/}">
+              <input type="radio" id="image-align-none" name="align" value="none">
+              <i class="fa fa-ban"></i>
+            </label>
+            <label class="btn btn-secondary" title="{@i18n term="align_left"/}">
+              <input type="radio" id="image-align-left" name="align" value="left">
+              <i class="fa fa-align-left"></i>
+            </label>
+            <label class="btn btn-secondary" title="{@i18n term="align_center"/}">
+              <input type="radio" id="image-align-center" name="align" value="center">
+              <i class="fa fa-align-center"></i>
+            </label>
+            <label class="btn btn-secondary" title="{@i18n term="align_right"/}">
+              <input type="radio" id="image-align-right" name="align" value="right">
+              <i class="fa fa-align-right"></i>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {! Panel footer !}
+    <div class="panel-footer">
+      <div class="form-group m-t-2">
+        {! Delete !}
+        <button class="btn btn-icon pull-right" type="button" data-image="delete" title="{@i18n term="delete"/}">
+          <i class="fa fa-trash-o"></i>
+        </button>
+
+        {! Insert / cancel !}
+        <button class="btn btn-primary" type="submit">{@i18n term="insert"/}</button>
+        <button class="btn btn-link" type="button" data-panel-hide>{@i18n term="cancel"/}</button>
+      </div>
+    </div>
+  </form>
+</div>

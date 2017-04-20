@@ -1,0 +1,59 @@
+//
+// Alertable
+//
+// Custom styles for the jQuery Alertable plugin.
+//
+
+.alertable {
+  position: fixed;
+  z-index: 9999;
+  // top: vertically centered by script
+  left: calc(50% - 14rem);
+  width: 28rem;
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: 0 .25rem 2.5rem rgba(black, .2);
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+.alertable-overlay {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(black, .3);
+}
+
+.alertable-message {
+  margin-bottom: 2rem;
+}
+
+.alertable-prompt {
+  margin-bottom: 2rem;
+}
+
+.alertable-buttons {
+  text-align: right;
+}
+
+.alertable button {
+  margin-left: .25rem;
+}
+
+.alertable-ok {
+  @extend .btn, .btn-primary;
+}
+
+.alertable-cancel {
+  @extend .btn, .btn-link;
+}
+
+@include media-breakpoint-down(xs) {
+  .alertable {
+    left: 4%;
+    width: 92%;
+  }
+}

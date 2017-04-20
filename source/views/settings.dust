@@ -1,0 +1,481 @@
+{>"layout"/}
+
+{! Header !}
+{<header}
+  <header class="admin-toolbar">
+    <div class="admin-toolbar-group">
+      <h2 class="admin-toolbar-title">{meta.title}</h2>
+    </div>
+    <div class="admin-toolbar-group text-right">
+      <button class="btn btn-primary" type="button" data-save>{@i18n term="save"/}</button>
+    </div>
+  </header>
+{/header}
+
+{! Body !}
+{<body}
+  <main class="main-container stretch-down">
+    {! Sidebar !}
+    <div id="sidebar">
+      <nav class="nav nav-pills flex-md-column flex-row flex-wrap">
+        <a class="nav-link active" data-toggle="tab" href="#website">{@i18n term="website"/}</a>
+        <a class="nav-link" data-toggle="tab" href="#theme">{@i18n term="theme"/}</a>
+        <a class="nav-link" data-toggle="tab" href="#preferences">{@i18n term="preferences"/}</a>
+        <a class="nav-link" data-toggle="tab" href="#backups">{@i18n term="backups"/}</a>
+        <a class="nav-link" data-toggle="tab" href="#advanced">{@i18n term="advanced"/}</a>
+        <a class="nav-link" data-toggle="tab" href="#about">{@i18n term="about"/}</a>
+      </nav>
+    </div>
+
+    {! Main content !}
+    <form
+      id="settings-form"
+      class="tab-content box"
+      action="{@url type="api" path="settings"/}"
+      method="PUT"
+      data-changes-saved="{@i18n term="your_changes_have_been_saved"/}"
+      data-save-confirmation="{@i18n term="your_changes_havent_been_saved_yet"/}"
+    >
+      {! Website !}
+      <div id="website" class="tab-pane active">
+        <div class="row">
+          <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
+            {! Title !}
+            <div class="form-group">
+              <label for="title">{@i18n term="title"/}</label>
+              <input type="text" class="form-control" name="title" id="title" value="{Settings.title}">
+            </div>
+
+            {! Tagline !}
+            <div class="form-group">
+              <label for="tagline">{@i18n term="tagline"/}</label>
+              <input type="text" class="form-control" name="tagline" id="tagline" value="{Settings.tagline}">
+            </div>
+
+            {! Custom homepage and posts per page !}
+            <div class="row">
+              {! Custom homepage !}
+              <div class="col-lg-8">
+                <div class="form-group">
+                  <label for="custom-homepage">{@i18n term="custom_homepage"/}</label>
+                  <select class="form-control" name="custom-homepage" id="custom-homepage">
+                    <option value="">{@i18n term="none"/}</option>
+                    {#homepagePosts}
+                      <option value="{slug}" {@eq key=Settings.customHomepage value=slug}selected{/eq}>
+                        {title}
+                      </option>
+                    {/homepagePosts}
+                  </select>
+                </div>
+              </div>
+
+              {! Posts per page !}
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="posts-per-page">{@i18n term="posts_per_page"/}</label>
+                  <input type="number" class="form-control" name="posts-per-page" id="posts-per-page" value="{Settings.postsPerPage}">
+                </div>
+              </div>
+            </div>
+
+            {! Cover photo !}
+            <div class="form-group">
+              <label>{@i18n term="cover_photo"/}</label>
+              <div
+                class="image-control"
+                data-upload-action="{@url type="api" path="uploads"/}"
+                {?Settings.cover}style="background-image: url('{@url path=Settings.cover/}');"{/Settings.cover}
+              >
+                {! Hidden input !}
+                <input type="hidden" name="cover" value="{Settings.cover}">
+                <div class="image-control-controls">
+                  <div class="btn-group">
+                    {! Upload !}
+                    <label class="btn btn-black btn-file" title="{@i18n term="upload"/}">
+                      <i class="fa fa-upload"></i>
+                      <input type="file" accept="image/*" hidden>
+                    </label>
+
+                    {! Browse !}
+                    <button class="btn btn-black" type="button" title="{@i18n term="browse"/}" data-browse>
+                      <i class="fa fa-picture-o"></i>
+                    </button>
+
+                    {! Remove !}
+                    <button class="btn btn-black" type="button" title="{@i18n term="remove"/}" data-remove {^Settings.cover}hidden{/Settings.cover}>
+                      <i class="fa fa-remove"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <p class="form-text">
+                {@i18n term="cover_images_are_used_by_themes_to_provide_a_unique_visual_experience"/}
+              </p>
+            </div>
+
+            {! Logo and website icon !}
+            <div class="row">
+              {! Logo !}
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>{@i18n term="logo"/}</label>
+                  <div
+                    class="image-control image-control-sm image-control-contain"
+                    data-upload-action="{@url type="api" path="uploads"/}"
+                    {?Settings.logo}style="background-image: url('{@url path=Settings.logo/}');"{/Settings.logo}
+                  >
+                    {! Hidden input !}
+                    <input type="hidden" name="logo" value="{Settings.logo}">
+                    <div class="image-control-controls">
+                      <div class="btn-group">
+                        {! Upload !}
+                        <label class="btn btn-black btn-file" title="{@i18n term="upload"/}">
+                          <i class="fa fa-upload"></i>
+                          <input type="file" accept="image/*" hidden>
+                        </label>
+
+                        {! Browse !}
+                        <button class="btn btn-black" type="button" title="{@i18n term="browse"/}" data-browse>
+                          <i class="fa fa-picture-o"></i>
+                        </button>
+
+                        {! Remove !}
+                        <button class="btn btn-black" type="button" title="{@i18n term="remove"/}" data-remove {^Settings.logo}hidden{/Settings.logo}>
+                          <i class="fa fa-remove"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="form-text">
+                    {@i18n term="logos_are_often_displayed_on_your_website"/}
+                  </p>
+                </div>
+              </div>
+
+              {! Website icon !}
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>{@i18n term="website_icon"/}</label>
+                  <div
+                    class="image-control image-control-sm image-control-contain"
+                    data-upload-action="{@url type="api" path="uploads"/}"
+                    data-thumbnail="500"
+                    {?Settings.favicon}style="background-image: url('{@url path=Settings.favicon/}');"{/Settings.favicon}
+                  >
+                    {! Hidden input !}
+                    <input type="hidden" name="favicon" value="{Settings.favicon}">
+                    <div class="image-control-controls">
+                      <div class="btn-group">
+                        {! Upload !}
+                        <label class="btn btn-black btn-file" title="{@i18n term="upload"/}">
+                          <i class="fa fa-upload"></i>
+                          <input type="file" accept="image/*" hidden>
+                        </label>
+
+                        {! Browse !}
+                        <button class="btn btn-black" type="button" title="{@i18n term="browse"/}" data-browse>
+                          <i class="fa fa-picture-o"></i>
+                        </button>
+
+                        {! Remove !}
+                        <button class="btn btn-black" type="button" title="{@i18n term="remove"/}" data-remove {^Settings.favicon}hidden{/Settings.favicon}>
+                          <i class="fa fa-remove"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="form-text">
+                    {@i18n term="website_icons_are_displayed_in_browser_tabs_and_bookmarks"/}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {! Theme !}
+      <div id="theme" class="tab-pane">
+        <input type="hidden" name="theme" value="{Settings.theme}">
+        <div class="row">
+          {#themes}
+            <div class="col-xl-4 col-lg-6">
+              <div class="card card-cover {@eq key=Settings.theme value=id}selected{/eq}" data-value="{id}">
+                <div class="card-cover-header">
+                  <div class="card-cover-image" {?image}style="background-image: url('{@url type="theme" themeId=id path=image/}');"{/image}></div>
+                </div>
+                <div class="card-block">
+                  <span class="badge badge-info pull-right">
+                    {version}
+                  </span>
+                  <h4 class="card-title">{name}</h4>
+                  <p class="card-subtitle mb-2 text-muted">{author}</p>
+                  {?organization}
+                    <p class="card-subtitle mb-2 text-muted">{organization}</p>
+                  {/organization}
+                  <p class="card-text">{description}</p>
+                </div>
+              </div>
+            </div>
+          {/themes}
+        </div>
+      </div>
+
+      {! Preferences !}
+      <div id="preferences" class="tab-pane">
+        <div class="row">
+          <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
+
+            <h3>{@i18n term="locale"/}</h3>
+
+            {! Language !}
+            <div class="form-group">
+              <label for="language">{@i18n term="language"/}</label>
+              <select class="form-control" name="language" id="language">
+                {#languages}
+                  <option value="{code}" {@eq key=Settings.language value=code}selected{/eq}>{name}</option>
+                {/languages}
+              </select>
+            </div>
+
+            {! Time Zone !}
+            <div class="form-group">
+              <label for="time-zone">{@i18n term="time_zone"/}</label>
+              <select class="form-control" name="time-zone" id="time-zone">
+                {#timeZones}
+                  <option value="{id}" {@eq key=Settings.timeZone value=id}selected{/eq}>
+                    {name}
+                  </option>
+                {/timeZones}
+              </select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {! Backups !}
+      <div id="backups" class="tab-pane">
+        <div class="row">
+          <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
+
+            {! Create a backup !}
+            <h3>{@i18n term="backups"/}</h3>
+            <p>
+              {@i18n term="postleaf_can_backup_your_data_to_a_single_file"/}
+            </p>
+            <div class="form-group" data-backup-options>
+              {@htmlCheckbox value="data" checked="true"}{@i18n term="data"/}{/htmlCheckbox}
+              {@htmlCheckbox value="themes" checked="true"}{@i18n term="themes"/}{/htmlCheckbox}
+              {@htmlCheckbox value="uploads" checked="true"}{@i18n term="uploads"/}{/htmlCheckbox}
+            </div>
+            <div class="form-group">
+              {! Download backup !}
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-create-backup
+                data-action="{@url type="api" path="backup"/}"
+              >
+                {@i18n term="download_backup"/}
+              </button>
+            </div>
+
+            {! Restore from backup !}
+            <h3>{@i18n term="restore_from_backup"/}</h3>
+            <p>
+              {@i18n term="upload_a_backup_file_to_restore_your_website"/}
+            </p>
+            <div class="form-group">
+              {! Upload and restore !}
+              <label class="btn btn-danger btn-file">
+                {@i18n term="upload_and_restore"/}
+                <input
+                  type="file"
+                  accept="application/zip"
+                  class="btn btn-danger"
+                  data-restore-backup
+                  data-action="{@url type="api" path="backup"/}"
+                  hidden
+                >
+              </label>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {! Advanced !}
+      <div id="advanced" class="tab-pane">
+        <div class="row">
+          <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
+
+            {! Editor !}
+            <h3>{@i18n term="editor"/}</h3>
+
+            {! Default post title !}
+            <div class="form-group">
+              <label for="default-post-title">{@i18n term="default_post_title"/}</label>
+              <input type="text" class="form-control" name="default-post-title" id="default-post-title" value="{Settings.defaultPostTitle}">
+            </div>
+
+            {! Default post content !}
+            <div class="form-group">
+              <label for="default-post-content">{@i18n term="default_post_content"/}</label>
+              <span class="badge badge-info pull-right">{@i18n term="markdown"/}</span>
+              <textarea class="form-control" name="default-post-content" id="default-post-content" rows="6" spellcheck="false">{Settings.defaultPostContent}</textarea>
+            </div>
+
+            {! Custom Code !}
+            <h3>{@i18n term="custom_code"/}</h3>
+
+            {! Head code !}
+            <div class="form-group">
+              <label for="head-code">{@i18n term="head_code"/}</label>
+              <span class="badge badge-info pull-right">{@i18n term="html"/}</span>
+              <textarea class="form-control code" name="head-code" id="head-code" rows="6" spellcheck="false">{Settings.headCode}</textarea>
+              <p class="form-text">
+                {@i18n term="this_code_will_be_injected_into_every_page_by_the_[helper]_helper" helper="<code>&#123;@head/&#125;</code>" allowHtml="true"/}
+              </p>
+            </div>
+
+            {! Foot code !}
+            <div class="form-group">
+              <label for="foot-code">{@i18n term="foot_code"/}</label>
+              <span class="badge badge-info pull-right">{@i18n term="html"/}</span>
+              <textarea class="form-control code" name="foot-code" id="foot-code" rows="6" spellcheck="false">{Settings.footCode}</textarea>
+              <p class="form-text">
+                {@i18n term="this_code_will_be_injected_into_every_page_by_the_[helper]_helper" helper="<code>&#123;@foot/&#125;</code>" allowHtml="true"/}
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {! About !}
+      <div id="about" class="tab-pane">
+        <div class="row">
+          <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
+            {! Postleaf logo !}
+            <h3>
+              <img src="{@url path="assets/images/postleaf_wordmark.svg"/}" alt="Postleaf®">®
+            </h3>
+            <p>
+              Postleaf is a simple, beautiful, decentralized publishing platform that anyone can
+              use. It's free, open source, and built for the modern publisher.
+            </p>
+            <p>
+              This software is the result of many years of development by creator and maintainer
+              <a href="https://twitter.com/claviska" target="_blank">Cory LaViska</a>. It was built
+              for the greater good, so please do good things with it.
+            </p>
+            <p>
+              Here are some links you might find useful:
+            </p>
+
+            {! Links !}
+            <table class="table my-5">
+              <tbody>
+                <tr>
+                  <td>
+                    <a href="https://www.postleaf.org" target="_blank">
+                      postleaf.org
+                    </a>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>Product info</li>
+                      <li>News and updates</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://github.com/postleaf" target="_blank">
+                      github.com/postleaf
+                    </a>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>Source code</li>
+                      <li>Bug reports</li>
+                      <li>Feature requests</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://community.postleaf.org/" target="_blank">
+                      community.postleaf.org
+                    </a>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>General discussion</li>
+                      <li>Community support</li>
+                      <li>Troubleshooting</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://twitter.com/postleafapp" target="_blank">
+                      twitter.com/postleafapp
+                    </a>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>News and updates</li>
+                      <li>Developer rants</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://www.paypal.me/abeautifulsite" target="_blank">
+                      paypal.me/abeautifulsite
+                    </a>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>Donate to the project</li>
+                      <li>Support future development</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            {! Trademark and business info !}
+            <p class="text-muted">
+              <small>
+                “Postleaf” and the Postleaf logo are registered tradmarks of A Beautiful Site, LLC,
+                a service-disabled veteran-owned business based in Central Florida. You should never
+                have to pay for this software.
+              </small>
+            </p>
+
+            {! Always do good !}
+            <p class="text-muted">
+              <small>
+                Always do good. Build amazing things. Go forth and create!
+              </small>
+            </p>
+
+            {! Version !}
+            <p class="text-muted">
+              <small>
+                Postleaf version {@postleafVersion/}
+              </small>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {! Hidden button so ENTER will trigger form submits !}
+      <button type="submit" hidden></button>
+    </form>
+  </main>
+{/body}

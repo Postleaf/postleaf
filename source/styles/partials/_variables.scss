@@ -1,0 +1,130 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Postleaf variables
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$postleaf-blue: #09d;
+$postleaf-green: #8cc152;
+$postleaf-yellow: #e6c600;
+$postleaf-black: #272f33;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Bootstrap variables
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Bootstrap options
+$enable-shadows: true;
+
+// Fonts
+$body-bg: #f3f7f9;
+$body-color: #173846;
+$text-muted: #8aaab9;
+$font-size-base: 1rem;
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+$font-family-monospace: Monaco, "Lucida Console", monospace;
+$small-font-size: 85%;
+
+// Code
+$code-color: $body-color;
+$code-bg: $body-bg;
+
+// Keyboard
+$kbd-color: $body-color;
+$kbd-bg: $body-bg;
+$kbd-box-shadow: 0 1px 0 darken($body-bg, 10%);
+
+// Links
+$link-color: $postleaf-blue;
+$link-hover-color: $link-color;
+$link-hover-decoration: none;
+
+// Headings
+$headings-font-family: $font-family-sans-serif;
+$headings-font-weight: 300;
+$hr-border-color: darken($body-bg, 10%);
+
+// Path to Font Awesome
+$fa-font-path: '../fonts';
+
+// Brand
+$brand-primary: $postleaf-blue;
+$brand-success: $postleaf-green;
+$brand-info: #9ab6c3;
+$brand-warning: #ff851b;
+$brand-danger: #ff4136;
+
+// States
+$state-success-bg: $brand-success;
+$state-success-text: white;
+$state-info-bg: $brand-info;
+$state-info-text: white;
+$state-warning-bg: $brand-warning;
+$state-warning-text: white;
+$state-danger-bg: $brand-danger;
+$state-danger-text: white;
+
+// Border radius
+$border-radius: 3px;
+$border-radius-large: 5px;
+$border-radius-small: 2px;
+
+// Forms
+$form-group-margin-bottom: 1.5rem;
+$input-color: #2d414a;
+$input-color-placeholder: $text-muted;
+$input-border-color: #c0d5e0;
+$input-border-focus: $postleaf-blue;
+$input-border-radius: $border-radius;
+$input-box-shadow: none;
+$input-group-addon-bg: $body-bg;
+$input-group-addon-border-color: $input-border-color;
+
+// Custom selects
+$custom-select-focus-border-color: $input-border-focus;
+$custom-select-focus-box-shadow: none;
+
+// Custom checkboxes and radios
+$custom-control-indicator-box-shadow: none;
+$custom-control-indicator-bg-size: 65% 65%;
+$custom-control-indicator-bg: lighten($input-border-color, 10%);
+$custom-control-active-indicator-bg: darken($custom-control-indicator-bg, 10%);
+
+// Buttons
+$btn-secondary-bg: white;
+$btn-secondary-color: #53798a;
+$btn-secondary-border: $input-border-color;
+$btn-border-radius: $border-radius;
+$btn-box-shadow: inset 0 1px 1px rgba(white, .2);
+
+// Alerts
+$alert-border-width: 0;
+
+// Cards
+$card-border-color: #dae4e9;
+$card-cap-bg: $card-border-color;
+
+// Dropdowns
+$dropdown-border-color: $input-border-color;
+$dropdown-link-color: $body-color;
+$dropdown-link-hover-color: white;
+$dropdown-link-hover-bg: $link-color;
+$dropdown-box-shadow: 0 .1rem .25rem rgba(black, .05);
+
+// Tabs
+$nav-tabs-border-color: darken($body-bg, 10%);
+$nav-tabs-link-hover-border-color: transparent;
+$nav-tabs-active-link-hover-color: $body-color;
+$nav-tabs-active-link-hover-bg: white;
+$nav-tabs-active-link-hover-border-color: $nav-tabs-border-color;
+$nav-tabs-justified-link-border-color: $nav-tabs-border-color;
+$nav-tabs-justified-active-link-border-color: $nav-tabs-border-color;
+
+// Tooltips
+$tooltip-bg: $postleaf-black;
+$tooltip-color: white;
+$tooltip-opacity: 1;
+
+// Bootstrap vars and mixins
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";

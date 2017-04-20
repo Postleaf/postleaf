@@ -1,0 +1,15 @@
+# Files
+.DS_Store
+.env
+
+# Directories
+assets/
+cache/
+data/
+design/
+node_modules/
+uploads/
+
+# Ignore everything except the default theme
+themes/*
+#!themes/default

@@ -1,0 +1,77 @@
+//
+// Card Cover
+//
+// Makes regular Bootstrap cards cover photo-capable.
+//
+// Example:
+//
+//  <div class="card card-cover>
+//    <div class="card-cover-header">
+//      <div class="card-cover-image" style="background-image: url('image.jpg');"></div>
+//    </div>
+//    <div class="card-block">
+//      ...
+//    </div>
+//  </div>
+//
+// Notes:
+//  - Add an avatar inside the card-cover-header with: <div class="card-cover-avatar"><img></div>
+//
+$card-cover-height: 10rem;
+$card-cover-avatar-size: 9rem;
+
+.card-cover {
+  position: relative;
+
+  .card-cover-header {
+    position: relative;
+    height: $card-cover-height;
+    overflow: hidden;
+
+    + .card-block {
+      border-top: solid 1px $card-border-color;
+    }
+  }
+
+  .card-cover-image {
+    height: 100%;
+    background-color: $body-bg;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+
+    // Image placeholder
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      content: '\f06c';
+      line-height: $card-cover-height;
+      font-size: $card-cover-height / 2;
+      font-family: FontAwesome;
+      color: #8aaabb;
+      text-align: center;
+      opacity: .25;
+    }
+
+    // Hide placeholder when a background image is set
+    &[style]:not([style=""])::before {
+      display: none;
+    }
+  }
+
+  // Avatar
+  .card-cover-avatar {
+    img {
+      position: absolute;
+      top: ($card-cover-height - $card-cover-avatar-size) / 2;
+      left: calc(50% - #{$card-cover-avatar-size / 2});
+      width: $card-cover-avatar-size;
+      height: $card-cover-avatar-size;
+      border-radius: 50%;
+    }
+  }
+}

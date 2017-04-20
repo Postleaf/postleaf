@@ -1,0 +1,101 @@
+<div id="shortcuts-overlay" hidden></div>
+<div id="shortcuts" hidden>
+  <div id="shortcuts-body">
+    {! Close button !}
+    <button type="button" class="close btn btn-link" data-shortcuts="hide">
+      <i class="fa fa-remove"></i>
+    </button>
+
+    <h2>{@i18n term="keyboard_shortcuts"/}</h2>
+
+    {! Global !}
+    <table class="table">
+      <caption>{@i18n term="global_shortcuts"/}</caption>
+      <tbody>
+        <tr>
+          <td><kbd>f1</kbd></td>
+          <td>{@i18n term="keyboard_shortcuts"/}</td>
+        </tr>
+        <tr>
+          <td><kbd class="meta"></kbd> <kbd>shift</kbd> <kbd>f</kbd></td>
+          <td>{@i18n term="search"/}</td>
+        </tr>
+        <tr>
+          <td><kbd class="meta"></kbd> <kbd>shift</kbd> <kbd>u</kbd></td>
+          <td>{@i18n term="manage_uploads"/}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    {! Editor !}
+    <table class="table">
+      <caption>{@i18n term="editor_shortcuts"/}</caption>
+      <tbody>
+        <tr>
+          <td><kbd class="meta"></kbd> <kbd>b</kbd></td>
+          <td>{@i18n term="bold"/}</td>
+        </tr>
+
+        <tr>
+          <td><kbd class="meta"></kbd> <kbd>i</kbd></td>
+          <td>{@i18n term="italic"/}</td>
+        </tr>
+
+        <tr>
+          <td><kbd>ctrl</kbd> <kbd>alt</kbd> <kbd>1-6</kbd></td>
+          <td>{@i18n term="heading"/}</td>
+        </tr>
+
+        <tr>
+          <td><kbd>ctrl</kbd> <kbd>alt</kbd> <kbd>7</kbd></td>
+          <td>{@i18n term="paragraph"/}</td>
+        </tr>
+
+        <tr>
+          <td><kbd class="meta"></kbd> <kbd>enter</kbd></td>
+          <td>{@i18n term="new_section"/}</td>
+        </tr>
+
+        <tr>
+          <td><kbd class="meta"></kbd> <kbd>k</kbd></td>
+          <td>{@i18n term="link"/}</td>
+        </tr>
+
+        <tr>
+          <td><kbd class="meta"></kbd> <kbd>shift</kbd> <kbd>i</kbd></td>
+          <td>{@i18n term="image"/}</td>
+        </tr>
+
+        <tr>
+          <td><kbd class="meta"></kbd> <kbd>shift</kbd> <kbd>e</kbd></td>
+          <td>{@i18n term="embed"/}</td>
+        </tr>
+
+        <tr>
+          <td><kbd class="meta"></kbd> <kbd>,</kbd></td>
+          <td>{@i18n term="post_settings"/}</td>
+        </tr>
+
+        <tr>
+          <td><kbd class="meta"></kbd> <kbd>s</kbd></td>
+          <td>{@i18n term="save"/}</td>
+        </tr>
+
+        <tr>
+          <td><kbd>alt</kbd> <kbd>shift</kbd> <kbd>f</kbd></td>
+          <td>{@i18n term="fullscreen"/}</td>
+        </tr>
+
+        <tr>
+          <td><kbd>alt</kbd> <kbd>shift</kbd> <kbd>z</kbd></td>
+          <td>{@i18n term="zen_mode"/}</td>
+        </tr>
+
+        <tr>
+          <td><kbd>alt</kbd> <kbd>shift</kbd> <kbd>w</kbd></td>
+          <td>{@i18n term="word_count"/}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

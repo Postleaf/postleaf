@@ -1,0 +1,54 @@
+{>"layout"/}
+
+{! No nav for this page !}
+{<nav}{/nav}
+
+{! Body !}
+{<body}
+  <main class="main-container">
+    {! Logo !}
+    <img class="logo" src="{@url path="assets/images/postleaf_wordmark.svg"/}" alt="{@i18n term="logo"/}">
+
+    {! Login form !}
+    <form
+      id="login-form"
+      class="box"
+      action="{@url type="api" path="auth"/}"
+      method="POST"
+      data-redirect="{?Request.query.redirect}{Request.query.redirect}{:else}{@url type="admin"/}{/Request.query.redirect}"
+      autocomplete="off"
+    >
+      {! Username !}
+      <div class="form-group">
+        <label for="username">{@i18n term="username_or_email"/}</label>
+        <input class="form-control" type="text" id="username" name="username" autocapitalize="off" autofocus>
+      </div>
+
+      {! Password !}
+      <div class="form-group">
+        <label for="password">{@i18n term="password"/}</label>
+        <div class="input-group">
+          <input class="form-control" type="password" id="password" name="password">
+          <span class="input-group-btn">
+            <a href="{@url type="admin" path="login/recover"/}" class="btn btn-secondary" title="{@i18n term="recover_password"/}">
+              <i class="fa fa-life-buoy"></i>
+            </a>
+          </span>
+        </div>
+      </div>
+
+      {! Login button !}
+      <div class="form-group">
+        <button type="submit" class="btn btn-block btn-primary">{@i18n term="login"/}</button>
+      </div>
+    </form>
+
+    {! Site meta !}
+    <p class="meta">
+      <a href="{@url/}" class="text-muted">{Settings.title}</a>
+    </p>
+  </main>
+{/body}
+
+{! No panels for this page !}
+{<panels}{/panels}

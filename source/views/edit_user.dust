@@ -1,0 +1,263 @@
+{>"layout"/}
+
+{! Header !}
+{<header}
+  <header class="admin-toolbar">
+    <div class="admin-toolbar-group">
+      {! Toolbar title !}
+      <h2 class="admin-toolbar-title">
+        {@in key=User.role value="owner,admin"}
+          <a href="{@url type="admin" path="users"/}">{@i18n term="users"/}</a>
+          <i class="fa fa-angle-right"></i>
+        {/in}
+
+        {?user}
+          {user.name}
+        {:else}
+          {@i18n term="new_user"/}
+        {/user}
+      </h2>
+    </div>
+    <div class="admin-toolbar-group text-right">
+      {! Cancel !}
+      {@in key=User.role value="owner,admin"}
+        <a class="btn btn-link" href="{@url type="admin" path="users"/}">{@i18n term="cancel"/}</a>
+      {/in}
+
+      {! Save !}
+      <button class="btn btn-primary" type="button" data-save>{@i18n term="save"/}</button>
+    </div>
+  </header>
+{/header}
+
+{! Body !}
+{<body}
+  <main class="main-container stretch-down">
+    {! Sidebar !}
+    <div id="sidebar">
+      <nav class="nav nav-pills flex-md-column flex-row flex-wrap">
+        <a class="nav-link active" data-toggle="tab" href="#user">{@i18n term="user"/}</a>
+        <a class="nav-link" data-toggle="tab" href="#profile">{@i18n term="profile"/}</a>
+      </nav>
+    </div>
+
+    {! Main content !}
+    <form
+      id="user-form"
+      class="tab-content box"
+      data-user-id="{user.id}"
+      data-user-created="{@i18n term="[name]_has_been_created" name=":name"/}"
+      data-changes-saved="{@i18n term="your_changes_have_been_saved"/}"
+      data-create-action="{@url type="api" path="users"/}"
+      data-save-confirmation="{@i18n term="your_changes_havent_been_saved_yet"/}"
+      data-update-action="{@url type="api" path="users/:id"/}"
+    >
+      {! User !}
+      <div id="user" class="tab-pane active">
+        <div class="row">
+          <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
+            {! Name !}
+            <div class="form-group">
+              <label for="name">{@i18n term="name"/}</label>
+              <input class="form-control" type="text" name="name" id="name" value="{user.name}" autofocus>
+            </div>
+
+            {! Email !}
+            <div class="form-group">
+              <label for="email">{@i18n term="email"/}</label>
+              <input class="form-control" type="email" name="email" id="email" value="{user.email}">
+            </div>
+
+            <div class="row">
+              {! Username !}
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="username">{@i18n term="username"/}</label>
+                  <input class="form-control" type="text" name="username" id="username" value="{user.username}">
+                  <p class="form-text">
+                    {@i18n term="usernames_must_be_lowercase_and_can_only_contain"/}
+                  </p>
+                </div>
+              </div>
+
+              {! Role !}
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="role">{@i18n term="role"/}</label>
+                  <select
+                    class="form-control"
+                    name="role"
+                    id="role"
+                    {@eq key=user.role value="owner"}disabled{/eq}
+                  >
+                    {@eq key=user.role value="owner"}
+                      {! The owner role can't be reassigned !}
+                      <option value="owner" selected>
+                        {@i18n term="owner"/}
+                      </option>
+                    {:else}
+                      {! All other roles !}
+                      <option value="contributor" {@eq key=user.role value="contributor"}selected{/eq}>
+                        {@i18n term="contributor"/}
+                      </option>
+                      <option value="editor" {@eq key=user.role value="editor"}selected{/eq}>
+                        {@i18n term="editor"/}
+                      </option>
+                      <option value="admin" {@eq key=user.role value="admin"}selected{/eq}>
+                        {@i18n term="administrator"/}
+                      </option>
+                    {/eq}
+                  </select>
+                  <p class="form-text">
+                    {@i18n term="roles_determine_what_features_a_user_has_access_to"/}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {! Change password !}
+            {?user.id}
+              <h3>{@i18n term="change_password"/}</h3>
+              <div class="form-group">
+                <label for="password">{@i18n term="new_password"/}</label>
+                <div class="input-group">
+                  <input class="form-control" type="password" name="password" id="password">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" data-toggle-password="#password">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                  </span>
+                </div>
+                <p class="form-text">
+                  {@i18n term="passwords_need_to_be_at_least_eight_characters_long"/}
+                </p>
+              </div>
+            {/user.id}
+          </div>
+        </div>
+      </div>
+
+      {! Profile !}
+      <div id="profile" class="tab-pane">
+        <div class="row">
+          <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
+            {! Profile !}
+            <h3>{@i18n term="profile"/}</h3>
+            <p class="form-text">
+              {@i18n term="your_profile_tells_visitors_a_little_bit_about_who_you_are"/}
+            </p>
+
+            <div class="row">
+              {! Website !}
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="website">{@i18n term="website"/}</label>
+                  <input class="form-control" type="url" name="website" id="website" value="{user.website}">
+                </div>
+              </div>
+
+              {! Location !}
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="location">{@i18n term="location"/}</label>
+                  <input class="form-control" type="text" name="location" id="location" value="{user.location}">
+                </div>
+              </div>
+            </div>
+
+            {! Bio !}
+            <div class="form-group">
+              <label for="bio">{@i18n term="bio"/}</label>
+              <span class="badge badge-info pull-right">{@i18n term="markdown"/}</span>
+              <textarea class="form-control" name="bio" id="bio" rows="6">{user.bio}</textarea>
+              <p class="form-text">
+                {@i18n term="share_a_few_sentences_about_yourself"/}
+              </p>
+            </div>
+
+            {! Avatar and image !}
+            <div class="row">
+              {! Avatar !}
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label>{@i18n term="avatar"/}</label>
+                  <div
+                    class="image-control image-control-sm image-control-contain"
+                    data-upload-action="{@url type="api" path="uploads"/}"
+                    data-thumbnail="500"
+                    {?user.avatar}style="background-image: url('{@url path=user.avatar/}');"{/user.avatar}
+                  >
+                    {! Hidden input !}
+                    <input type="hidden" name="avatar" value="{user.avatar}">
+                    <div class="image-control-controls">
+                      <div class="btn-group">
+                        {! Upload !}
+                        <label class="btn btn-black btn-file" title="{@i18n term="upload"/}">
+                          <i class="fa fa-upload"></i>
+                          <input type="file" accept="image/*" hidden>
+                        </label>
+
+                        {! Browse !}
+                        <button class="btn btn-black" type="button" title="{@i18n term="browse"/}" data-browse>
+                          <i class="fa fa-picture-o"></i>
+                        </button>
+
+                        {! Remove !}
+                        <button class="btn btn-black" type="button" title="{@i18n term="remove"/}" data-remove {^user.avatar}hidden{/user.avatar}>
+                          <i class="fa fa-remove"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="form-text">
+                    {@i18n term="avatars_are_public_and_often_displayed_on_your_website"/}
+                  </p>
+                </div>
+              </div>
+
+              {! Image !}
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label>{@i18n term="image"/}</label>
+                  <div
+                    class="image-control image-control-sm"
+                    data-upload-action="{@url type="api" path="uploads"/}"
+                    {?user.image}style="background-image: url('{@url path=user.image/}');"{/user.image}
+                  >
+                    {! Hidden input !}
+                    <input type="hidden" name="image" value="{user.image}">
+                    <div class="image-control-controls">
+                      <div class="btn-group">
+                        {! Upload !}
+                        <label class="btn btn-black btn-file" title="{@i18n term="upload"/}">
+                          <i class="fa fa-upload"></i>
+                          <input type="file" accept="image/*" hidden>
+                        </label>
+
+                        {! Browse !}
+                        <button class="btn btn-black" type="button" title="{@i18n term="browse"/}" data-browse>
+                          <i class="fa fa-picture-o"></i>
+                        </button>
+
+                        {! Remove !}
+                        <button class="btn btn-black" type="button" title="{@i18n term="remove"/}" data-remove {^user.image}hidden{/user.image}>
+                          <i class="fa fa-remove"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="form-text">
+                    {@i18n term="cover_images_are_used_by_themes_to_provide_a_unique_visual_experience"/}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {! Hidden button so ENTER will trigger form submits !}
+      <button type="submit" hidden></button>
+    </form>
+  </main>
+{/body}

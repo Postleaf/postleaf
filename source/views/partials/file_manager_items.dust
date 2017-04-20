@@ -1,0 +1,38 @@
+{#uploads}
+
+  <div
+    class="file-manager-item"
+    title="{filename} ({@formatBytes bytes=size/})&#13;{@date date=createdAt format="LLL"/}&#13;{author.name}"
+    data-value="{id}"
+    data-json="{.|js}"
+    data-copy-action="{@url path=path absolute="true"/}"
+    data-delete-action="{@url type="api" path="uploads/{id}"/}"
+    data-download-action="{@url type="api" path="uploads/{id}/download"/}"
+    data-mime-type="{mimeType}"
+    {@select key=mimeType}
+      {! Show raster images dynamically !}
+      {@eq value="image/gif"}style="background-image: url('{@dynamicImage src=path width="500"/}');"{/eq}
+      {@eq value="image/jpeg"}style="background-image: url('{@dynamicImage src=path width="500"/}');"{/eq}
+      {@eq value="image/png"}style="background-image: url('{@dynamicImage src=path width="500"/}');"{/eq}
+
+      {! Show vector images statically !}
+      {@eq value="image/svg+xml"}style="background-image: url('{@url path=path/}');"{/eq}
+    {/select}
+  >
+    <div class="file-manager-item-body">
+      <div class="file-manager-item-details">
+        {! Icon !}
+        <i class="fa fa-2x fa-file"></i>
+        {! Name !}
+        <div class="file-manager-item-name">
+          {filename}
+        </div>
+        {! Size !}
+        <div class="file-manager-item-size">
+          {@formatBytes bytes=size/}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{/uploads}
