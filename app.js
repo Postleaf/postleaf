@@ -15,6 +15,7 @@ const Chalk = require('chalk');
 const CookieParser = require('cookie-parser');
 const Compression = require('compression');
 const Express = require('express');
+const Fs = require('fs');
 const Path = require('path');
 const Slashes = require('connect-slashes');
 
@@ -32,8 +33,15 @@ const DynamicImages = require(Path.join(__basedir, 'source/modules/dynamic_image
 const Database = require(Path.join(__basedir, 'source/modules/database.js'));
 app.locals.Database = Database;
 
-// Sync the database
-Database.init()
+Promise.resolve()
+  // Make sure .env exists
+  .then(() => {
+    if(!Fs.existsSync(Path.join(__basedir, '.env'))) {
+      throw new Error('Required config file .env is missing.');
+    }
+  })
+  // Initialize the database
+  .then(() => Database.init())
   .then(() => {
     let models = Database.sequelize.models;
 
