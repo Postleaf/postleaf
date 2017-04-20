@@ -1,5 +1,6 @@
 'use strict';
 
+const Mkdirp = require('mkdirp');
 const Path = require('path');
 const Sequelize = require('sequelize');
 let databasePath = Path.join(__basedir, 'data/database.sq3');
@@ -26,6 +27,11 @@ const upload = sequelize.import(Path.join(__basedir, 'source/models/upload_model
 // Returns a promise.
 //
 function init() {
+  // Create the data directory if it doesn't exist
+  let path = Path.join(__basedir, 'data');
+  Mkdirp.sync(path);
+
+  // Create missing tables and sync models
   return sequelize.sync();
 }
 
