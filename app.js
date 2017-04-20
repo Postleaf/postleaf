@@ -84,13 +84,13 @@ Promise.resolve()
     // View engine
     app.engine('dust', Adaro.dust({
       cache: process.env.NODE_ENV === 'production',
+      whitespace: true,
       helpers: [
         'dustjs-helpers',
         'source/modules/helpers/html_helpers.js',
         'source/modules/helpers/utility_helpers.js',
         'source/modules/helpers/theme_helpers.js'
-      ],
-      whitespace: process.env.NODE_ENV !== 'production'
+      ]
     }));
     app.set('views', Path.join(__basedir, 'source/views'));
     app.set('view engine', 'dust');
