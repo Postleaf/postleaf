@@ -13,47 +13,56 @@ Created by [Cory LaViska](https://twitter.com/claviska)
 
 This software is dedicated to my daughter, Sophia, and my son, Calvin. Chase your dreams, lil’ ones. 💙💚
 
-## Requirements
+## Alpha testing underway! 🚧
 
-- Node 7
+Postleaf is considered feature complete for the 1.0 roadmap, but you may find bugs or see API changes before the stable version is released. This documentation is subject to change as bugs and other issues get ironed out.
+
+Please report bugs to [the issue tracker](https://github.com/Postleaf/postleaf/issues). 🐛
+
+## Dependencies
+
+This guide assumes you're installing Postleaf locally for development purposes. Please make sure the following dependencies are installed on your system before continuing:
+
+- Node 7 (not tested and not likely to work properly on lower versions)
+- npm
+- Git
 - SQLite 3
 - GraphicsMagick
 
-## Installing
+**You will also need access to an SMTP server for sending emails.** Otherwise, you won't be able to create users, perform password resets, etc. If you don't already have a transactional email service, the folks over at Discourse have put together a great [list of email providers](https://github.com/discourse/discourse/blob/master/docs/INSTALL-email.md) — many of which offer free plans.
 
-This is the development repo. If you're not a developer, please [check the wiki](https://github.com/Postleaf/postleaf/wiki) for alternative installation methods.
+## Installation
 
-## Developers
-
-Postleaf uses NPM to manage dependencies and Gulp as its task runner. To contribute to this project, you'll need to clone the repository and install the required development tools listed below.
-
-- [Gulp](http://gulpjs.com/) (Install using `npm install -g gulp-cli`)
-
-Please read through our [contributing guidelines](https://github.com/claviska/postleaf/blob/master/.github/CONTRIBUTING.md) before submitting a PR.
-
-Once you have the necessary development tools installed:
-
-1. Open a terminal
-2. Navigate to your cloned repo
-3. Run the following command:
+1. Open a terminal and clone the project from the GitHub repo:
+  ```
+  git clone https://github.com/Postleaf/postleaf
+  ```
+2. Then clone the default theme into `themes/empower-theme`:
+  ```
+  git clone https://github.com/Postleaf/empower-theme.git themes/empower-theme
+  ```
+3. Copy or rename `.env.example` to `.env`. **Open it and change `AUTH_SECRET` to a random string to secure your app.** Then add your SMTP credentials so email can be sent!
+4. Install dependencies and run the build script:
   ```
   npm install
   gulp build
   ```
+5. Now launch the app:
+  ```
+  node app.js
+  ```
 
-This will generate all the assets you need to run Postleaf. Once this is complete, you can launch the app with this command:
+At this point, you should be able to see Postleaf running by pointing your browser to `http://localhost:3000/`. If not, someone in the [forum](https://community.postleaf.org) or [chat room](https://gitter.im/Postleaf/postleaf) can probably assist.
 
-```
-node app.js
-```
+## Themes
 
-Then open http://localhost:3000 in your browser.
+To install more themes, simply add them to the `themes` directory. There are a couple additional themes located in the [main repo](https://github.com/Postleaf).
 
-### Using Gulp
+To create your own theme, start by duplicating the [default theme](https://github.com/Postleaf/empower-theme). The HTML is commented to help you, and there's more info about Dust.js templates in the [project wiki](https://github.com/Postleaf/postleaf/wiki).
 
-- Use `gulp build` to build all assets.
-- Use `gulp clean` to remove all assets.
-- Use `gulp help` to see all available tasks.
+## Support
+
+Please [visit the community forum](https://community.postleaf.org/) for support. You can also [hop onto the chat](https://gitter.im/Postleaf/postleaf) for assistance.
 
 ## License
 
@@ -65,10 +74,6 @@ All code is copyrighted by A Beautiful Site, LLC except where noted. Third-party
 
 Postleaf is maintained under the [Semantic Versioning guidelines](http://semver.org/) and we adhere to them as closely as possible.
 
-
-## Support
-
-Please [visit the community forum](https://community.postleaf.org/) for support. You can also [hop onto the chat](https://gitter.im/Postleaf/postleaf) for assistance.
 
 ---
 
