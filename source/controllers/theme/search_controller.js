@@ -50,10 +50,10 @@ const self = module.exports = {
 
         // Assemble view data
         let pagination = Paginate.get(posts.count, limit, page, (page) => {
-          return MakeUrl.search(req.query.s, { page: page });
+          return MakeUrl.search(req.query.s, { absolute: true, page: page });
         });
-        let websiteImage = Settings.cover ? MakeUrl.raw(Settings.cover) : null;
-        let websiteUrl = MakeUrl.raw();
+        let websiteImage = Settings.cover ? MakeUrl.raw(Settings.cover, { absolute: true }) : null;
+        let websiteUrl = MakeUrl.raw({ absolute: true });
 
         // Render the template
         res.useThemeViews().render('search', {

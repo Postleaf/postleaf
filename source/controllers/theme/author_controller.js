@@ -72,10 +72,10 @@ module.exports = {
 
         // Assemble view data
         let pagination = Paginate.get(posts.count, limit, page, (page) => {
-          return MakeUrl.author(author.username, { page: page });
+          return MakeUrl.author(author.username, { absolute: true, page: page });
         });
-        let authorUrl = MakeUrl.author(author.username);
-        let authorAvatar = author.avatar ? MakeUrl.raw(author.avatar) : null;
+        let authorUrl = MakeUrl.author(author.username, { absolute: true });
+        let authorAvatar = author.avatar ? MakeUrl.raw(author.avatar, { absolute: true }) : null;
         let metaTitle = author.name;
         let metaDescription = Markdown.toText(author.bio);
 

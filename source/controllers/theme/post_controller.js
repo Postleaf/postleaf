@@ -72,15 +72,15 @@ const self = module.exports = {
         }
 
         // Assemble view data
-        let logo = Settings.logo ? MakeUrl.raw(Settings.logo) : null;
-        let postUrl = MakeUrl.post(post.slug);
-        let postImage = post.image ? MakeUrl.raw(post.image) : null;
+        let logo = Settings.logo ? MakeUrl.raw(Settings.logo, { absolute: true }) : null;
+        let postUrl = MakeUrl.post(post.slug, { absolute: true });
+        let postImage = post.image ? MakeUrl.raw(post.image, { absolute: true }) : null;
         let postDate = Moment(post.publishedAt).format('YYYY-MM-DD[T]HH:mm:ss[Z]');
         let metaTitle = post.metaTitle || post.title;
         let metaDescription = Striptags(post.metaDescription || post.content).split(' ', 50).join(' ');
         let tags = (post.tags || []).map((val) => { return val.name; }).join(', ');
         let authorBio = Markdown.toText(post.author.bio);
-        let authorImage = post.author.avatar ? MakeUrl.raw(post.author.avatar) : null;
+        let authorImage = post.author.avatar ? MakeUrl.raw(post.author.avatar, { absolute: true }) : null;
         let viewData = {
           post: post,
           meta: {

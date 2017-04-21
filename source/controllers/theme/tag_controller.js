@@ -80,10 +80,10 @@ module.exports = {
 
         // Assemble view data
         let pagination = Paginate.get(posts.count, limit, page, (page) => {
-          return MakeUrl.tag(tag.slug, { page: page });
+          return MakeUrl.tag(tag.slug, { absolute: true, page: page });
         });
-        let tagUrl = MakeUrl.tag(tag.slug);
-        let tagImage = tag.image ? MakeUrl.raw(tag.image) : null;
+        let tagUrl = MakeUrl.tag(tag.slug, { absolute: true });
+        let tagImage = tag.image ? MakeUrl.raw(tag.image, { absolute: true }) : null;
         let metaTitle = tag.metaTitle || tag.name;
         let metaDescription = tag.metaDescription || Markdown.toText(tag.description);
 

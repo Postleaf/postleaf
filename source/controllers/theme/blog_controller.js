@@ -57,8 +57,8 @@ module.exports = {
         let pagination = Paginate.get(posts.count, limit, page, (page) => {
           return MakeUrl.blog({ page: page });
         });
-        let websiteImage = Settings.cover ? MakeUrl.raw(Settings.cover) : null;
-        let websiteUrl = MakeUrl.raw();
+        let websiteImage = Settings.cover ? MakeUrl.raw(Settings.cover, { absolute: true }) : null;
+        let websiteUrl = MakeUrl.raw({ absolute: true });
 
         // Render the template
         res.useThemeViews().render('blog', {
