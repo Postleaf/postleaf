@@ -34,12 +34,9 @@ $mobile-menu-height: 2.75rem;
     color: white;
     padding: .4rem 0 4rem 0;
     user-select: none;
-    overflow-y: auto;
 
     .admin-menu-dropdown {
       .dropdown-menu {
-        position: fixed;
-        top: 3.5rem;
         left: .75rem;
       }
 
@@ -64,6 +61,15 @@ $mobile-menu-height: 2.75rem;
           color: $text-muted;
         }
       }
+    }
+
+    .admin-menu-items {
+      position: absolute;
+      top: 4rem;
+      bottom: 0;
+      left: 0;
+      width: $admin-menu-width;
+      overflow-y: auto;
     }
 
     .admin-menu-item {
