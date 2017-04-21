@@ -23,7 +23,7 @@ Please report bugs to [the issue tracker](https://github.com/Postleaf/postleaf/i
 
 This guide assumes you're installing Postleaf locally for development purposes. Please make sure the following dependencies are installed on your system before continuing:
 
-- Node 7 (not tested and not likely to work properly on lower versions)
+- Node 7 (lower versions have not been tested and are not supported)
 - npm
 - Git
 - SQLite 3
@@ -33,21 +33,18 @@ This guide assumes you're installing Postleaf locally for development purposes. 
 
 ## Installation
 
-1. Open a terminal and clone the project from the GitHub repo:
+1. Open a terminal and clone the project and default theme:
   ```
-  git clone https://github.com/Postleaf/postleaf
-  ```
-2. Then clone the default theme into `themes/empower-theme`:
-  ```
+  git clone https://github.com/Postleaf/postleaf.git && cd postleaf
   git clone https://github.com/Postleaf/empower-theme.git themes/empower-theme
   ```
-3. Copy or rename `.env.example` to `.env`. **Open it and change `AUTH_SECRET` to a random string to secure your app.** Then add your SMTP credentials so email can be sent!
-4. Install dependencies and run the build script:
+2. Make a copy of `.env.example` and name it `.env`. **Open it and change `AUTH_SECRET` to a random string to secure your app.** Then add your SMTP credentials so email can be sent.
+3. Install dependencies and run the build script:
   ```
   npm install
   gulp build
   ```
-5. Now launch the app:
+4. Now launch the app:
   ```
   node app.js
   ```
@@ -58,7 +55,7 @@ At this point, you should be able to see Postleaf running by pointing your brows
 
 To install more themes, simply add them to the `themes` directory. There are a couple additional themes located in the [main repo](https://github.com/Postleaf).
 
-To create your own theme, start by duplicating the [default theme](https://github.com/Postleaf/empower-theme). The HTML is commented to help you, and there's more info about Dust.js templates in the [project wiki](https://github.com/Postleaf/postleaf/wiki).
+To create your own theme, start by duplicating the [default theme](https://github.com/Postleaf/empower-theme). The source is commented to help you, and there's more info about Dust.js templates in the [project wiki](https://github.com/Postleaf/postleaf/wiki).
 
 ## Support
 
@@ -73,7 +70,6 @@ This software is copyrighted. You may use it under the terms of the MIT license.
 All code is copyrighted by A Beautiful Site, LLC except where noted. Third-party libraries are copyrighted and licensed by their respective owners.
 
 Postleaf is maintained under the [Semantic Versioning guidelines](http://semver.org/) and we adhere to them as closely as possible.
-
 
 ---
 
