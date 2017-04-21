@@ -206,6 +206,7 @@ module.exports = {
     const User = req.User;
     const Settings = req.app.locals.Settings;
     const models = req.app.locals.Database.sequelize.models;
+    let post;
 
     // All posts for owners/admins/editors, only yours for contributors
     if(!['owner', 'admin', 'editor'].includes(User.role) && req.body['user-id'] !== User.id) {
@@ -251,7 +252,9 @@ module.exports = {
         });
       })
       // Create an initial revision
-      .then((post) => {
+      .then((result) => {
+        post = result;
+
         return models.revision
           .create({
             postId: post.id,
@@ -263,17 +266,19 @@ module.exports = {
           .then(() => post);
       })
       // Assign tags to the post
-      .then((post) => {
+      .then(() => {
         if(Array.isArray(req.body.tags)) {
-          req.body.tags.forEach((tagId) => {
-            models.postTags.upsert({ postId: post.id, tagId: tagId });
-          });
-        }
+          let queue = [];
 
-        return post;
+          req.body.tags.forEach((tagId) => {
+            queue.push(models.postTags.upsert({ postId: post.id, tagId: tagId }));
+          });
+
+          return Promise.all(queue);
+        }
       })
       // Send a response
-      .then((post) => {
+      .then(() => {
         res.json({
           post: post
         });
@@ -357,6 +362,7 @@ module.exports = {
     const User = req.User;
     const Settings = req.app.locals.Settings;
     const models = req.app.locals.Database.sequelize.models;
+    let post;
 
     // Fetch the post
     models.post
@@ -365,7 +371,9 @@ module.exports = {
           id: req.params.id
         }
       })
-      .then((post) => {
+      .then((result) => {
+        post = result;
+
         // Not found
         if(!post) {
           res.status(HttpCodes.NOT_FOUND);
@@ -409,42 +417,44 @@ module.exports = {
         if(typeof req.body['is-sticky'] !== 'undefined') post.isSticky = req.body['is-sticky'] === 'true';
 
         // Update the post
-        post.save()
-          // Create a revision
-          .then(() => models.revision.create({
-            postId: post.id,
-            userId: req.User.id,
-            revisionDate: Moment().format('YYYY-MM-DD HH:mm:ss'),
-            title: post.title,
-            content: post.content
-          }))
-          // Send a response
-          .then(() => {
-            res.json({
-              post: post
-            });
-          })
-          .catch((err) => handleErrorResponse(req, res, err));
-
-        // Update tags
+        return post.save();
+      })
+      // Create a revision
+      .then(() => {
+        return models.revision.create({
+          postId: post.id,
+          userId: req.User.id,
+          revisionDate: Moment().format('YYYY-MM-DD HH:mm:ss'),
+          title: post.title,
+          content: post.content
+        });
+      })
+      // Update tags
+      .then(() => {
         if(Array.isArray(req.body.tags)) {
-          models.postTags
+          return models.postTags
             // Remove old tags
             .destroy({
               where: { postId: post.id }
             })
-            // Set new tags
+            // Add new tags
             .then(() => {
+              let queue = [];
               req.body.tags.forEach((tagId) => {
-                models.postTags
-                  .upsert({ postId: post.id, tagId: tagId })
-                  .catch((err) => next(err));
+                queue.push(models.postTags.upsert({ postId: post.id, tagId: tagId }));
               });
-            })
-            .catch((err) => next(err));
+
+              return Promise.all(queue);
+            });
         }
       })
-      .catch((err) => next(err));
+      // Send a response
+      .then(() => {
+        res.json({
+          post: post
+        });
+      })
+      .catch(() => handleErrorResponse(req, res, next));
   },
 
   //
