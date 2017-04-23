@@ -170,6 +170,37 @@ module.exports = (dust) => {
   };
 
   //
+  // Formats a URL based on the specified arguments. If no arguments are set, only the hostname will
+  // be displayed.
+  //
+  // Examples:
+  //
+  //  {@formatUrl url="https://example.com/"/}
+  //    ==> example.com
+  //  {@formatUrl url="https://example.com/path/to/page.html" path="true" /}
+  //    ==> example.com/path/to/page.html
+  //
+  dust.helpers.formatUrl = (chunk, context, bodies, params) => {
+    let url = context.resolve(params.url) || '';
+    let protocol = context.resolve(params.protocol) === 'true';
+    let hostname = context.resolve(params.hostname) !== 'false';
+    let path = context.resolve(params.path) === 'true';
+    let search = context.resolve(params.search) === 'true';
+    let hash = context.resolve(params.hash) === 'true';
+    let parsed = Url.parse(url);
+
+    // Rebuild the URL with the desired components
+    url = '';
+    if(protocol) url += parsed.protocol + '//';
+    if(hostname) url += parsed.hostname;
+    if(path) url += parsed.path;
+    if(search) url += parsed.search;
+    if(hash) url += parsed.hash;
+
+    return chunk.write(url);
+  };
+
+  //
   // Outputs a localized language term.
   //
   // Examples:
