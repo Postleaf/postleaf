@@ -8,17 +8,6 @@ const Paginate = require(Path.join(__basedir, 'source/modules/paginate.js'));
 const self = module.exports = {
 
   //
-  // Renders a custom homepage.
-  //
-  customHomepage: (req, res, next) => {
-    // Set custom homepage
-    req.params.slug = req.app.locals.Settings.homepage;
-
-    // Render it
-    return self.view(req, res, next);
-  },
-
-  //
   // Renders the search page.
   //
   view: (req, res, next) => {

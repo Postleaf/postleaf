@@ -65,7 +65,7 @@ function loadSettings() {
         setting.create({ key: 'theme', value: 'empower-theme' }),
         setting.create({ key: 'timeZone', value: 'UTC' }),
         setting.create({ key: 'title', value: 'A Postleaf Website' }),
-        setting.create({ key: 'customHomepage', value: '' }),
+        setting.create({ key: 'homepage', value: '' }),
         setting.create({ key: 'pathForAdmin', value: 'admin' }),
         setting.create({ key: 'pathForAuthor', value: 'author' }),
         setting.create({ key: 'pathForAPI', value: 'api' }),

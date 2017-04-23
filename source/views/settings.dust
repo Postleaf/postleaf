@@ -57,11 +57,11 @@
               {! Custom homepage !}
               <div class="col-lg-8">
                 <div class="form-group">
-                  <label for="custom-homepage">{@i18n term="custom_homepage"/}</label>
-                  <select class="form-control" name="custom-homepage" id="custom-homepage">
-                    <option value="">{@i18n term="none"/}</option>
+                  <label for="homepage">{@i18n term="homepage"/}</label>
+                  <select class="form-control" name="homepage" id="homepage">
+                    <option value="">{@i18n term="blog"/}</option>
                     {#homepagePosts}
-                      <option value="{slug}" {@eq key=Settings.customHomepage value=slug}selected{/eq}>
+                      <option value="{slug}" {@eq key=Settings.homepage value=slug}selected{/eq}>
                         {title}
                       </option>
                     {/homepagePosts}

@@ -23,7 +23,7 @@ module.exports = {
   //
   //  title (string) - The website's title.
   //  tagline (string) - The website's tagline.
-  //  custom-homepage (string) - A post slug to use as the custom homepage.
+  //  homepage (string) - A post slug to use as the custom homepage.
   //  posts-per-page (int) - The number of posts to display per page.
   //  cover (string) - A relative or absolute URL for the website's cover photo.
   //  logo (string) - A relative or absolute URL for the website's logo.
@@ -48,8 +48,8 @@ module.exports = {
     // Website
     if(typeof req.body.title !== 'undefined') settings.title = req.body.title;
     if(typeof req.body.tagline !== 'undefined') settings.tagline = req.body.tagline;
-    if(typeof req.body['custom-homepage'] !== 'undefined') {
-      settings.customHomepage = req.body['custom-homepage'] || null;
+    if(typeof req.body['homepage'] !== 'undefined') {
+      settings.homepage = req.body['homepage'] || null;
     }
     if(typeof req.body['posts-per-page'] !== 'undefined') {
       settings.postsPerPage = parseInt(req.body['posts-per-page']) || 10;
