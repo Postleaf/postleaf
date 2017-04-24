@@ -226,7 +226,7 @@
 
         {! Revisions !}
         <div class="tab-pane" id="revisions">
-          {! Dynamically loaded !}
+          {>"partials/revisions_table"/}
         </div>
       </div>
 

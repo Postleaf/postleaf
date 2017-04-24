@@ -616,8 +616,8 @@ $(() => {
       $('#revisions').find('table').prop('hidden', !hasRevisions);
       $('#no-revisions').prop('hidden', hasRevisions);
 
-      // Reload the table
-      if(reload) {
+      // Reload the table (only if we're editing an existing post)
+      if(postId && reload) {
         $.ajax({
           url: revisionTableAction,
           type: 'GET',
