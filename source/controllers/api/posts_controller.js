@@ -514,12 +514,13 @@ module.exports = {
   //  - The :id request param can be a post ID or the string ':blank'.
   //  - JSON-LD, OpenGraph, and Twitter Card data is not generated for previews.
   //
-  // Returns the rendered post.
+  // Renders the preview and returns a promise so the method can be called from other controllers.
   //
   preview: function(req, res, next) {
     const User = req.User;
     const Settings = req.app.locals.Settings;
     const models = req.app.locals.Database.sequelize.models;
+    let post;
 
     // Parse custom post data
     let customPostData;
@@ -531,7 +532,7 @@ module.exports = {
     }
 
     // Fetch the post, the post's author, and all related tags
-    models.post
+    return models.post
       .findOne({
         where: {
           id: req.params.id
@@ -550,7 +551,9 @@ module.exports = {
         ]
       })
       // Inject srcset attribute for dynamic images
-      .then((post) => {
+      .then((result) => {
+        post = result;
+
         if(post) {
           return DynamicImages
             .injectSrcset(post.content, models.upload)
@@ -640,46 +643,46 @@ module.exports = {
         }
 
         // Wait for all queue to resolve
-        Promise.all(queue)
-          .then(() => {
-            // Assemble view data
-            let metaTitle = post.metaTitle || post.title;
-            let metaDescription = Striptags(post.metaDescription || post.content).split(' ', 50).join(' ');
-            let viewData = {
-              post: post,
-              meta: {
-                title: metaTitle,
-                description: metaDescription
-              }
-            };
+        return Promise.all(queue);
+      })
+      .then(() => {
+        // Assemble view data
+        let metaTitle = post.metaTitle || post.title;
+        let metaDescription = Striptags(post.metaDescription || post.content).split(' ', 50).join(' ');
+        let viewData = {
+          post: post,
+          meta: {
+            title: metaTitle,
+            description: metaDescription
+          }
+        };
 
-            // Determine which template the post should use
-            let themeName = req.app.locals.Settings.theme;
-            let template = req.query.template || post.template || 'post';
-            let templatePath = Path.join(__basedir, 'themes', themeName, 'templates', template);
-            if(template !== 'post' && !Fs.existsSync(templatePath)) template = 'post';
+        // Determine which template the post should use
+        let themeName = req.app.locals.Settings.theme;
+        let template = req.query.template || post.template || 'post';
+        let templatePath = Path.join(__basedir, 'themes', themeName, 'templates', template);
+        if(template !== 'post' && !Fs.existsSync(templatePath)) template = 'post';
 
-            // Prevent browsers from identifying XSS attacks when post previews are rendered.
-            // See http://stackoverflow.com/questions/1547884/refused-to-execute-a-javascript-script-source-code-of-script-found-within-reque
-            res.set('X-XSS-Protection', '0');
+        // Prevent browsers from identifying XSS attacks when post previews are rendered.
+        // See http://stackoverflow.com/questions/1547884/refused-to-execute-a-javascript-script-source-code-of-script-found-within-reque
+        res.set('X-XSS-Protection', '0');
 
-            // Create a copy of the response object so we can safely modify it for the preview. Remove
-            // user session data and append the isEditor flag if it's desired.
-            let previewRes = Extend({}, res);
-            previewRes.locals.User = null;
-            previewRes.locals.isEditor = req.query.isEditor === 'true';
+        // Create a copy of the response object so we can safely modify it for the preview. Remove
+        // user session data and append the isEditor flag if it's desired.
+        let previewRes = Extend({}, res);
+        previewRes.locals.User = null;
+        previewRes.locals.isEditor = req.query.isEditor === 'true';
 
-            // Render the post
-            if(req.query.isZenMode === 'true') {
-              // Use zen mode template
-              previewRes.useSystemViews().render('zen_mode', viewData);
-            } else {
-              // Use post template
-              previewRes.useThemeViews().render(template, viewData);
-            }
-          })
-          .catch((err) => next(err));
-      });
+        // Render the post
+        if(req.query.isZenMode === 'true') {
+          // Use zen mode template
+          previewRes.useSystemViews().render('zen_mode', viewData);
+        } else {
+          // Use post template
+          previewRes.useThemeViews().render(template, viewData);
+        }
+      })
+      .catch((err) => next(err));
   }
 
 };

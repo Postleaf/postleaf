@@ -211,14 +211,14 @@ module.exports = {
   // Notes:
   //  - JSON-LD, OpenGraph, and Twitter Card data is not generated for previews.
   //
-  // Returns the rendered post.
+  // Renders the preview and returns a promise so the method can be called from other controllers.
   //
   preview: function(req, res, next) {
     const PostsController = require(Path.join(__basedir, 'source/controllers/api/posts_controller.js'));
     const User = req.User;
     const models = req.app.locals.Database.sequelize.models;
 
-    models.revision
+    return models.revision
       // Fetch the revision
       .findOne({
         where: {
@@ -246,7 +246,7 @@ module.exports = {
           content: revision.content
         });
 
-        PostsController.preview(req, res, next);
+        return PostsController.preview(req, res, next);
       })
       .catch((err) => {
         res.status(HttpCodes.NOT_FOUND);
