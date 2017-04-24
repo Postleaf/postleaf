@@ -551,9 +551,7 @@ module.exports = {
         ]
       })
       // Inject srcset attribute for dynamic images
-      .then((result) => {
-        post = result;
-
+      .then((post) => {
         if(post) {
           return DynamicImages
             .injectSrcset(post.content, models.upload)
@@ -563,8 +561,9 @@ module.exports = {
 
         return post;
       })
-      .then((post) => {
+      .then((result) => {
         let queue = [];
+        post = result;
 
         if(!post) {
           // No post found, should we render a blank one?
