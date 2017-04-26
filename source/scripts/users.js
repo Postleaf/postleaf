@@ -81,7 +81,10 @@ $(() => {
   // Open
   $('[data-open]').on('click', () => {
     let url = $('#users').selectable('getElements', true)[0].getAttribute('data-open-action');
-    window.open(url);
+
+    if(url) {
+      window.open(url);
+    }
   });
 
   // Edit
