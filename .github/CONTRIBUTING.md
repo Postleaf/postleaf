@@ -56,8 +56,8 @@ I recommend using [Atom](https://atom.io/) because it has [a great linter plugin
 
 This is by no means mandatory, but it will save you a lot of time. If your preferred IDE doesn't support linting, you can also see ESLint errors while running `gulp watch`.
 
-## License and Code Contributions
+## Contributor License Agreement
 
-By submitting bug fixes, code, documentation, or anything else to this project, you agree to allow the developer and his company, A Beautiful Site, LLC, to license or relicense your work under their license of choice and you agree to forfeit all copyrights, intellectual property rights, and royalties pertaining to your contribution.
+By submitting bug fixes, code, documentation, or anything else to this project, you agree to allow the developer and his company, A Beautiful Site, LLC, to license or relicense your work under the terms of the MIT license and you agree to forfeit all copyrights, intellectual property rights, and royalties pertaining to your contribution.
 
 I want Postleaf to remain free for everyone to use, forever, so please do not submit any design, code, or content that is licensed or copyrighted without first getting written consent from the author.
