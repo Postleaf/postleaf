@@ -55,7 +55,11 @@ At this point, you should be able to see Postleaf running by pointing your brows
 
 To install more themes, simply add them to the `themes` directory. There are a couple additional themes located in the [main repo](https://github.com/Postleaf).
 
-To create your own theme, start by duplicating the [default theme](https://github.com/Postleaf/empower-theme). The source is commented to help you, and there's more info about Dust.js templates in the [project wiki](https://github.com/Postleaf/postleaf/wiki).
+To create your own theme, start by duplicating the [default theme](https://github.com/Postleaf/empower-theme). The source is commented to help you, and there's some more info on working with Dust.js templates on the website:
+
+- [Themes Overview](https://www.postleaf.org/themes-overview)
+- [Helper Reference](https://www.postleaf.org/helper-reference)
+- [Filter Reference](https://www.postleaf.org/filter-reference)
 
 ## Support
 
