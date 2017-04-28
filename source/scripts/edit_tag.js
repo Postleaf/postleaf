@@ -1,4 +1,5 @@
 /* eslint-env browser, jquery */
+
 'use strict';
 
 const Marked = require('marked');
