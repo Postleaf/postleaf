@@ -46,7 +46,7 @@ module.exports = {
         }
 
         // Wait for all rows to update
-        Promise.all(queue)
+        return Promise.all(queue)
           .then(() => {
             // Update locals
             req.app.locals.Navigation = navigation;
