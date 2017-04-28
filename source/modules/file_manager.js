@@ -3,6 +3,7 @@
 
 const Clipboard = require('clipboard');
 const NProgress = require('nprogress');
+const Promise = require('bluebird');
 
 let loadAction = $('#file-manager').attr('data-load-action');
 let uploadAction = $('#file-manager').attr('data-upload-action');

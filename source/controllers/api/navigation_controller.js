@@ -1,6 +1,7 @@
 'use strict';
 
 const HttpCodes = require('http-codes');
+const Promise = require('bluebird');
 
 module.exports = {
 

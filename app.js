@@ -18,6 +18,7 @@ const Express = require('express');
 const Fs = require('fs');
 const Path = require('path');
 const Slashes = require('connect-slashes');
+const Promise = require('bluebird');
 
 // Express app
 const app = Express();

@@ -3,6 +3,7 @@
 const Extend = require('extend');
 const Fs = require('fs');
 const Path = require('path');
+const Promise = require('bluebird');
 
 const self = {
 

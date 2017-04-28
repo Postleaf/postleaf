@@ -3,6 +3,7 @@
 
 const Cookie = require('js-cookie');
 const NProgress = require('nprogress');
+const Promise = require('bluebird');
 
 $(() => {
 

@@ -1,6 +1,7 @@
 'use strict';
 
 const HttpCodes = require('http-codes');
+const Promise = require('bluebird');
 
 //
 // Handles the validation error response for create and update

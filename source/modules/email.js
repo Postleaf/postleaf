@@ -1,6 +1,7 @@
 'use strict';
 
 const Nodemailer = require('nodemailer');
+const Promise = require('bluebird');
 
 const self = {
 

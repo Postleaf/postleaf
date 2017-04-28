@@ -9,6 +9,7 @@ const Striptags = require('striptags');
 const AutoEmbed = require(Path.join(__basedir, 'source/modules/auto_embed.js'));
 const DynamicImages = require(Path.join(__basedir, 'source/modules/dynamic_images.js'));
 const Markdown = require(Path.join(__basedir, 'source/modules/markdown.js'));
+const Promise = require('bluebird');
 
 //
 // Handles the validation error response for create and update

@@ -2,6 +2,7 @@
 
 const HttpCodes = require('http-codes');
 const Path = require('path');
+const Promise = require('bluebird');
 
 module.exports = {
 

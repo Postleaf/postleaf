@@ -1,6 +1,8 @@
 /* eslint-env browser */
 'use strict';
 
+const Promise = require('bluebird');
+
 //
 // Initializes TinyMCE.
 //

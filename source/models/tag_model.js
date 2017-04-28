@@ -2,6 +2,7 @@
 
 const Extend = require('extend');
 const Lunr = require('lunr');
+const Promise = require('bluebird');
 
 //
 // Converts a model object to a Lunr search index object.

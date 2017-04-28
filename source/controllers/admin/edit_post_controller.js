@@ -5,6 +5,7 @@ const HttpCodes = require('http-codes');
 const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 const AutocompleteSuggestions = require(Path.join(__basedir, 'source/modules/autocomplete_suggestions.js'));
 const Themes = require(Path.join(__basedir, 'source/modules/themes.js'));
+const Promise = require('bluebird');
 
 module.exports = {
 

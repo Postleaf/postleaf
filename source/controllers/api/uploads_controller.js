@@ -7,6 +7,7 @@ const Gm = require('gm');
 const HttpCodes = require('http-codes');
 const Moment = require('moment');
 const Path = require('path');
+const Promise = require('bluebird');
 
 const UploadMiddleware = require(Path.join(__basedir, 'source/middleware/upload_middleware.js'));
 

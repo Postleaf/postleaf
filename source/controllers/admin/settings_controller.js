@@ -4,6 +4,7 @@ const Moment = require('moment');
 const Path = require('path');
 const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 const Themes = require(Path.join(__basedir, 'source/modules/themes.js'));
+const Promise = require('bluebird');
 
 module.exports = {
 
