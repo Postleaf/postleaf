@@ -26,7 +26,7 @@ module.exports = (app) => {
   const Settings = app.locals.Settings;
 
   //
-  // Blog
+  // Blog & custom homepage
   //
   //  GET /
   //  GET /page/:page
@@ -36,20 +36,38 @@ module.exports = (app) => {
   //  GET /blog
   //  GET /blog/page/:page
   //
-  if(app.locals.Settings.homepage) {
-    // Custom homepage
-    router.get('/', PostController.customHomepage);
-    router.get([
-      '/' + Settings.pathForBlog,
-      '/' + Settings.pathForBlog + '/' + Settings.pathForPage + '/:page'
-    ], ViewMiddleware.checkPageNumbers, BlogController.view);
-  } else {
-    // Without custom homepage
-    router.get([
-      '/',
-      '/' + Settings.pathForPage + '/:page'
-    ], ViewMiddleware.checkPageNumbers, BlogController.view);
-  }
+
+  // Homepage (can be either the blog index or a custom homepage)
+  router.get('/', (req, res, next) => {
+    if(app.locals.Settings.homepage) {
+      // Homepage
+      return PostController.customHomepage(req, res, next);
+    } else {
+      // Blog index
+      return BlogController.view(req, res, next);
+    }
+  });
+
+  // Blog at / (only when a custom homepage isn't set)
+  router.get('/' + Settings.pathForPage + '/:page', ViewMiddleware.checkPageNumbers, (req, res, next) => {
+    if(!app.locals.Settings.homepage) {
+      return BlogController.view(req, res, next);
+    }
+
+    next();
+  });
+
+  // Blog at /blog (only when a custom homepage is set)
+  router.get([
+    '/' + Settings.pathForBlog,
+    '/' + Settings.pathForBlog + '/' + Settings.pathForPage + '/:page'
+  ], ViewMiddleware.checkPageNumbers, (req, res, next) => {
+    if(app.locals.Settings.homepage) {
+      return BlogController.view(req, res, next);
+    }
+
+    next();
+  });
 
   //
   // Author
