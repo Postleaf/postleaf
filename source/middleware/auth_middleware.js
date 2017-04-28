@@ -24,6 +24,9 @@ module.exports = {
         res.locals.User = user;
 
         next();
+
+        // Supress Bluebird warning
+        return null;
       })
       // Missing or invalid token, don't attach anything
       .catch(() => next());
