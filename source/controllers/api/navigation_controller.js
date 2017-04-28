@@ -35,32 +35,28 @@ module.exports = {
 
     // Remove existing items
     models.navigation.destroy({ truncate: true })
+      // Insert new items in the correct order
       .then(() => {
-        // Insert new items
-        let queue = [];
-        for(let i = 0; i < navigation.length; i++) {
-          queue.push(models.navigation.create({
-            label: navigation[i].label,
-            link: navigation[i].link
-          }));
-        }
-
-        // Wait for all rows to update
-        return Promise.all(queue)
-          .then(() => {
-            // Update locals
-            req.app.locals.Navigation = navigation;
-
-            res.json({
-              navigation: navigation
-            });
-          })
-          .catch(() => {
-            res.status(HttpCodes.INTERNAL_SERVER_ERROR);
-            return next(I18n.term('your_changes_could_not_be_saved_at_this_time'));
+        return Promise.each(navigation, (item) => {
+          return models.navigation.create({
+            label: item.label,
+            link: item.link
           });
+        });
       })
-      .catch((err) => next(err));
+      // Update locals
+      .then(() => req.app.locals.Navigation = navigation)
+      // Send a response
+      .then(() => {
+        res.json({
+          navigation: navigation
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(HttpCodes.INTERNAL_SERVER_ERROR);
+        return next(I18n.term('your_changes_could_not_be_saved_at_this_time'));
+      });
   }
 
 };
