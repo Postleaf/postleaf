@@ -355,6 +355,6 @@ module.exports = (app) => {
   );
 
   // Attach the router to the app
-  app.use('/' + app.locals.Settings.pathForAPI, router);
+  app.use('/' + process.env.APP_API_SLUG, router);
 
 };

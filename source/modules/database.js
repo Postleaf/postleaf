@@ -67,15 +67,7 @@ function loadSettings() {
         setting.create({ key: 'theme', value: 'empower-theme' }),
         setting.create({ key: 'timeZone', value: 'UTC' }),
         setting.create({ key: 'title', value: 'A Postleaf Website' }),
-        setting.create({ key: 'homepage', value: '' }),
-        setting.create({ key: 'pathForAdmin', value: 'admin' }),
-        setting.create({ key: 'pathForAuthor', value: 'author' }),
-        setting.create({ key: 'pathForAPI', value: 'api' }),
-        setting.create({ key: 'pathForBlog', value: 'blog' }),
-        setting.create({ key: 'pathForFeed', value: 'feed' }),
-        setting.create({ key: 'pathForPage', value: 'page' }),
-        setting.create({ key: 'pathForSearch', value: 'search' }),
-        setting.create({ key: 'pathForTag', value: 'tag' })
+        setting.create({ key: 'homepage', value: '' })
       ])
       .then(() => setting.getObject())
       .then((settings) => settings);

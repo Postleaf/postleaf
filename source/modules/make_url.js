@@ -65,7 +65,7 @@ module.exports = (Settings) => {
         path = options.path;
       }
 
-      let url = '/' + Settings.pathForAdmin;
+      let url = '/' + process.env.APP_ADMIN_SLUG;
       if(path) url += '/' + encodeURI(path || '').replace(/^\/+/, '');
       if(options.query) url = appendQueryString(url, options.query);
       if(options.hash) url += '#' + options.hash;
@@ -91,7 +91,7 @@ module.exports = (Settings) => {
         path = options.path;
       }
 
-      let url = '/' + Settings.pathForAPI;
+      let url = '/' + process.env.APP_API_SLUG;
       if(path) url += '/' + encodeURI(path || '').replace(/^\/+/, '');
       if(options.query) url = appendQueryString(url, options.query);
 
@@ -117,8 +117,8 @@ module.exports = (Settings) => {
       }
 
       if(typeof username === 'undefined') throw new Error('Missing argument `username` MakeUrl.author().');
-      let url = '/' + Settings.pathForAuthor + '/' + encodeURIComponent(username);
-      if(options.page > 1) url += '/' + Settings.pathForPage + '/' + options.page;
+      let url = '/' + process.env.APP_AUTHOR_SLUG + '/' + encodeURIComponent(username);
+      if(options.page > 1) url += '/' + process.env.APP_PAGE_SLUG + '/' + options.page;
 
       return options.absolute ? self.absolute(url) : url;
     },
@@ -132,8 +132,8 @@ module.exports = (Settings) => {
     //
     blog: (options) => {
       options = options || {};
-      let url = Settings.homepage ? '/' + Settings.pathForBlog : '/';
-      if(options.page > 1) url = url.replace(/\/+$/, '') + '/' + Settings.pathForPage + '/' + options.page;
+      let url = Settings.homepage ? '/' + process.env.APP_BLOG_SLUG : '/';
+      if(options.page > 1) url = url.replace(/\/+$/, '') + '/' + process.env.APP_PAGE_SLUG + '/' + options.page;
 
       return options.absolute ? self.absolute(url) : url;
     },
@@ -146,7 +146,7 @@ module.exports = (Settings) => {
     //
     feed: (options) => {
       options = options || {};
-      let url = '/' + Settings.pathForFeed;
+      let url = '/' + process.env.APP_FEED_SLUG;
 
       return options.absolute ? self.absolute(url) : url;
     },
@@ -224,8 +224,8 @@ module.exports = (Settings) => {
         search = options.search;
       }
 
-      let url = '/' + Settings.pathForSearch;
-      if(options.page > 1 && search) url += '/' + Settings.pathForPage + '/' + options.page;
+      let url = '/' + process.env.APP_SEARCH_SLUG;
+      if(options.page > 1 && search) url += '/' + process.env.APP_PAGE_SLUG + '/' + options.page;
       if(search) url += '?s=' + encodeURIComponent(search);
 
       return options.absolute ? self.absolute(url) : url;
@@ -250,8 +250,8 @@ module.exports = (Settings) => {
       }
 
       if(typeof slug === 'undefined') throw new Error('Missing argument `slug` MakeUrl.tag().');
-      let url = '/' + Settings.pathForTag + '/' + encodeURIComponent(slug);
-      if(options.page > 1) url += '/' + Settings.pathForPage + '/' + options.page;
+      let url = '/' + process.env.APP_TAG_SLUG + '/' + encodeURIComponent(slug);
+      if(options.page > 1) url += '/' + process.env.APP_PAGE_SLUG + '/' + options.page;
 
       return options.absolute ? self.absolute(url) : url;
     },

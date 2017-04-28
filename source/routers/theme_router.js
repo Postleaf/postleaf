@@ -23,7 +23,17 @@ module.exports = (app) => {
   const PostController = require(Path.join(__basedir, 'source/controllers/theme/post_controller.js'));
   const SearchController = require(Path.join(__basedir, 'source/controllers/theme/search_controller.js'));
   const TagController = require(Path.join(__basedir, 'source/controllers/theme/tag_controller.js'));
-  const Settings = app.locals.Settings;
+
+  const slugs = {
+    admin: process.env.APP_ADMIN_SLUG,
+    author: process.env.APP_AUTHOR_SLUG,
+    api: process.env.APP_API_SLUG,
+    blog: process.env.APP_BLOG_SLUG,
+    feed: process.env.APP_FEED_SLUG,
+    page: process.env.APP_PAGE_SLUG,
+    search: process.env.APP_SEARCH_SLUG,
+    tag: process.env.APP_TAG_SLUG
+  };
 
   //
   // Blog & custom homepage
@@ -49,7 +59,7 @@ module.exports = (app) => {
   });
 
   // Blog at / (only when a custom homepage isn't set)
-  router.get('/' + Settings.pathForPage + '/:page', ViewMiddleware.checkPageNumbers, (req, res, next) => {
+  router.get('/' + slugs.page + '/:page', ViewMiddleware.checkPageNumbers, (req, res, next) => {
     if(!app.locals.Settings.homepage) {
       return BlogController.view(req, res, next);
     }
@@ -59,8 +69,8 @@ module.exports = (app) => {
 
   // Blog at /blog (only when a custom homepage is set)
   router.get([
-    '/' + Settings.pathForBlog,
-    '/' + Settings.pathForBlog + '/' + Settings.pathForPage + '/:page'
+    '/' + slugs.blog,
+    '/' + slugs.blog + '/' + slugs.page + '/:page'
   ], ViewMiddleware.checkPageNumbers, (req, res, next) => {
     if(app.locals.Settings.homepage) {
       return BlogController.view(req, res, next);
@@ -76,8 +86,8 @@ module.exports = (app) => {
   //  GET /author/:username/page/:page
   //
   router.get([
-    '/' + Settings.pathForAuthor + '/:username',
-    '/' + Settings.pathForAuthor + '/:username/' + Settings.pathForPage + '/:page'
+    '/' + slugs.author + '/:username',
+    '/' + slugs.author + '/:username/' + slugs.page + '/:page'
   ], ViewMiddleware.checkPageNumbers, AuthorController.view);
 
   //
@@ -87,8 +97,8 @@ module.exports = (app) => {
   //  GET /tag/:slug/page/:page
   //
   router.get([
-    '/' + Settings.pathForTag + '/:slug',
-    '/' + Settings.pathForTag + '/:slug/' + Settings.pathForPage + '/:page'
+    '/' + slugs.tag + '/:slug',
+    '/' + slugs.tag + '/:slug/' + slugs.page + '/:page'
   ], ViewMiddleware.checkPageNumbers, TagController.view);
 
   //
@@ -98,8 +108,8 @@ module.exports = (app) => {
   //  GET /search/page/:page
   //
   router.get([
-    '/' + Settings.pathForSearch,
-    '/' + Settings.pathForSearch + '/' + Settings.pathForPage + '/:page'
+    '/' + slugs.search,
+    '/' + slugs.search + '/' + slugs.page + '/:page'
   ], ViewMiddleware.checkPageNumbers, SearchController.view);
 
   //
@@ -107,7 +117,7 @@ module.exports = (app) => {
   //
   //  GET /feed
   //
-  router.get('/' + Settings.pathForFeed, FeedController.view);
+  router.get('/' + slugs.feed, FeedController.view);
 
   //
   // Post

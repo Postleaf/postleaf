@@ -230,7 +230,7 @@ module.exports = (app) => {
 
   // Attach the router to the app
   app.use(
-    '/' + app.locals.Settings.pathForAdmin + '/',
+    '/' + process.env.APP_ADMIN_SLUG + '/',
     InstallMiddleware.checkInstallation,
     router
   );
