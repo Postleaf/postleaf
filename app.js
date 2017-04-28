@@ -47,9 +47,11 @@ Promise.resolve()
     let models = Database.sequelize.models;
 
     // Generate search indexes on startup
-    models.post.buildSearchIndex();
-    models.user.buildSearchIndex();
-    models.tag.buildSearchIndex();
+    return Promise.all([
+      models.post.buildSearchIndex(),
+      models.user.buildSearchIndex(),
+      models.tag.buildSearchIndex()
+    ]);
   })
   // Load settings into app.locals.Settings
   .then(() => Database.loadSettings())
