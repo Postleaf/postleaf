@@ -1,15 +1,18 @@
 'use strict';
 
+// Node modules
 const Extend = require('extend');
 const Fs = require('fs');
 const HttpCodes = require('http-codes');
 const Moment = require('moment');
 const Path = require('path');
+const Promise = require('bluebird');
 const Striptags = require('striptags');
+
+// Local modules
 const AutoEmbed = require(Path.join(__basedir, 'source/modules/auto_embed.js'));
 const DynamicImages = require(Path.join(__basedir, 'source/modules/dynamic_images.js'));
 const Markdown = require(Path.join(__basedir, 'source/modules/markdown.js'));
-const Promise = require('bluebird');
 
 //
 // Handles the validation error response for create and update

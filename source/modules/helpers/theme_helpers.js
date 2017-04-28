@@ -1,5 +1,6 @@
 'use strict';
 
+// Node modules
 const Cheerio = require('cheerio');
 const He = require('he');
 const Moment = require('moment');
@@ -7,6 +8,8 @@ const Path = require('path');
 const Striptags = require('striptags');
 const Trim = require('trim');
 const TruncateHtml = require('truncate-html');
+
+// Local modules
 const SignedUrl = require(Path.join(__basedir, 'source/modules/signed_url.js'));
 const Slug = require(Path.join(__basedir, 'source/modules/slug.js'));
 

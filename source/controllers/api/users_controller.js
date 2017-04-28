@@ -1,11 +1,14 @@
 'use strict';
 
+// Node modules
 const Crypto = require('crypto');
 const Fs = require('fs');
 const HttpCodes = require('http-codes');
 const Path = require('path');
-const Email = require(Path.join(__basedir, 'source/modules/email.js'));
 const Promise = require('bluebird');
+
+// Local modules
+const Email = require(Path.join(__basedir, 'source/modules/email.js'));
 
 //
 // Handles the validation error response for create and update

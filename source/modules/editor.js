@@ -1,6 +1,7 @@
 /* eslint-env browser */
 'use strict';
 
+// Node modules
 const Promise = require('bluebird');
 
 //

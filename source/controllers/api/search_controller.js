@@ -1,9 +1,12 @@
 'use strict';
 
+// Node modules
 const HttpCodes = require('http-codes');
 const Path = require('path');
-const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 const Promise = require('bluebird');
+
+// Local modules
+const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 
 module.exports = {
 

@@ -1,10 +1,11 @@
 'use strict';
 
+// Node modules
 const Mkdirp = require('mkdirp');
 const Path = require('path');
+const Promise = require('bluebird');
 const Sequelize = require('sequelize');
 let databasePath = Path.join(__basedir, 'data/database.sq3');
-const Promise = require('bluebird');
 
 const sequelize = new Sequelize(null, null, null, {
   dialect: 'sqlite',

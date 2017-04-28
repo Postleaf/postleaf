@@ -17,8 +17,8 @@ const Compression = require('compression');
 const Express = require('express');
 const Fs = require('fs');
 const Path = require('path');
-const Slashes = require('connect-slashes');
 const Promise = require('bluebird');
+const Slashes = require('connect-slashes');
 
 // Express app
 const app = Express();

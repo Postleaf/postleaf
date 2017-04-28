@@ -1,10 +1,10 @@
 'use strict';
 
+// Node modules
 const Extend = require('extend');
 const Moment = require('moment');
 const Lunr = require('lunr');
 const Striptags = require('striptags');
-const Promise = require('bluebird');
 
 //
 // Converts a model object to a Lunr search index object.

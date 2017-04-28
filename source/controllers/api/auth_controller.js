@@ -1,9 +1,12 @@
 'use strict';
 
+// Node modules
 const Crypto = require('crypto');
 const Fs = require('fs');
 const HttpCodes = require('http-codes');
 const Path = require('path');
+
+// Local modules
 const Email = require(Path.join(__basedir, 'source/modules/email.js'));
 
 module.exports = {

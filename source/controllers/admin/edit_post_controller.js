@@ -1,11 +1,14 @@
 'use strict';
 
+// Node modules
 const Path = require('path');
 const HttpCodes = require('http-codes');
+const Promise = require('bluebird');
+
+// Local modules
 const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 const AutocompleteSuggestions = require(Path.join(__basedir, 'source/modules/autocomplete_suggestions.js'));
 const Themes = require(Path.join(__basedir, 'source/modules/themes.js'));
-const Promise = require('bluebird');
 
 module.exports = {
 

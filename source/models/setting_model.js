@@ -1,7 +1,5 @@
 'use strict';
 
-const Promise = require('bluebird');
-
 module.exports = (sequelize, DataTypes) => {
 
   const setting = sequelize.define('setting', {

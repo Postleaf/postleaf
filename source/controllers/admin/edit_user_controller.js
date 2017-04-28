@@ -1,7 +1,10 @@
 'use strict';
 
+// Node modules
 const Path = require('path');
 const HttpCodes = require('http-codes');
+
+// Local modules
 const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 
 module.exports = {

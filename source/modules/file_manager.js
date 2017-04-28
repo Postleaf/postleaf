@@ -1,6 +1,7 @@
 /* eslint-env browser, jquery */
 'use strict';
 
+// Node modules
 const Clipboard = require('clipboard');
 const NProgress = require('nprogress');
 const Promise = require('bluebird');

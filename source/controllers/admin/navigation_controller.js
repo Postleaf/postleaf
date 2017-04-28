@@ -1,9 +1,12 @@
 'use strict';
 
+// Node modules
 const Path = require('path');
+const Promise = require('bluebird');
+
+// Node modules
 const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 const AutocompleteSuggestions = require(Path.join(__basedir, 'source/modules/autocomplete_suggestions.js'));
-const Promise = require('bluebird');
 
 module.exports = {
 

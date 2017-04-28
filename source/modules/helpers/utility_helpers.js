@@ -1,11 +1,14 @@
 'use strict';
 
+// Node modules
 const FormatNumber = require('format-number');
 const He = require('he');
 const Moment = require('moment');
 const Striptags = require('striptags');
 const Path = require('path');
 const Url = require('url');
+
+// Local modules
 const Markdown = require(Path.join(__basedir, 'source/modules/markdown.js'));
 
 module.exports = (dust) => {

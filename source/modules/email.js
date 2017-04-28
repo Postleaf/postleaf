@@ -1,5 +1,6 @@
 'use strict';
 
+// Node modules
 const Nodemailer = require('nodemailer');
 const Promise = require('bluebird');
 

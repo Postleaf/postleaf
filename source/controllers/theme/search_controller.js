@@ -1,11 +1,14 @@
 'use strict';
 
+// Node modules
 const HttpCodes = require('http-codes');
 const Moment = require('moment');
 const Path = require('path');
+
+// Local modules
 const Paginate = require(Path.join(__basedir, 'source/modules/paginate.js'));
 
-const self = module.exports = {
+module.exports = {
 
   //
   // Renders the search page.

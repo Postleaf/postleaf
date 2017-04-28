@@ -1,5 +1,6 @@
 'use strict';
 
+// Node modules
 const Bcrypt = require('bcryptjs');
 const Crypto = require('crypto');
 const Extend = require('extend');

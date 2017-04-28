@@ -1,7 +1,7 @@
 'use strict';
 
+// Node modules
 const Extend = require('extend');
-const Promise = require('bluebird');
 
 module.exports = (sequelize, DataTypes) => {
 

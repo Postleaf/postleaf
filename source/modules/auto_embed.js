@@ -1,12 +1,13 @@
 'use strict';
 
+// Node modules
 const Autolinker = require('autolinker');
 const Cheerio = require('cheerio');
 const He = require('he');
 const Oembed = require('oembed');
 const Path = require('path');
-const Url = require('url');
 const Promise = require('bluebird');
+const Url = require('url');
 
 const self = {
 

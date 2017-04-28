@@ -1,5 +1,6 @@
 'use strict';
 
+// Node modules
 const Cheerio = require('cheerio');
 const Crypto = require('crypto');
 const Fs = require('fs');
@@ -8,9 +9,11 @@ const HttpCodes = require('http-codes');
 const Mkdirp = require('mkdirp');
 const Mime = require('mime');
 const Path = require('path');
-const Url = require('url');
-const SignedUrl = require(Path.join(__basedir, 'source/modules/signed_url.js'));
 const Promise = require('bluebird');
+const Url = require('url');
+
+// Local modules
+const SignedUrl = require(Path.join(__basedir, 'source/modules/signed_url.js'));
 
 const self = {
 

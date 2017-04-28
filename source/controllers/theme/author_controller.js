@@ -1,8 +1,11 @@
 'use strict';
 
+// Node modules
 const HttpCodes = require('http-codes');
 const Moment = require('moment');
 const Path = require('path');
+
+// Local modules
 const Markdown = require(Path.join(__basedir, 'source/modules/markdown.js'));
 const Paginate = require(Path.join(__basedir, 'source/modules/paginate.js'));
 

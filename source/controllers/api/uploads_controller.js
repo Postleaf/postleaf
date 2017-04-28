@@ -1,5 +1,6 @@
 'use strict';
 
+// Node modules
 const Crypto = require('crypto');
 const Del = require('del');
 const Fs = require('fs');
@@ -9,6 +10,7 @@ const Moment = require('moment');
 const Path = require('path');
 const Promise = require('bluebird');
 
+// Local modules
 const UploadMiddleware = require(Path.join(__basedir, 'source/middleware/upload_middleware.js'));
 
 const self = {

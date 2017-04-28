@@ -1,10 +1,13 @@
 'use strict';
 
+// Node modules
 const Moment = require('moment');
 const Path = require('path');
+const Promise = require('bluebird');
+
+// Local modules
 const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 const Themes = require(Path.join(__basedir, 'source/modules/themes.js'));
-const Promise = require('bluebird');
 
 module.exports = {
 
