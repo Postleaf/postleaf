@@ -5,6 +5,7 @@ const Cookie = require('js-cookie');
 const NProgress = require('nprogress');
 const Screenfull = require('screenfull');
 const Editor = require('../modules/editor.js');
+const Promise = require('bluebird');
 
 $(() => {
 

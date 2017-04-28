@@ -5,6 +5,7 @@ const Crypto = require('crypto');
 const Extend = require('extend');
 const Jwt = require('jsonwebtoken');
 const Lunr = require('lunr');
+const Promise = require('bluebird');
 
 //
 // Converts a model object to a Lunr search index object.

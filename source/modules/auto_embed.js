@@ -6,6 +6,7 @@ const He = require('he');
 const Oembed = require('oembed');
 const Path = require('path');
 const Url = require('url');
+const Promise = require('bluebird');
 
 const self = {
 

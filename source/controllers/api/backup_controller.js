@@ -10,6 +10,7 @@ const RecursiveReaddir = require('recursive-readdir');
 const Path = require('path');
 const Tmp = require('tmp');
 const UploadMiddleware = require(Path.join(__basedir, 'source/middleware/upload_middleware.js'));
+const Promise = require('bluebird');
 
 //
 // Adds an entire folder to a zip file.

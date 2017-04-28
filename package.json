@@ -40,6 +40,7 @@
     "animate.css": "^3.5.2",
     "autolinker": "^1.4.2",
     "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.0",
     "body-parser": "^1.15.2",
     "bootstrap": "^4.0.0-alpha.6",
     "chalk": "^1.1.3",

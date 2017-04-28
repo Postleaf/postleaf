@@ -3,6 +3,7 @@
 const Path = require('path');
 const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 const AutocompleteSuggestions = require(Path.join(__basedir, 'source/modules/autocomplete_suggestions.js'));
+const Promise = require('bluebird');
 
 module.exports = {
 

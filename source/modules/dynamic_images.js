@@ -10,6 +10,7 @@ const Mime = require('mime');
 const Path = require('path');
 const Url = require('url');
 const SignedUrl = require(Path.join(__basedir, 'source/modules/signed_url.js'));
+const Promise = require('bluebird');
 
 const self = {
 
