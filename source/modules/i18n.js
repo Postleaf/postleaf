@@ -78,9 +78,7 @@ module.exports = {
 
             resolve(languagePacks);
           })
-          .catch((err) => {
-            reject(err);
-          });
+          .catch((err) => reject(err));
       });
     });
   },
@@ -103,23 +101,23 @@ module.exports = {
 
       // Always load the default language pack first (missing terms will fall back to us-en)
       if(!Fs.existsSync(defaultFile)) {
-        reject('The default language pack is missing: ' + defaultFile);
+        reject(new Error('The default language pack is missing: ' + defaultFile));
       }
       try {
         defaultLang = JSON.parse(Fs.readFileSync(defaultFile));
       } catch(err) {
-        reject(err + ' (in ' + defaultFile + ')');
+        reject(err);
       }
 
       // Load the target language pack
       if(langCode !== 'en-us') {
         if(!Fs.existsSync(targetFile)) {
-          reject('The target language pack is missing: ' + targetFile);
+          reject(new Error('The target language pack is missing: ' + targetFile));
         }
         try {
           targetLang = JSON.parse(Fs.readFileSync(targetFile));
         } catch(err) {
-          reject(err + ' (in ' + targetFile + ')');
+          reject(err);
         }
       }
 

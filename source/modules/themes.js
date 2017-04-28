@@ -23,14 +23,14 @@ const self = {
       // Read the theme's config file
       Fs.readFile(themeConfig, 'utf8', (err, data) => {
         if(err) {
-          return reject('Unable to find theme.json.');
+          return reject(new Error('Unable to find theme.json.'));
         }
 
         // Parse it
         try {
           themeData = JSON.parse(data);
         } catch(err) {
-          return reject('Unable to parse theme.json.');
+          return reject(new Error('Unable to parse theme.json.'));
         }
 
         // Return an array of available templates
@@ -54,7 +54,7 @@ const self = {
 
       Fs.readdir(themeDir, (err, files) => {
         if(err) {
-          return reject('Unable to list directory: ' + themeDir);
+          return reject(new Error('Unable to list directory: ' + themeDir));
         }
 
         let queue = [];
@@ -80,7 +80,7 @@ const self = {
                     // Read theme.json
                     Fs.readFile(configPath, (err, data) => {
                       if(err) {
-                        return reject('Unable to read file: ' + configPath);
+                        return reject(new Error('Unable to read file: ' + configPath));
                       }
 
                       // Decode it
@@ -92,7 +92,7 @@ const self = {
                           })
                         );
                       } catch(err) {
-                        return reject('Unable to parse file: ' + configPath + '. ' + err);
+                        return reject(new Error('Unable to parse file: ' + configPath + '. ' + err));
                       }
                     });
                   });

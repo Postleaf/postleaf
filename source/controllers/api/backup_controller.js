@@ -27,7 +27,7 @@ function addFolderToZip(folder, zip) {
   return new Promise((resolve, reject) => {
     RecursiveReaddir(folder, (err, files) => {
       if(err) {
-        return reject('Unable to read folder: ' + folder);
+        return reject(new Error('Unable to read folder: ' + folder));
       }
 
       // Add each file to the zip
@@ -69,7 +69,7 @@ function restoreData(model, zip) {
         try {
           data = JSON.parse(data);
         } catch(err) {
-          return reject('Unable to parse JSON file: ' + filename);
+          return reject(new Error('Unable to parse JSON file: ' + filename));
         }
 
         if(data && data.length) {
@@ -135,13 +135,13 @@ function restoreFolderFromZip(sourceFolder, targetFolder, zip) {
                   // Create the directory if it doesn't exist
                   Mkdirp(Path.dirname(pathname), (err) => {
                     if(err) {
-                      return reject('Unable to create directory: ' + dirname);
+                      return reject(new Error('Unable to create directory: ' + dirname));
                     }
 
                     // Create the file
                     Fs.writeFile(pathname, buffer, (err) => {
                       if(err) {
-                        return reject('Unable to create file: ' + pathname);
+                        return reject(new Error('Unable to create file: ' + pathname));
                       }
                     });
                   });
@@ -177,7 +177,7 @@ function verifyBackup(zip) {
     if(zip.files['postleaf.json']) {
       resolve(zip);
     } else {
-      reject('Invalid backup file.');
+      reject(new Error('Invalid backup file.'));
     }
   });
 }

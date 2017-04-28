@@ -147,7 +147,7 @@ module.exports = (sequelize, DataTypes) => {
               })
               .then((user) => {
                 if(!user) {
-                  return reject('User not found.');
+                  return reject(new Error('User not found.'));
                 }
 
                 // Verify token hash
@@ -158,14 +158,14 @@ module.exports = (sequelize, DataTypes) => {
                   .substring(0, 10);
 
                 if(hash !== decoded.data.hash) {
-                  reject('Invalid auth token.');
+                  reject(new Error('Invalid auth token.'));
                 }
 
                 return resolve(user);
               })
-              .catch(() => reject('Error fetching user from the database.'));
+              .catch(() => reject(new Error('Error fetching user from the database.')));
           } catch(err) {
-            return reject('Invalid auth token.');
+            return reject(new Error('Invalid auth token.'));
           }
         });
       },
