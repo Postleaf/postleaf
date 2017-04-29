@@ -9,6 +9,7 @@ data/
 design/
 node_modules/
 uploads/
+.vscode/
 
 # Ignore everything except the default theme
 themes/*
