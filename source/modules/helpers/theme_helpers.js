@@ -2,7 +2,6 @@
 
 // Node modules
 const Cheerio = require('cheerio');
-const Fs = require('fs');
 const He = require('he');
 const Moment = require('moment');
 const Path = require('path');
@@ -158,7 +157,6 @@ module.exports = (dust) => {
     return chunk.map((chunk) => {
       const locals = context.options.locals;
       const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(locals.Settings);
-
       let isEditor = context.options.locals.isEditor;
       let toolbar = Path.join(__basedir, 'source/views/partials/theme_toolbar.dust');
       let script = MakeUrl.raw('assets/js/tinymce.bundle.js');
