@@ -42,6 +42,7 @@ This guide assumes you're installing Postleaf locally for development purposes. 
 3. Install dependencies and run the build script:
   ```
   npm install
+  sudo npm install -g gulp-cli
   gulp build
   ```
 4. Now launch the app:
