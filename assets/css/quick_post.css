@@ -1,0 +1,9 @@
+.quick-post .quick-post-header{background:#fff;border-bottom:solid 1px #e2ecf1;padding:.5rem}
+.quick-post .quick-post-header input[name=title]{font-size:1.2rem;border:none;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:0;border-bottom-right-radius:0}
+.quick-post .quick-post-header select[name=template]{color:#8aaab9;font-size:.9rem;border-color:transparent;background-color:transparent;background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%238aaab9' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");cursor:pointer}
+.quick-post .quick-post-body{background:#fff;padding:.5rem}
+.quick-post .quick-post-body textarea[name=content]{border:none;border-radius:0;resize:none}
+.quick-post .quick-post-footer{background:#fff;border-bottom-left-radius:3px;border-bottom-right-radius:3px;text-align:right;padding:1rem;margin-bottom:1rem}
+@media screen and (min-height:30rem){
+.quick-post{padding-top:10vh}
+}

@@ -4,7 +4,6 @@
 
 # Directories
 .vscode/
-assets/
 cache/
 data/
 design/

@@ -6,9 +6,6 @@
     "type": "git",
     "url": "git@github.com:Postleaf/postleaf.git"
   },
-  "scripts": {
-    "install": "gulp build"
-  },
   "devDependencies": {
     "@claviska/jquery-ajax-submit": "^2.0.4",
     "@claviska/jquery-alertable": "^1.0.2",

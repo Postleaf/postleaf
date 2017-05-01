@@ -1,0 +1,17 @@
+.box{background:#fff;border-radius:.25rem;box-shadow:0 .1rem .1rem rgba(39,47,51,.05);padding:3rem;margin-bottom:2rem}
+.box>:last-child{margin-bottom:0}
+@media (max-width:767px){
+.box{padding:2rem}
+}
+@media (max-width:575px){
+.box{padding:1.5rem}
+}
+.card-cover{position:relative}
+.card-cover .card-cover-header{position:relative;height:10rem;overflow:hidden}
+.card-cover .card-cover-header+.card-block{border-top:solid 1px #dae4e9}
+.card-cover .card-cover-image{height:100%;background-color:#f3f7f9;background-position:center;background-size:cover;background-repeat:no-repeat;border-top-left-radius:3px;border-top-right-radius:3px}
+.card-cover .card-cover-image::before{position:absolute;top:0;left:0;width:100%;content:'\f06c';line-height:10rem;font-size:5rem;font-family:FontAwesome;color:#8aaabb;text-align:center;opacity:.25}
+.card-cover .card-cover-image[style]:not([style=""])::before{display:none}
+.card-cover .card-cover-avatar img{position:absolute;top:.5rem;left:calc(50% - 4.5rem);width:9rem;height:9rem;border-radius:50%}
+.card{cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;margin-bottom:2rem}
+.card .badge{margin-left:.5rem}

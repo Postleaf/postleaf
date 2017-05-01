@@ -1,0 +1,33 @@
+.main-container{padding:0}
+.main-container>.row{height:100%;margin-left:0;margin-right:0}
+.main-container>.row>[class^=col-]{height:100%;padding:0}
+#posts{height:100%;border-right:solid 1px #d1e0e8;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#empty{border-right:solid 1px #d1e0e8}
+#many-selected,#none-selected{height:100%}
+@keyframes preview-spinner{
+0%{transform:rotate(0)}
+100%{transform:rotate(360deg)}
+}
+#preview{position:relative;height:100%;overflow:hidden;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;padding:2rem}
+#preview.loading::after{position:absolute;top:calc(50% - 1.5rem);right:calc(50% - 1.5rem);width:3rem;height:3rem;content:'';border:solid 4px transparent;border-top-color:#09d;border-left-color:#09d;border-radius:50%;animation:preview-spinner .5s linear infinite}
+#preview.loading #preview-frame{display:none}
+#preview #preview-wrap{position:relative;width:200%;height:200%;transform:scale(.5);transform-origin:0 0;box-shadow:0 .2rem .2rem rgba(39,47,51,.05);transition:.1s box-shadow}
+#preview #preview-wrap:hover{box-shadow:0 0 0 .5rem #09d}
+#preview #preview-frame{width:100%;height:100%;border:none;background:#fff;overflow-y:auto;display:block;-webkit-overflow-scrolling:touch}
+@media (max-width:1199px){
+#preview{padding:1rem}
+}
+@media (max-width:991px){
+#preview{padding:0}
+}
+.post-item{color:inherit;background:#fff;box-shadow:0 .1rem .1rem rgba(39,47,51,.05);border-left:solid 0 #09d;margin-bottom:1px;padding:1.25rem 1.5rem;display:block;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;transition:.1s border,.1s padding}
+.post-item::after{display:block;content:"";clear:both}
+.post-item.selected{border-left-width:.5rem;padding-right:1rem}
+.post-item .post-item-title{font-size:1.1rem;line-height:1.4;margin-bottom:.5rem}
+.post-item .post-item-details{font-size:.9rem;color:#8aaab9}
+.post-item .post-item-avatar{width:1.5em;height:auto;vertical-align:bottom;border-radius:3px;margin-right:.25rem}
+.post-item .post-item-meta{float:right}
+#post-filter.active .dropdown-toggle i{color:#09d}
+#post-filter .dropdown-item{padding:.1rem 1rem}
+#post-filter .dropdown-item:hover{background:0 0}
+#post-filter .dropdown-item label{display:block;margin:0}

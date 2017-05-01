@@ -1,0 +1,13 @@
+body{-webkit-text-size-adjust:none}
+a[href]{cursor:not-allowed}
+.mce-drag-container{display:none!important}
+img[data-mce-selected]{outline:0!important}
+hr[data-mce-selected]{outline:0!important}
+[data-postleaf-region]{min-width:1rem;min-height:1rem;outline:0}
+[data-postleaf-region] a[href]{cursor:text}
+[data-embed]{position:relative!important;margin-bottom:1rem}
+[data-embed]::after{position:absolute;top:0;left:0;width:100%;height:100%;content:'';background:#09d;opacity:0;cursor:text}
+[data-embed][data-mce-selected]{outline:solid 2px #09d;outline-offset:.25rem}
+figure.image[data-mce-selected] img{outline:solid 2px #09d;outline-offset:.25rem}
+figure.image figcaption:focus{outline:0}
+.mce-offscreen-selection{display:none}

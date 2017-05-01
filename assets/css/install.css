@@ -1,0 +1,10 @@
+.box{background:#fff;border-radius:.25rem;box-shadow:0 .1rem .1rem rgba(39,47,51,.05);padding:3rem;margin-bottom:2rem}
+.box>:last-child{margin-bottom:0}
+@media (max-width:767px){
+.box{padding:2rem}
+}
+@media (max-width:575px){
+.box{padding:1.5rem}
+}
+.logo{width:15rem;margin:2rem auto;display:block}
+.install .box{max-width:28rem;margin:0 auto}

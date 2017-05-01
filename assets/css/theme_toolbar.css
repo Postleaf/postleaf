@@ -1,0 +1,5 @@
+.pl-toolbar,.pl-toolbar *{background:0 0;border:none;box-sizing:border-box;padding:0;margin:0;transition:none}
+.pl-toolbar{position:fixed;z-index:9999;bottom:24px;left:24px;background:#272f33;border-radius:3px;color:#fff}
+.pl-item{color:#fff;text-decoration:none;text-align:center;float:left;display:inline-block;cursor:pointer;transition:.1s transform}
+.pl-item:hover{transform:scale(1.1)}
+.pl-item img{width:auto;height:44px;vertical-align:middle;padding:8px}
