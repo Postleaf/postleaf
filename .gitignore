@@ -3,14 +3,11 @@
 .env
 
 # Directories
+.vscode/
 assets/
 cache/
 data/
 design/
 node_modules/
+themes/
 uploads/
-.vscode/
-
-# Ignore everything except the default theme
-themes/*
-#!themes/default
