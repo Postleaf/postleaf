@@ -55,6 +55,9 @@ const self = module.exports = {
             through: { attributes: [] }, // exclude postTags
             where: null // also return posts that don't have tags
           }
+        ],
+        order: [
+          [models.tag, 'name', 'ASC']
         ]
       })
       // Inject srcset attribute for dynamic images

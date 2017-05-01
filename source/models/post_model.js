@@ -226,7 +226,10 @@ module.exports = (sequelize, DataTypes) => {
           ],
           limit: options.limit,
           offset: options.offset,
-          order: sequelize.literal(order)
+          order: [
+            sequelize.literal(order),
+            [sequelize.models.tag, 'name', 'ASC']
+          ]
         });
       }
     },

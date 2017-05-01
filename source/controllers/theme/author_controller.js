@@ -63,7 +63,8 @@ module.exports = {
         offset: offset,
         order: [
           ['isSticky', 'DESC'],
-          ['publishedAt', 'DESC']
+          ['publishedAt', 'DESC'],
+          [models.tag, 'name', 'ASC']
         ]
       }))
       // Render the view

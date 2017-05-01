@@ -40,7 +40,8 @@ module.exports = {
           }
         ],
         order: [
-          ['publishedAt', 'DESC']
+          ['publishedAt', 'DESC'],
+          [models.tag, 'name', 'ASC']
         ],
         limit: Settings.postsPerPage
       })
