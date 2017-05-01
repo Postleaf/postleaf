@@ -176,9 +176,6 @@ module.exports = (dust) => {
       html += locals.Settings.footCode || '';
       html += '\n';
 
-      // Dump everything we have so far
-      chunk.write(html);
-
       // Render the theme toolbar partial
       //
       // Note: for some reason, the method of rendering partials shown below causes a stack overflow
@@ -192,18 +189,21 @@ module.exports = (dust) => {
       //  chunk.partial(templatePath, context).end();
       //
       if(locals.User) {
-        // Compile the theme toolbar template
+        // Render the theme toolbar for authenticated users
         let path = Path.join(__basedir, 'source/views/partials/theme_toolbar.dust');
         let src = Fs.readFileSync(path, 'utf8');
         let themeToolbar = dust.compile(src, 'theme_toolbar');
 
         // Render the theme toolbar template in the current context
         dust.loadSource(themeToolbar);
-        dust.render('theme_toolbar', context, (err, out) => {
-          chunk.write(out);
+        dust.render('theme_toolbar', context, (err, result) => {
+          html += result;
+          chunk = chunk.write(html);
           return chunk.end();
         });
       } else {
+        // For unauthenticated users, dump what we have
+        chunk = chunk.write(html);
         return chunk.end();
       }
     });
