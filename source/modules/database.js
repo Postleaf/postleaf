@@ -66,8 +66,7 @@ function loadSettings() {
         setting.create({ key: 'tagline', value: 'Go forth and create!' }),
         setting.create({ key: 'theme', value: 'empower-theme' }),
         setting.create({ key: 'timeZone', value: 'UTC' }),
-        setting.create({ key: 'title', value: 'A Postleaf Website' }),
-        setting.create({ key: 'homepage', value: '' })
+        setting.create({ key: 'title', value: 'A Postleaf Website' })
       ])
       .then(() => setting.getObject())
       .then((settings) => settings);
