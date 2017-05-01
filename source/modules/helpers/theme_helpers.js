@@ -2,6 +2,7 @@
 
 // Node modules
 const Cheerio = require('cheerio');
+const Fs = require('fs');
 const He = require('he');
 const Moment = require('moment');
 const Path = require('path');
@@ -157,9 +158,7 @@ module.exports = (dust) => {
     return chunk.map((chunk) => {
       const locals = context.options.locals;
       const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(locals.Settings);
-
       let isEditor = context.options.locals.isEditor;
-      let toolbar = Path.join(__basedir, 'source/views/partials/theme_toolbar.dust');
       let script = MakeUrl.raw('assets/js/tinymce.bundle.js');
       let html = '';
 
@@ -177,14 +176,36 @@ module.exports = (dust) => {
       html += locals.Settings.footCode || '';
       html += '\n';
 
-      // Render the theme toolbar partial
-      if(locals.User) {
-        chunk.partial(toolbar, context).end();
-      }
-
+      // Dump everything we have so far
       chunk.write(html);
 
-      return chunk.end();
+      // Render the theme toolbar partial
+      //
+      // Note: for some reason, the method of rendering partials shown below causes a stack overflow
+      // when caching is enabled. This workaround compiles the theme toolbar on the fly, which is
+      // undesirable. However, it won't affect performance much since it only affects authenticated
+      // users. This is not a good way to render partials for all pages.
+      //
+      // Rendering partials from within helpers isn't covered by the docs so, for reference, the
+      // previous approach of rendering a partial looked like this:
+      //
+      //  chunk.partial(templatePath, context).end();
+      //
+      if(locals.User) {
+        // Compile the theme toolbar template
+        let path = Path.join(__basedir, 'source/views/partials/theme_toolbar.dust');
+        let src = Fs.readFileSync(path, 'utf8');
+        let themeToolbar = dust.compile(src, 'theme_toolbar');
+
+        // Render the theme toolbar template in the current context
+        dust.loadSource(themeToolbar);
+        dust.render('theme_toolbar', context, (err, out) => {
+          chunk.write(out);
+          return chunk.end();
+        });
+      } else {
+        return chunk.end();
+      }
     });
   };
 
