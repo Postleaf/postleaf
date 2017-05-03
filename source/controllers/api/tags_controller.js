@@ -87,7 +87,7 @@ module.exports = {
           // Render the tag cards and return the tags
           if(req.query.render === 'tagCards') {
             // Render the partial
-            res.useSystemViews().app.render('partials/tag_cards.dust', {
+            res.useSystemViews().app.render('partials/tag_cards', {
               tags: result.rows
             }, (err, html) => {
               if(err) throw new Error(err);

@@ -95,7 +95,7 @@ module.exports = {
           // Render the user cards and return the users
           if(req.query.render === 'userCards') {
             // Render the partial
-            res.useSystemViews().app.render('partials/user_cards.dust', {
+            res.useSystemViews().app.render('partials/user_cards', {
               users: result.rows
             }, (err, html) => {
               if(err) throw new Error(err);

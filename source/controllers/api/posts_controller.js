@@ -154,7 +154,7 @@ module.exports = {
           // Render the post items and return the posts
           if(req.query.render === 'postItems') {
             // Render the partial
-            res.useSystemViews().app.render('partials/post_items.dust', {
+            res.useSystemViews().app.render('partials/post_items', {
               posts: result.rows
             }, (err, html) => {
               if(err) throw new Error(err);

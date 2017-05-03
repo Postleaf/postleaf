@@ -158,7 +158,7 @@ module.exports = {
           // Render locater results list and return it with results
           if(req.query.render === 'locaterResults') {
             // Render the partial
-            res.useSystemViews().app.render('partials/locater_results.dust', {
+            res.useSystemViews().app.render('partials/locater_results', {
               results: results
             }, (err, html) => {
               if(err) throw new Error(err);

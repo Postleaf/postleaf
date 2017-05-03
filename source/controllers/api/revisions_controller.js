@@ -65,7 +65,7 @@ module.exports = {
           // Render the revision table and return the revisions
           if(req.query.render === 'revisionsTable') {
             // Render the partial
-            res.useSystemViews().app.render('partials/revisions_table.dust', {
+            res.useSystemViews().app.render('partials/revisions_table', {
               revisions: result.rows
             }, (err, html) => {
               if(err) throw new Error(err);

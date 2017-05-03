@@ -90,7 +90,7 @@ const self = {
           // Render the file manager items and return the uploads
           if(req.query.render === 'fileManagerItems') {
             // Render the partial
-            res.useSystemViews().app.render('partials/file_manager_items.dust', {
+            res.useSystemViews().app.render('partials/file_manager_items', {
               uploads: result.rows
             }, (err, html) => {
               if(err) throw new Error(err);
