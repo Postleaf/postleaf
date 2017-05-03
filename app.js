@@ -115,6 +115,6 @@ Promise.resolve()
   .catch((err) => {
     console.error(
       Chalk.red('Error: ') + 'Postleaf failed to start! 🐛\n\n' +
-      Chalk.red(err)
+      Chalk.red(err.stack)
     );
   });
