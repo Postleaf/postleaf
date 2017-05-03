@@ -75,7 +75,7 @@ $(() => {
   function reset() {
     $('#locater').removeClass('loading');
     $('#locater-input').val('');
-    $('#locater-results').html('');
+    $('#locater-results').html('').prop('hidden', true);
     lastQuery = '';
   }
 
@@ -163,9 +163,11 @@ $(() => {
             lastQuery = query;
 
             // Show the results, or clear them if none were found
-            if(res.html) {
-              $('#locater-results').html(res.results.length ? res.html : '');
+            if(res.html && res.results.length) {
+              $('#locater-results').html(res.html).prop('hidden', false);
               $('#locater-results a:first').addClass('active');
+            } else {
+              $('#locater-results').html('').prop('hidden', true);
             }
           })
           .always(() => $('#locater').removeClass('loading'));
