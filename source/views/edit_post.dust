@@ -219,9 +219,9 @@
     </div>
 
     {! Panels !}
-    {>"partials/embed_panel.dust"/}
-    {>"partials/image_panel.dust"/}
-    {>"partials/link_panel.dust"/}
-    {>"partials/settings_panel.dust"/}
+    {>"partials/embed_panel"/}
+    {>"partials/image_panel"/}
+    {>"partials/link_panel"/}
+    {>"partials/settings_panel"/}
   </main>
 {/body}

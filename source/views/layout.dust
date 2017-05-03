@@ -39,13 +39,13 @@
   {! Panels !}
   {+panels}
     {! Shortcuts !}
-    {>"partials/shortcuts.dust"/}
+    {>"partials/shortcuts"/}
 
     {! Locater !}
-    {>"partials/locater.dust"/}
+    {>"partials/locater"/}
 
     {! File manager !}
-    {>"partials/file_manager.dust"/}
+    {>"partials/file_manager"/}
   {/panels}
 
   <script src="{@url path="assets/js/lib.bundle.js"/}"></script>
