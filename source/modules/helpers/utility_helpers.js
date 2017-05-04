@@ -227,7 +227,7 @@ module.exports = (dust) => {
       // Skip known attributes
       if(i.match(/^(term|symbol|meta)$/)) continue;
 
-      // Assume all other attribute are placeholders
+      // Assume all other attributes are placeholders
       placeholders[i] = params[i];
     }
 
