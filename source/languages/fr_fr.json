@@ -2,6 +2,7 @@
   "code": "fr-fr",
   "name": "Français (FR)",
   "momentjs_locale": "fr",
+  "direction": "ltr",
   "symbols": {
     "decimal": ".",
     "money": "€",

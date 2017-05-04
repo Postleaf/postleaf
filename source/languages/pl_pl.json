@@ -2,6 +2,7 @@
   "code": "pl-pl",
   "name": "Polski (PL)",
   "momentjs_locale": "pl",
+  "direction": "ltr",
   "symbols": {
     "decimal": ".",
     "money": "PLN",

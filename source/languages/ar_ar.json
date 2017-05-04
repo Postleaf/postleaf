@@ -2,7 +2,7 @@
   "code": "ar-ar",
   "name": "Arabic (AR)",
   "momentjs_locale": "ar",
-  "directionality": "rtl",
+  "direction": "rtl",
   "symbols": {
     "decimal": ".",
     "money": "$",
