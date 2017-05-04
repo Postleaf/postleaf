@@ -1075,7 +1075,6 @@ $(() => {
       .on('show.panel', () => {
         let href;
         let title;
-        let target;
 
         // Get location and selected element
         location = contentEditor.getLocation();
@@ -1084,12 +1083,10 @@ $(() => {
         // Get attributes
         href = decodeURI($(link).attr('href') || '');
         title = $(link).attr('title') || '';
-        target = $(link).attr('target') || '';
 
         // Set fields
         $('#link-href').typeahead('val', href);
         $('#link-title').val(title);
-        $('#link-new-window').prop('checked', target === '_blank');
         $('[data-link="remove"]').prop('hidden', !link.length);
       })
       .on('shown.panel', () => $('#link-href').focus())
@@ -1107,7 +1104,6 @@ $(() => {
     $('#link-panel form').on('submit', (event) => {
       let href = encodeURI($('#link-href').typeahead('val'));
       let title = $('#link-title').val();
-      let target = $('#link-new-window').prop('checked') ? '_blank' : '';
 
       event.preventDefault();
 
@@ -1117,8 +1113,7 @@ $(() => {
       // Insert a link
       if(href.length) {
         contentEditor.insertLink(href, {
-          title: title,
-          target: target
+          title: title
         });
       } else {
         contentEditor.removeLink();

@@ -44,13 +44,6 @@
           {@i18n term="the_title_provides_additional_information_about_a_link"/}
         </p>
       </div>
-
-      {! New window !}
-      <div class="form-group">
-        {@htmlCheckbox id="link-new-window"}
-          {@i18n term="open_in_a_new_window"/}
-        {/htmlCheckbox}
-      </div>
     </div>
 
     {! Panel footer !}
