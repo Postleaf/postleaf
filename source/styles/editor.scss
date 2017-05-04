@@ -15,6 +15,12 @@ a[href] {
   display: none !important;
 }
 
+// Inline boundaries for code and links
+a[data-mce-selected],
+code[data-mce-selected] {
+  outline: dotted 1px currentColor;
+}
+
 // Image selections
 img[data-mce-selected] {
   outline: none !important;

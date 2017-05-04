@@ -1,6 +1,7 @@
 body{-webkit-text-size-adjust:none}
 a[href]{cursor:not-allowed}
 .mce-drag-container{display:none!important}
+a[data-mce-selected],code[data-mce-selected]{outline:dotted 1px currentColor}
 img[data-mce-selected]{outline:0!important}
 hr[data-mce-selected]{outline:0!important}
 [data-postleaf-region]{min-width:1rem;min-height:1rem;outline:0}
