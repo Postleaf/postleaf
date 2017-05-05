@@ -140,6 +140,29 @@ const self = {
 
         // Process the image
         Promise.resolve(Gm(targetFile))
+          // Skip animated images since resize, crop, rotate, etc. produce undesired results. It
+          // *is* possible to process animations, but it's very time consuming, memory intensive,
+          // and the resulting files are usually much larger than the originals due to the loss of
+          // optimizations.
+          //
+          // See: github.com/Postleaf/postleaf/issues/44
+          //
+          .then((image) => {
+            return new Promise((resolve, reject) => {
+              image.identify('%n\n', (err, info) => {
+                if(err) reject(err);
+
+                info = info.split('\n');
+                let numFrames = parseInt(info[0]);
+
+                if(numFrames > 1) {
+                  reject(new Error('Unable to process images with animation.'));
+                }
+
+                resolve(image);
+              });
+            });
+          })
           // Resize
           .then((image) => {
             return new Promise((resolve, reject) => {
