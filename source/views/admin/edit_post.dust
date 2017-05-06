@@ -1,4 +1,4 @@
-{>"layout"/}
+{>"admin/layout"/}
 
 {! Header !}
 {<header}
@@ -219,9 +219,9 @@
     </div>
 
     {! Panels !}
-    {>"partials/embed_panel"/}
-    {>"partials/image_panel"/}
-    {>"partials/link_panel"/}
-    {>"partials/settings_panel"/}
+    {>"admin/partials/embed_panel"/}
+    {>"admin/partials/image_panel"/}
+    {>"admin/partials/link_panel"/}
+    {>"admin/partials/settings_panel"/}
   </main>
 {/body}

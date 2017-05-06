@@ -79,7 +79,7 @@ module.exports = {
       })
       // Render the template
       .then((posts) => {
-        res.useSystemViews().render('posts', {
+        res.render('admin/posts', {
           adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'posts',

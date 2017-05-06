@@ -49,7 +49,8 @@ module.exports = {
   //  search (string) - Filter tags by search (default null).
   //  count (int) - The number of tags to return (default 100).
   //  offset (int) - The offset to return tags from (default 0).
-  //  render (string) - Set to 'tagCards' to return the rendered HTML from `partials/tag_cards.dust`.
+  //  render (string) - Set to 'tagCards' to return the rendered HTML from
+  //    `admin/partials/tag_cards.dust`.
   //
   // Returns a JSON response:
   //
@@ -87,7 +88,7 @@ module.exports = {
           // Render the tag cards and return the tags
           if(req.query.render === 'tagCards') {
             // Render the partial
-            res.useSystemViews().app.render('partials/tag_cards', {
+            res.app.render('admin/partials/tag_cards', {
               tags: result.rows
             }, (err, html) => {
               if(err) throw new Error(err);

@@ -1,4 +1,4 @@
-{>"layout"/}
+{>"admin/layout"/}
 
 {! Header !}
 {<header}
@@ -128,7 +128,7 @@
       {! Posts !}
       <div class="col-md-5">
         <div id="posts">
-          {>"partials/post_items"/}
+          {>"admin/partials/post_items"/}
         </div>
 
         {! Empty !}

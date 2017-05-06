@@ -15,7 +15,7 @@ module.exports = {
   //  count (int) - The number of posts to return (default 100).
   //  offset (int) - The offset to return posts from (default 0).
   //  render (string) - Set to 'revisionsTable' to return the rendered HTML from
-  //    `partials/revisions_table.dust`.
+  //    `admin/partials/revisions_table.dust`.
   //
   // Returns a JSON response:
   //
@@ -65,7 +65,7 @@ module.exports = {
           // Render the revision table and return the revisions
           if(req.query.render === 'revisionsTable') {
             // Render the partial
-            res.useSystemViews().app.render('partials/revisions_table', {
+            res.app.render('admin/partials/revisions_table', {
               revisions: result.rows
             }, (err, html) => {
               if(err) throw new Error(err);

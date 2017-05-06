@@ -25,7 +25,7 @@ module.exports = {
       .then((result) => templates = result)
       // Render the template
       .then(() => {
-        res.useSystemViews().render('quick_post', {
+        res.render('admin/quick_post', {
           adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'quick-post',

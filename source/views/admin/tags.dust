@@ -1,4 +1,4 @@
-{>"layout"/}
+{>"admin/layout"/}
 
 {! Header !}
 {<header}
@@ -64,7 +64,7 @@
 
     {! Tags !}
     <div id="tags" class="row">
-      {>"partials/tag_cards"/}
+      {>"admin/partials/tag_cards"/}
     </div>
 
     {! Empty !}

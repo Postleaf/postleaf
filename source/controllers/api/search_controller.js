@@ -15,7 +15,7 @@ module.exports = {
   //
   //  search* (string) - The term to search for.
   //  render (string) - Set to 'locaterResults' to return the rendered HTML from
-  //    `partials/locater_results.dust`.
+  //    `admin/partials/locater_results.dust`.
   //
   // Returns a JSON response:
   //
@@ -158,7 +158,7 @@ module.exports = {
           // Render locater results list and return it with results
           if(req.query.render === 'locaterResults') {
             // Render the partial
-            res.useSystemViews().app.render('partials/locater_results', {
+            res.app.render('admin/partials/locater_results', {
               results: results
             }, (err, html) => {
               if(err) throw new Error(err);

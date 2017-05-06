@@ -38,7 +38,7 @@ module.exports = {
         }
 
         // Render the template
-        res.useSystemViews().render('edit_user', {
+        res.render('admin/edit_user', {
           adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'edit-user',

@@ -24,7 +24,7 @@ module.exports = (dust) => {
   //
   dust.helpers.bodyClass = (chunk, context) => {
     const locals = context.options.locals;
-    let template = context.options.view.name;
+    let template = context.options.template;
     let bodyClass = '';
 
     // Remove .dust and convert the template name a slug
@@ -158,7 +158,7 @@ module.exports = (dust) => {
       const locals = context.options.locals;
       const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(locals.Settings);
       let isEditor = context.options.locals.isEditor;
-      let toolbar = Path.join(__basedir, 'source/views/partials/theme_toolbar.dust');
+      let toolbar = Path.join(__basedir, 'source/views/admin/partials/theme_toolbar.dust');
       let script = MakeUrl.raw('assets/js/tinymce.bundle.js');
       let html = '';
 

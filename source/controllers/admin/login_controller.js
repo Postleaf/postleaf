@@ -9,7 +9,7 @@ module.exports = {
     const I18n = req.app.locals.I18n;
 
     // Render the template
-    res.useSystemViews().render('login', {
+    res.render('admin/login', {
       meta: {
         bodyClass: 'login no-menu',
         title: I18n.term('login')

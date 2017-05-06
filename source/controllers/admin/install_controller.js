@@ -18,7 +18,7 @@ module.exports = {
     }
 
     // Render the template
-    res.useSystemViews().render('install', {
+    res.render('admin/install', {
       meta: {
         bodyClass: 'install no-menu',
         title: I18n.term('welcome_to_postleaf')

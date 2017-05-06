@@ -226,7 +226,7 @@
 
         {! Revisions !}
         <div class="tab-pane" id="revisions">
-          {>"partials/revisions_table"/}
+          {>"admin/partials/revisions_table"/}
         </div>
       </div>
 

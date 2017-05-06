@@ -9,7 +9,6 @@ global.__basedir = __dirname;
 global.__version = require('./package.json').version;
 
 // Node modules
-const Adaro = require('adaro');
 const BodyParser = require('body-parser');
 const Chalk = require('chalk');
 const CookieParser = require('cookie-parser');
@@ -20,6 +19,10 @@ const Path = require('path');
 const Promise = require('bluebird');
 const Slashes = require('connect-slashes');
 
+// Local modules
+const DustEngine = require(Path.join(__basedir, 'source/modules/dust_engine.js'));
+const DynamicImages = require(Path.join(__basedir, 'source/modules/dynamic_images.js'));
+
 // Express app
 const app = Express();
 const AdminRouter = require(Path.join(__basedir, 'source/routers/admin_router.js'));
@@ -28,7 +31,6 @@ const ThemeRouter = require(Path.join(__basedir, 'source/routers/theme_router.js
 const AuthMiddleware = require(Path.join(__basedir, 'source/middleware/auth_middleware'));
 const ViewMiddleware = require(Path.join(__basedir, 'source/middleware/view_middleware.js'));
 const ErrorController = require(Path.join(__basedir, 'source/controllers/error_controller.js'));
-const DynamicImages = require(Path.join(__basedir, 'source/modules/dynamic_images.js'));
 
 // Database
 const Database = require(Path.join(__basedir, 'source/modules/database.js'));
@@ -81,21 +83,22 @@ Promise.resolve()
       .use('/uploads', Express.static(Path.join(__basedir, 'uploads')))
       .use(BodyParser.urlencoded({ extended: true, limit: '10mb' }))
       .use(AuthMiddleware.attachUser)
-      .use(ViewMiddleware.attachViewData)
-      .use(ViewMiddleware.enableDynamicViews);
+      .use(ViewMiddleware.attachViewData);
 
     // View engine
-    app.engine('dust', Adaro.dust({
+    app.engine('dust', DustEngine.engine(app, {
       cache: process.env.NODE_ENV === 'production',
-      whitespace: true,
       helpers: [
-        'dustjs-helpers',
-        'source/modules/helpers/html_helpers.js',
-        'source/modules/helpers/utility_helpers.js',
-        'source/modules/helpers/theme_helpers.js'
+        require('dustjs-helpers'),
+        require(Path.join(__basedir, 'source/modules/helpers/html_helpers.js')),
+        require(Path.join(__basedir, 'source/modules/helpers/utility_helpers.js')),
+        require(Path.join(__basedir, 'source/modules/helpers/theme_helpers.js'))
       ]
     }));
-    app.set('views', Path.join(__basedir, 'source/views'));
+    app.set('views', [
+      Path.join(__basedir, 'themes', app.locals.Settings.theme, 'templates'),
+      Path.join(__basedir, 'source/views')
+    ]);
     app.set('view engine', 'dust');
 
     // App routers

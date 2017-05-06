@@ -1,4 +1,4 @@
-{>"layout"/}
+{>"admin/layout"/}
 
 {! Header !}
 {<header}
@@ -32,7 +32,7 @@
           {! Nav items !}
           <div id="nav-items">
             {#navigation}
-              {>"partials/nav_item"/}
+              {>"admin/partials/nav_item"/}
             {/navigation}
           </div>
 
@@ -55,7 +55,7 @@
 
           {! Nav item template !}
           <div id="nav-item-template" hidden>
-            {>"partials/nav_item"/}
+            {>"admin/partials/nav_item"/}
           </div>
         </div>
       </div>

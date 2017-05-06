@@ -3,6 +3,7 @@
 // Node modules
 const Extend = require('extend');
 const HttpCodes = require('http-codes');
+const Path = require('path');
 const Promise = require('bluebird');
 
 module.exports = {
@@ -87,6 +88,13 @@ module.exports = {
     Promise.all(queue)
       // Update locals
       .then(() => req.app.locals.Settings = settings)
+      // Update view folders
+      .then(() => {
+        req.app.set('views', [
+          Path.join(__basedir, 'themes', settings.theme, 'templates'),
+          Path.join(__basedir, 'source/views')
+        ]);
+      })
       // Reload i18n
       .then(() => I18n.load(settings.language))
       // Send the response

@@ -56,7 +56,7 @@ module.exports = {
         let homepagePosts = result[2];
 
         // Render the template
-        res.useSystemViews().render('settings', {
+        res.render('admin/settings', {
           adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'settings',

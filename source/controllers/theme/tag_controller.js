@@ -91,7 +91,7 @@ module.exports = {
         let metaDescription = tag.metaDescription || Markdown.toText(tag.description);
 
         // Render the template
-        res.useThemeViews().render('tag', {
+        res.render('tag', {
           tag: tag,
           posts: posts.rows.map((val) => val.post),
           pagination: pagination,

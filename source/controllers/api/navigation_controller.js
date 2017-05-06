@@ -52,8 +52,7 @@ module.exports = {
           navigation: navigation
         });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         res.status(HttpCodes.INTERNAL_SERVER_ERROR);
         return next(I18n.term('your_changes_could_not_be_saved_at_this_time'));
       });

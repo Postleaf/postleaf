@@ -23,7 +23,7 @@ const self = {
   //  count (int) - The number of uploads to return (default 100).
   //  offset (int) - The offset to return uploads from (default 0).
   //  render (string) - Set to 'fileManagerItems' to return the rendered HTML from
-  //    `partials/file_manager_items.dust`.
+  //    `admin/partials/file_manager_items.dust`.
   //
   // Returns a JSON response:
   //
@@ -90,7 +90,7 @@ const self = {
           // Render the file manager items and return the uploads
           if(req.query.render === 'fileManagerItems') {
             // Render the partial
-            res.useSystemViews().app.render('partials/file_manager_items', {
+            res.app.render('admin/partials/file_manager_items', {
               uploads: result.rows
             }, (err, html) => {
               if(err) throw new Error(err);

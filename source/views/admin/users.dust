@@ -1,4 +1,4 @@
-{>"layout"/}
+{>"admin/layout"/}
 
 {! Header !}
 {<header}
@@ -64,7 +64,7 @@
 
     {! Users !}
     <div id="users" class="row">
-      {>"partials/user_cards"/}
+      {>"admin/partials/user_cards"/}
     </div>
 
     {! Empty !}

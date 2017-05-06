@@ -28,7 +28,7 @@ module.exports = {
       })
       .then((users) => {
         // Render the template
-        res.useSystemViews().render('users', {
+        res.render('admin/users', {
           adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'users',

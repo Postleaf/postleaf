@@ -21,7 +21,7 @@ module.exports = {
       .then(() => AutocompleteSuggestions.getLinks(req, ['users', 'tags', 'posts']))
       .then((links) => {
         // Render the template
-        res.useSystemViews().render('navigation', {
+        res.render('admin/navigation', {
           adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'navigation',

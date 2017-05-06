@@ -9,7 +9,7 @@ module.exports = {
     const I18n = req.app.locals.I18n;
 
     // Render the template
-    res.useSystemViews().render('reset_password', {
+    res.render('admin/reset_password', {
       meta: {
         bodyClass: 'reset-password no-menu',
         title: I18n.term('reset_your_password')

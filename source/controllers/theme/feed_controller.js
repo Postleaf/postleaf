@@ -67,16 +67,13 @@ module.exports = {
 
         // Try the custom feed template
         res
-          .useThemeViews()
           .append('Content-Type', 'application/xml')
           .render('feed', viewData, (err, html) => {
             if(!err) {
               res.send(html);
             } else {
               // Fallback to system feed template
-              res
-                .useSystemViews()
-                .render('feed', viewData);
+              res.render('feed', viewData);
             }
           });
       })

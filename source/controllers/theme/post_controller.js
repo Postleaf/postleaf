@@ -153,7 +153,7 @@ const self = module.exports = {
         if(template !== 'post' && !Fs.existsSync(templatePath)) template = 'post';
 
         // Render the template
-        res.useThemeViews().render(template, viewData);
+        res.render(template, viewData);
       })
       .catch((err) => next(err));
   }

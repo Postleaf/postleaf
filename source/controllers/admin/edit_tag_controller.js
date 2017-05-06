@@ -32,7 +32,7 @@ module.exports = {
         }
 
         // Render the template
-        res.useSystemViews().render('edit_tag', {
+        res.render('admin/edit_tag', {
           adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'edit-tag',

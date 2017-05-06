@@ -154,7 +154,7 @@ module.exports = {
           // Render the post items and return the posts
           if(req.query.render === 'postItems') {
             // Render the partial
-            res.useSystemViews().app.render('partials/post_items', {
+            res.app.render('admin/partials/post_items', {
               posts: result.rows
             }, (err, html) => {
               if(err) throw new Error(err);
@@ -679,10 +679,10 @@ module.exports = {
         // Render the post
         if(req.query.isZenMode === 'true') {
           // Use zen mode template
-          previewRes.useSystemViews().render('zen_mode', viewData);
+          previewRes.render('zen_mode', viewData, (err, html) => res.end(html));
         } else {
           // Use post template
-          previewRes.useThemeViews().render(template, viewData);
+          previewRes.render(template, viewData, (err, html) => res.end(html));
         }
       })
       .catch((err) => next(err));

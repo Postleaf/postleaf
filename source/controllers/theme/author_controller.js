@@ -84,7 +84,7 @@ module.exports = {
         let metaDescription = Markdown.toText(author.bio);
 
         // Render the template
-        res.useThemeViews().render('author', {
+        res.render('author', {
           author: author,
           posts: posts.rows,
           pagination: pagination,

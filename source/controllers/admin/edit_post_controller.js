@@ -99,7 +99,7 @@ module.exports = {
         }
 
         // Render the template
-        res.useSystemViews().render('edit_post', {
+        res.render('admin/edit_post', {
           adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'edit-post',

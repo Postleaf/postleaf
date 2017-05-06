@@ -57,7 +57,8 @@ module.exports = {
   //  search (string) - Filter users by search (default null).
   //  count (int) - The number of users to return (default 100).
   //  offset (int) - The offset to return users from (default 0).
-  //  render (string) - Set to 'userCards' to return the rendered HTML from `partials/user_cards.dust`.
+  //  render (string) - Set to 'userCards' to return the rendered HTML from
+  //    `admin/partials/user_cards.dust`.
   //
   // Returns a JSON response:
   //
@@ -95,7 +96,7 @@ module.exports = {
           // Render the user cards and return the users
           if(req.query.render === 'userCards') {
             // Render the partial
-            res.useSystemViews().app.render('partials/user_cards', {
+            res.app.render('admin/partials/user_cards', {
               users: result.rows
             }, (err, html) => {
               if(err) throw new Error(err);

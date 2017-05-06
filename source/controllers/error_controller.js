@@ -39,8 +39,8 @@ module.exports = {
       viewData = {
         title: I18n.term('application_error'),
         message: process.env.NODE_ENV !== 'production' ?
-          err :
-          I18n.term('sorry_but_something_isnt_working_right_at_the_moment')
+          err : err
+          // I18n.term('sorry_but_something_isnt_working_right_at_the_moment')
       };
       // Log dev error messages
       if(process.env.NODE_ENV !== 'production') {
@@ -54,18 +54,7 @@ module.exports = {
       res.send({ message: viewData.message });
     } else {
       // Render the appropriate error template
-      res
-        .useThemeViews()
-        .render(template, viewData, (err, html) => {
-          if(!err) {
-            res.send(html);
-          } else {
-            // Fallback to the system error
-            res
-              .useSystemViews()
-              .render(template, viewData);
-          }
-        });
+      res.render(template, viewData);
     }
   },
 

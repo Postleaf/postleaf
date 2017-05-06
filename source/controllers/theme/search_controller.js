@@ -48,7 +48,7 @@ module.exports = {
         let websiteUrl = MakeUrl.raw({ absolute: true });
 
         // Render the template
-        res.useThemeViews().render('search', {
+        res.render('search', {
           query: req.query.s,
           posts: posts.rows,
           pagination: pagination,

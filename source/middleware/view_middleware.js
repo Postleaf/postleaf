@@ -2,7 +2,6 @@
 
 // Node modules
 const HttpCodes = require('http-codes');
-const Path = require('path');
 
 module.exports = {
 
@@ -34,27 +33,6 @@ module.exports = {
       res.status(HttpCodes.NOT_FOUND);
       throw new Error('Not Found');
     }
-
-    next();
-  },
-
-  //
-  // Extends the response object with useThemeViews() and useSystemViews() so you can adjust the
-  // view path before rending a template.
-  //
-  enableDynamicViews: (req, res, next) => {
-    // Use the current theme's templates
-    res.useThemeViews = () => {
-      let theme = req.app.locals.Settings.theme;
-      req.app.set('views', Path.join(__basedir, 'themes', theme, 'templates'));
-      return res;
-    };
-
-    // Use the systems templates in source/views
-    res.useSystemViews = () => {
-      req.app.set('views', Path.join(__basedir, 'source/views'));
-      return res;
-    };
 
     next();
   }

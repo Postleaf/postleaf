@@ -28,7 +28,7 @@ module.exports = {
       })
       .then((tags) => {
         // Render the template
-        res.useSystemViews().render('tags', {
+        res.render('admin/tags', {
           adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'tags',

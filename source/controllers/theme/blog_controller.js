@@ -65,7 +65,7 @@ module.exports = {
         let websiteUrl = MakeUrl.raw({ absolute: true });
 
         // Render the template
-        res.useThemeViews().render('blog', {
+        res.render('blog', {
           posts: posts.rows,
           pagination: pagination,
           meta: {
