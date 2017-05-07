@@ -10,7 +10,6 @@
 //
 //   app.engine('dust', DustEngine.engine(app, {
 //     cache: true,
-//     whitespace: true,
 //     helpers: [
 //       require('dustjs-helpers'),
 //       require('/path/to/your/helpers.js')
