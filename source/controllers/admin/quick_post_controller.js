@@ -5,7 +5,6 @@ const Path = require('path');
 const Promise = require('bluebird');
 
 // Local modules
-const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 const Themes = require(Path.join(__basedir, 'source/modules/themes.js'));
 
 module.exports = {
@@ -26,7 +25,6 @@ module.exports = {
       // Render the template
       .then(() => {
         res.render('admin/quick_post', {
-          adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'quick-post',
             title: I18n.term('quick_post')

@@ -2,10 +2,6 @@
 
 // Node modules
 const HttpCodes = require('http-codes');
-const Path = require('path');
-
-// Local modules
-const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 
 module.exports = {
 
@@ -33,7 +29,6 @@ module.exports = {
 
         // Render the template
         res.render('admin/edit_tag', {
-          adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'edit-tag',
             title: I18n.term(create ? 'new_tag' : 'edit_tag')

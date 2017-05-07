@@ -10,6 +10,7 @@ const Trim = require('trim');
 const TruncateHtml = require('truncate-html');
 
 // Local modules
+const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 const SignedUrl = require(Path.join(__basedir, 'source/modules/signed_url.js'));
 const Slug = require(Path.join(__basedir, 'source/modules/slug.js'));
 
@@ -185,6 +186,30 @@ module.exports = (dust) => {
 
       return chunk.end();
     });
+  };
+
+  //
+  // Gets all admin menu items.
+  //
+  // Examples:
+  //
+  //  {@getAdminMenu}
+  //    {#groups}
+  //      {#items}
+  //        <a href="{link}">{label}</a>
+  //      {/items}
+  //    {/groups}
+  //  {/getAdminMenu}
+  //
+  dust.helpers.getAdminMenu = (chunk, context, bodies) => {
+    const I18n = context.options.locals.I18n;
+    const Settings = context.options.locals.Settings;
+    const User = context.options.locals.User;
+    let groups = AdminMenu.get(I18n, User, Settings);
+
+    chunk = bodies.block(chunk, context.push({ groups: groups }));
+
+    return chunk;
   };
 
   //

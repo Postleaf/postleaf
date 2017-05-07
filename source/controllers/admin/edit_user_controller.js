@@ -1,11 +1,7 @@
 'use strict';
 
 // Node modules
-const Path = require('path');
 const HttpCodes = require('http-codes');
-
-// Local modules
-const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 
 module.exports = {
 
@@ -39,7 +35,6 @@ module.exports = {
 
         // Render the template
         res.render('admin/edit_user', {
-          adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'edit-user',
             title: I18n.term(create ? 'new_user' : 'edit_user')

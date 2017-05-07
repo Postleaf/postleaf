@@ -24,6 +24,7 @@ module.exports = {
   //  { invalid: [] }
   //
   index: function(req, res, next) {
+    const I18n = req.app.locals.I18n;
     const Settings = req.app.locals.Settings;
     const User = req.User;
     const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(req.app.locals.Settings);
@@ -58,20 +59,23 @@ module.exports = {
     }
 
     // Search menu items
-    let adminMenu = AdminMenu.getItems(req);
+    let adminMenu = AdminMenu.get(I18n, User, Settings);
     let adminMenuResults = [];
     // Loop through groups
     adminMenu.forEach((group) => {
-      group.forEach((item) => {
-        if(!item.noSearch && item.label.toLowerCase().indexOf(req.query.search.toLowerCase()) > -1) {
-          adminMenuResults.push({
-            title: item.label,
-            description: null,
-            icon: item.icon,
-            link: item.link
-          });
-        }
-      });
+      // Loop through items
+      if(Array.isArray(group.items)) {
+        group.items.forEach((item) => {
+          if(!item.noSearch && item.label.toLowerCase().indexOf(req.query.search.toLowerCase()) > -1) {
+            adminMenuResults.push({
+              title: item.label,
+              description: null,
+              icon: item.icon,
+              link: item.link
+            });
+          }
+        });
+      }
     });
 
     // Search users

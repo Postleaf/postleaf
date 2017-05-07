@@ -8,12 +8,10 @@ const self = {
   //
   // Gets all admin menu items.
   //
-  // Returns an array of menu item objects.
+  // Returns an array of menu item groups: [{ items: [] }, { items: [] }, ...]
   //
-  getItems: (req) => {
-    const I18n = req.app.locals.I18n;
-    const User = req.User;
-    const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(req.app.locals.Settings);
+  get: (I18n, User, Settings) => {
+    const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(Settings);
     let primary = [];
     let secondary = [];
 
@@ -75,7 +73,10 @@ const self = {
       noSearch: true
     });
 
-    return [secondary, primary];
+    return [
+      { items: secondary },
+      { items: primary }
+    ];
   }
 
 };

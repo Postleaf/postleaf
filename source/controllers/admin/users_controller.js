@@ -1,11 +1,7 @@
 'use strict';
 
 // Node modules
-const Path = require('path');
 const Promise = require('bluebird');
-
-// Local modules
-const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 
 module.exports = {
 
@@ -29,7 +25,6 @@ module.exports = {
       .then((users) => {
         // Render the template
         res.render('admin/users', {
-          adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'users',
             title: I18n.term('users')

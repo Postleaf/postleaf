@@ -6,7 +6,6 @@ const HttpCodes = require('http-codes');
 const Promise = require('bluebird');
 
 // Local modules
-const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 const AutocompleteSuggestions = require(Path.join(__basedir, 'source/modules/autocomplete_suggestions.js'));
 const Themes = require(Path.join(__basedir, 'source/modules/themes.js'));
 
@@ -100,7 +99,6 @@ module.exports = {
 
         // Render the template
         res.render('admin/edit_post', {
-          adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'edit-post',
             title: I18n.term(create ? 'new_post' : 'edit_post')

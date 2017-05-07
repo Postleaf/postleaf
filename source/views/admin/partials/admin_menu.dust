@@ -82,28 +82,29 @@
 
   {! Menu items !}
   <div class="admin-menu-items">
-    {! Iterate menu item groups !}
-    {#adminMenu}
-      {! Iterate menu items !}
-      {#.}
-        <a
-          class="admin-menu-item {class} {@urlCompare url=link}admin-menu-current{/urlCompare}"
-          href="{link}"
-          title="{label}"
-        >
-          {?image}
-            {! Image !}
-            <img src="{image}" alt="{label}">
-          {:else}
-            {! Icon !}
-            <i class="{icon}"></i>
-          {/image}
-          <span class="admin-menu-label">{label}</span>
-        </a>
-      {/.}
-
-      {! Draw a divider between each group !}
-      {@sep}<hr class="admin-menu-divider">{/sep}
-    {/adminMenu}
+    {@getAdminMenu}
+      {! Iterate menu groups !}
+      {#groups}
+        {! Iterate menu items !}
+        {#items}
+          <a
+            class="admin-menu-item {class} {@urlCompare url=link}admin-menu-current{/urlCompare}"
+            href="{link}"
+            title="{label}"
+          >
+            {?image}
+              {! Image !}
+              <img src="{image}" alt="{label}">
+            {:else}
+              {! Icon !}
+              <i class="{icon}"></i>
+            {/image}
+            <span class="admin-menu-label">{label}</span>
+          </a>
+        {/items}
+        {! Draw a divider between each group !}
+        {@sep}<hr class="admin-menu-divider">{/sep}
+      {/groups}
+    {/getAdminMenu}
   </div>
 </nav>

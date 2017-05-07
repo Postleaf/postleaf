@@ -6,7 +6,6 @@ const Path = require('path');
 const Promise = require('bluebird');
 
 // Local modules
-const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 const Themes = require(Path.join(__basedir, 'source/modules/themes.js'));
 
 module.exports = {
@@ -57,7 +56,6 @@ module.exports = {
 
         // Render the template
         res.render('admin/settings', {
-          adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'settings',
             title: I18n.term('settings')

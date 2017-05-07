@@ -5,7 +5,6 @@ const Path = require('path');
 const Promise = require('bluebird');
 
 // Node modules
-const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
 const AutocompleteSuggestions = require(Path.join(__basedir, 'source/modules/autocomplete_suggestions.js'));
 
 module.exports = {
@@ -22,7 +21,6 @@ module.exports = {
       .then((links) => {
         // Render the template
         res.render('admin/navigation', {
-          adminMenu: AdminMenu.getItems(req),
           meta: {
             bodyClass: 'navigation',
             title: I18n.term('navigation')
