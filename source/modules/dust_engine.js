@@ -51,15 +51,23 @@ function compileTemplate(file, callback) {
   Fs.readFile(file, 'utf8', (err, data) => {
     if(err) return callback(err);
 
-    // Compile it
-    let compiled = Dust.compile(data);
+    try {
+      // Compile it
+      let compiled = Dust.compile(data);
 
-    // Cache it
-    if(useCache) {
-      templateCache[file] = compiled;
+      // Cache it
+      if(useCache) {
+        templateCache[file] = compiled;
+      }
+
+      callback(null, Dust.loadSource(compiled));
+    } catch(err) {
+      // Show a friendlier error for rendering issues
+      let relativePath = Path.relative(__basedir, file);
+      return callback(
+        new Error('Template Error: ' + err.message + ' in ' + relativePath)
+      );
     }
-
-    callback(null, Dust.loadSource(compiled));
   });
 }
 
@@ -103,7 +111,11 @@ Dust.onLoad = (name, options, callback) => {
 
     // Try cache first
     if(templateCache[file]) {
-      return callback(null, Dust.loadSource(templateCache[file]));
+      try {
+        return callback(null, Dust.loadSource(templateCache[file]));
+      } catch(err) {
+        return callback(err);
+      }
     }
 
     // Load and compile template
@@ -118,7 +130,11 @@ Dust.onLoad = (name, options, callback) => {
 
       // Try cache first
       if(templateCache[file]) {
-        return callback(null, Dust.loadSource(templateCache[file]));
+        try {
+          return callback(null, Dust.loadSource(templateCache[file]));
+        } catch(err) {
+          return callback(err);
+        }
       }
 
       // Load and compile template
