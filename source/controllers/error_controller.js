@@ -39,7 +39,7 @@ module.exports = {
       viewData = {
         title: I18n.term('application_error'),
         message: process.env.NODE_ENV !== 'production' ?
-          err :
+          err.message :
           I18n.term('sorry_but_something_isnt_working_right_at_the_moment')
       };
       // Log dev error messages
