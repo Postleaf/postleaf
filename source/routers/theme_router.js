@@ -21,6 +21,7 @@ module.exports = (app) => {
   const BlogController = require(Path.join(__basedir, 'source/controllers/theme/blog_controller.js'));
   const FeedController = require(Path.join(__basedir, 'source/controllers/theme/feed_controller.js'));
   const PostController = require(Path.join(__basedir, 'source/controllers/theme/post_controller.js'));
+  const RobotsController = require(Path.join(__basedir, 'source/controllers/theme/robots_controller.js'));
   const SearchController = require(Path.join(__basedir, 'source/controllers/theme/search_controller.js'));
   const TagController = require(Path.join(__basedir, 'source/controllers/theme/tag_controller.js'));
 
@@ -125,6 +126,13 @@ module.exports = (app) => {
   //  GET /:slug
   //
   router.get('/:slug', PostController.view);
+
+  //
+  // Robots
+  //
+  //  GET /robot.txt
+  //
+  app.use('/robots.txt', RobotsController.view);
 
   // Attach the router to the app
   app.use(
