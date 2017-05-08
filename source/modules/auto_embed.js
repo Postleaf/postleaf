@@ -4,10 +4,12 @@
 const Autolinker = require('autolinker');
 const Cheerio = require('cheerio');
 const He = require('he');
-const Oembed = require('oembed');
 const Path = require('path');
 const Promise = require('bluebird');
 const Url = require('url');
+
+// Local modules
+const MetaphorEngine = require(Path.join(__basedir, 'source/modules/metaphor_engine.js'));
 
 const self = {
 
@@ -16,8 +18,6 @@ const self = {
   //
   //
   //  html* (string) - The HTML to parse.
-  //  options (object)
-  //    - hostname (string) - The current hostname. Used for converting URLs and requesting oEmbeds.
   //
   // Returns a promise that resolves with an HTML string.
   //
@@ -73,34 +73,37 @@ const self = {
 
       // Get a list of oembed URLs
       $('[data-auto-embed]').each(function() {
+        const engine = MetaphorEngine.create();
         let url = $(this).attr('data-auto-embed');
 
+        // Fetch metadata for each URL
         queue.push(
           new Promise((resolve) => {
-            Oembed.fetch(url, { for: options.hostname }, (err, result) => {
-              resolve(err ? null : result);
-            });
+            engine.describe(url, (description) => resolve(description));
           })
         );
       });
 
-      // Fetch embed code for all oembed links
+      // Convert URLs to embed code
       Promise.all(queue)
         .then((result) => {
           $('[data-auto-embed]').each(function(index) {
-            if(result[index]) {
-              // Insert the embed code
-              $(this).replaceWith(
-                '<div data-embed="true" data-embed-provider="' +
-                He.encode(result[index].provider_name, { useNamedReferences: true }) +
-                '">' +
-                result[index].html +
-                '</div>'
-              );
+            let embed;
+
+            if(result[index].embed && result[index].embed.html) {
+              // An embed provider was found, insert the HTML
+              embed = result[index].embed.html;
             } else {
-              // No oembed provider found, revert to to the original URL
-              $(this).replaceWith($(this).attr('data-auto-embed'));
+              // No embed provider, insert a preview instead
+              embed = result[index].preview;
             }
+
+            // Swap out the placeholder element with the embed code
+            $(this).replaceWith(
+              '<div data-embed="true" data-embed-provider="' +
+              He.encode(result[index].site_name, { useNamedReferences: true }) +
+              '">' + embed + '</div>'
+            );
           });
 
           // Return the updated HTML

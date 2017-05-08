@@ -232,7 +232,7 @@ module.exports = {
       .then(() => {
         // Convert markdown to HTML and auto-embed text URLs
         if(req.body['content-format'] === 'markdown') {
-          return AutoEmbed.parse(req.body.content, { hostname: req.hostname }).then((content) => {
+          return AutoEmbed.parse(req.body.content).then((content) => {
             req.body.content = Markdown.toHtml(content);
           });
         }
