@@ -183,49 +183,13 @@ $(() => {
   function handlePaste(event) {
     let pastedData = event.content;
 
-    // Check for anything that looks like an image and insert it into the editor
-    if(pastedData.match(/^https?:\/\/(.*?)\.(gif|jpg|jpeg|png|svg)$/i)) {
-      event.stopPropagation();
-      event.preventDefault();
-      contentEditor.insertImage(pastedData);
-      return;
-    }
-
-    // Check for anything that looks the beginning of a URL and grab the oEmbed code
+    // Check for anything that looks like a URL
     if(pastedData.match(/^https?:\/\//i)) {
       event.stopPropagation();
       event.preventDefault();
 
-      // Fetch oEmbed code
-      NProgress.start();
-      $.ajax({
-        url: oEmbedAction,
-        type: 'GET',
-        data: {
-          url: pastedData
-        }
-      })
-        .done((res) => {
-          if(res.embed && res.embed.html) {
-            // A provider was found and they provide HTML, insert the embed code
-            contentEditor.insertEmbed(res.embed.html, {
-              provider: res.embed.provider_name
-            });
-          } else if(res.embed && res.embed.type === 'photo' && res.embed.url) {
-            // A provider was found and it's an image, insert the image
-            contentEditor.insertImage(res.embed.url);
-          } else {
-            // No provider was found, insert the raw paste data
-            contentEditor.insertContent(pastedData);
-          }
-        })
-        .fail(() => {
-          // The request failed, just insert the URL
-          contentEditor.insertContent(pastedData);
-        })
-        .always(() => NProgress.done());
-
-      return;
+      // Generate embed code from URL
+      insertContentFromUrl(pastedData);
     }
   }
 
@@ -241,6 +205,39 @@ $(() => {
       $('#dropzone').prop('hidden', true);
       $('#dropzone .dropzone-target').removeClass('active');
     }, 10);
+  }
+
+  //
+  // Fetches metadata from the specified URL and inserts an embed based on that info.
+  //
+  //  url* (string) - The URL to fetch metadata from.
+  //  callback* (function) - A callback function with
+  //
+  function insertContentFromUrl(url) {
+    // Check for images and insert them directly into the editor
+    if(url.match(/^https?:\/\/(.*?)\.(gif|jpg|jpeg|png|svg)$/i)) {
+      return contentEditor.insertImage(url);
+    }
+
+    // Fetch embed code
+    NProgress.start();
+    $.ajax({
+      url: embedAction,
+      type: 'GET',
+      data: {
+        url: url
+      }
+    })
+    .done((res) => {
+      if(res.embed && res.embed.html) {
+        // An embed provider was found, insert the HTML
+        return contentEditor.insertEmbed(res.embed.html, { provider: res.site_name });
+      } else if(res.preview) {
+        // No embed provider, insert a preview instead
+        return contentEditor.insertEmbed(res.preview);
+      }
+    })
+    .always(() => NProgress.done());
   }
 
   //
@@ -741,8 +738,8 @@ $(() => {
 
   let changesSaved = $('#editor-frame').attr('data-changes-saved');
   let createAction = $('#editor-frame').attr('data-create-action');
+  let embedAction = $('#editor-frame').attr('data-embed-action');
   let linkSuggestions = JSON.parse($('#editor-frame').attr('data-link-suggestions'));
-  let oEmbedAction = $('#editor-frame').attr('data-oembed-action');
   let postId = $('#editor-frame').attr('data-post-id');
   let postCreated = $('#editor-frame').attr('data-post-created');
   let previewAction = $('#editor-frame').attr('data-preview-action');
@@ -1318,33 +1315,10 @@ $(() => {
 
       // Insert an embed
       if(code.length) {
-        // Check for anything that looks the beginning of a URL
+        // Check for anything that looks like a URL
         if(code.match(/^https?:\/\//i)) {
-          NProgress.start();
-
-          // Fetch the providers oEmbed code
-          $.ajax({
-            url: oEmbedAction,
-            type: 'GET',
-            data: {
-              url: code
-            }
-          })
-          .done((res) => {
-            if(res.embed && res.embed.html) {
-              // A provider was found and they provide HTML, insert the embed code
-              contentEditor.insertEmbed(res.embed.html, {
-                provider: res.embed.provider_name
-              });
-            } else if(res.embed && res.embed.type === 'photo' && res.embed.url) {
-              // A provider was found and it's an image, insert the image
-              contentEditor.insertImage(res.embed.url);
-            } else {
-              // No provider was found, insert the raw embed code
-              contentEditor.insertEmbed(code, { provider: provider });
-            }
-          })
-          .always(() => NProgress.done());
+          // Generate embed code from URL
+          insertContentFromUrl(code);
         } else {
           // Insert as-is
           contentEditor.insertEmbed(code, { provider: provider });

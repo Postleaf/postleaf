@@ -17,9 +17,9 @@ module.exports = (app) => {
   // Controllers
   const AuthController = require(Path.join(__basedir, 'source/controllers/api/auth_controller.js'));
   const BackupController = require(Path.join(__basedir, 'source/controllers/api/backup_controller.js'));
+  const EmbedController = require(Path.join(__basedir, 'source/controllers/api/embed_controller.js'));
   const InstallController = require(Path.join(__basedir, 'source/controllers/api/install_controller.js'));
   const NavigationController = require(Path.join(__basedir, 'source/controllers/api/navigation_controller.js'));
-  const OEmbedController = require(Path.join(__basedir, 'source/controllers/api/oembed_controller.js'));
   const PostsController = require(Path.join(__basedir, 'source/controllers/api/posts_controller.js'));
   const RevisionsController = require(Path.join(__basedir, 'source/controllers/api/revisions_controller.js'));
   const TagsController = require(Path.join(__basedir, 'source/controllers/api/tags_controller.js'));
@@ -97,14 +97,14 @@ module.exports = (app) => {
   );
 
   //
-  // oEmbed
+  // Embed
   //
-  //  GET /api/oembed
+  //  GET /api/embed
   //
   router.get(
-    '/oembed',
+    '/embed',
     AuthMiddleware.requireAuth,
-    OEmbedController.getFromProvider
+    EmbedController.getFromProvider
   );
 
   //

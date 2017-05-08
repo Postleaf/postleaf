@@ -569,7 +569,7 @@ Editor.prototype.insertContent = function(content) {
 //
 //  code* (string) - The HTML code of the embed.
 //  options (object)
-//    - provider (string) - The oEmbed provider name, which will be stored in data-embed-provider.
+//    - provider (string) - The embed provider's name, which will be stored in data-embed-provider.
 //
 // Returns an Editor instance.
 //

@@ -166,8 +166,8 @@
       data-caption-placeholder="{@i18n term="enter_a_caption"/}"
       data-default-content="{Settings.defaultPostContent|markdownToHtml}"
       data-default-title="{Settings.defaultPostTitle}"
+      data-embed-action="{@url type="api" path="embed"/}"
       data-link-suggestions="{linkSuggestions|js}"
-      data-oembed-action="{@url type="api" path="oembed"/}"
       data-post-created="{@i18n term="[name]_has_been_created" name=":name"/}"
       data-post-id="{post.id}"
       data-preview-action=
