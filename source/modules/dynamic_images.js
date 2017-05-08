@@ -32,7 +32,7 @@ const self = {
 
       // Find each image in the content
       $('img').each((index, el) => {
-        let src = $(el).attr('src');
+        let src = $(el).attr('src') || '';
         let path = Url.parse(src).pathname;
         let srcset = [];
 
