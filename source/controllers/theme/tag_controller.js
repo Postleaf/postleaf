@@ -39,41 +39,51 @@ module.exports = {
           throw new Error('Page Not Found');
         }
       })
-      // Fetch posts with this tag
-      .then(() => models.postTags.findAndCountAll({
-        distinct: true,
+      // Fetch IDs for all posts with this tag
+      .then(() => models.postTags.findAll({
+        attributes: ['postId'],
         where: {
           tagId: tag.id
-        },
-        include: [
-          {
-            model: models.post,
-            where: {
-              status: 'published',
-              isPage: 0,
-              publishedAt: { $lt: Moment().utc().toDate() }
-            },
-            include: [
-              {
-                model: models.user,
-                as: 'author',
-                attributes: { exclude: ['password', 'resetToken'] }
-              },
-              {
-                model: models.tag,
-                through: { attributes: [] }, // exclude postTags
-                where: null // also return posts that don't have tags
-              }
-            ]
-          }
-        ],
-        limit: limit,
-        offset: offset,
-        order: [
-          sequelize.literal('`post.isSticky` DESC'),
-          sequelize.literal('`post.publishedAt` DESC')
-        ]
+        }
       }))
+      // Fetch posts that have any of those IDs
+      .then((matches) => {
+        let ids = [];
+
+        // Convert matches to an array of post IDs
+        if(matches) {
+          matches.forEach((row) => ids.push(row.postId));
+        }
+
+        // Return matching posts
+        return models.post.findAndCountAll({
+          distinct: true,
+          where: {
+            id: { $in: ids },
+            status: 'published',
+            isPage: 0,
+            publishedAt: { $lt: Moment().utc().toDate() }
+          },
+          include: [
+            {
+              model: models.user,
+              as: 'author',
+              attributes: { exclude: ['password', 'resetToken'] }
+            },
+            {
+              model: models.tag,
+              through: { attributes: [] }, // exclude postTags
+              where: null // also return posts that don't have tags
+            }
+          ],
+          limit: limit,
+          offset: offset,
+          order: [
+            ['isSticky', 'DESC'],
+            ['publishedAt', 'DESC']
+          ]
+        });
+      })
       // Render the view
       .then((posts) => {
         if(page > 1 && !posts.rows.length) {
@@ -93,7 +103,7 @@ module.exports = {
         // Render the template
         res.render('tag', {
           tag: tag,
-          posts: posts.rows.map((val) => val.post),
+          posts: posts.rows,
           pagination: pagination,
           meta: {
             title: metaTitle,
