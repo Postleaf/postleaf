@@ -229,7 +229,8 @@ module.exports = (dust) => {
     // Async wrapper
     return chunk.map((chunk) => {
       const locals = context.options.locals;
-      const models = locals.Database.sequelize.models;
+      const sequelize = locals.Database.sequelize;
+      const models = sequelize.models;
       let id = context.resolve(params.id);
       let email = context.resolve(params.email);
       let username = context.resolve(params.username);
@@ -260,7 +261,7 @@ module.exports = (dust) => {
           offset: offset || 0,
           limit: count || 10,
           order: [
-            [sortBy, sortOrder]
+            [sequelize.fn('lower', sequelize.col(sortBy)), sortOrder]
           ]
         })
         .then((authors) => {
@@ -377,7 +378,8 @@ module.exports = (dust) => {
     // Async wrapper
     return chunk.map((chunk) => {
       const locals = context.options.locals;
-      const models = locals.Database.sequelize.models;
+      const sequelize = locals.Database.sequelize;
+      const models = sequelize.models;
       let id = context.resolve(params.id);
       let slug = context.resolve(params.slug);
       let sortBy = context.resolve(params.sortBy);
@@ -418,7 +420,7 @@ module.exports = (dust) => {
           offset: offset || 0,
           limit: count || 10,
           order: [
-            [sortBy, sortOrder]
+            [sequelize.fn('lower', sequelize.col(sortBy)), sortOrder]
           ]
         })
         .then((posts) => {
@@ -507,7 +509,8 @@ module.exports = (dust) => {
     // Async wrapper
     return chunk.map((chunk) => {
       const locals = context.options.locals;
-      const models = locals.Database.sequelize.models;
+      const sequelize = locals.Database.sequelize;
+      const models = sequelize.models;
       let id = context.resolve(params.id);
       let slug = context.resolve(params.slug);
       let sortBy = context.resolve(params.sortBy);
@@ -536,7 +539,7 @@ module.exports = (dust) => {
           offset: offset || 0,
           limit: count || 10,
           order: [
-            [sortBy, sortOrder]
+            [sequelize.fn('lower', sequelize.col(sortBy)), sortOrder]
           ]
         })
         .then((tags) => {

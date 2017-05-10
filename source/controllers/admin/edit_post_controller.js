@@ -18,7 +18,8 @@ module.exports = {
     const I18n = req.app.locals.I18n;
     const User = req.User;
     const Settings = req.app.locals.Settings;
-    const models = req.app.locals.Database.sequelize.models;
+    const sequelize = req.app.locals.Database.sequelize;
+    const models = sequelize.models;
     let create = typeof req.params.id === 'undefined';
     let statuses = [];
     let authors;
@@ -37,7 +38,7 @@ module.exports = {
       .then(() => models.user.findAll({
         attributes: ['id', 'name', 'username'],
         order: [
-          ['name', 'ASC']
+          sequelize.fn('lower', sequelize.col('name'))
         ]
       }))
       .then((result) => authors = result)
@@ -45,7 +46,7 @@ module.exports = {
       .then(() => models.tag.findAll({
         attributes: ['id', 'slug', 'name'],
         order: [
-          ['name', 'ASC']
+          sequelize.fn('lower', sequelize.col('name'))
         ]
       }))
       .then((result) => tags = result)

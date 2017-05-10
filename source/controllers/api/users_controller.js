@@ -66,7 +66,8 @@ module.exports = {
   //  { totalItems: 100, users: [], html: '' }
   //
   index: function(req, res, next) {
-    const models = req.app.locals.Database.sequelize.models;
+    const sequelize = req.app.locals.Database.sequelize;
+    const models = sequelize.models;
     let count = parseInt(req.query.count) || 100;
     let offset = parseInt(req.query.offset) || 0;
     let fetch;
@@ -84,7 +85,7 @@ module.exports = {
           limit: count,
           offset: offset,
           order: [
-            ['name', 'ASC']
+            sequelize.fn('lower', sequelize.col('name'))
           ]
         });
     }

@@ -228,7 +228,7 @@ module.exports = (sequelize, DataTypes) => {
           offset: options.offset,
           order: [
             sequelize.literal(order),
-            [sequelize.models.tag, 'name', 'ASC']
+            sequelize.literal('LOWER(tags.name)')
           ]
         });
       }

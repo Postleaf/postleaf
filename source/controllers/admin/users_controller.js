@@ -10,7 +10,8 @@ module.exports = {
   //
   view: (req, res, next) => {
     const I18n = req.app.locals.I18n;
-    const models = req.app.locals.Database.sequelize.models;
+    const sequelize = req.app.locals.Database.sequelize;
+    const models = sequelize.models;
 
     // Fetch users
     Promise.resolve()
@@ -18,7 +19,7 @@ module.exports = {
         return models.user
           .findAll({
             order: [
-              ['name', 'ASC']
+              sequelize.fn('lower', sequelize.col('name'))
             ]
           });
       })

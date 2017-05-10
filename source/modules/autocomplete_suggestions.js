@@ -26,7 +26,8 @@ const self = {
   getLinks: function(req, type) {
     return new Promise((resolve, reject) => {
       const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(req.app.locals.Settings);
-      const models = req.app.locals.Database.sequelize.models;
+      const sequelize = req.app.locals.Database.sequelize;
+      const models = sequelize.models;
 
       let queue = [];
 
@@ -43,7 +44,7 @@ const self = {
             .findAll({
               attributes: ['name', 'username'],
               order: [
-                ['name', 'ASC']
+                sequelize.fn('lower', sequelize.col('name'))
               ]
             })
             .then((users) => {
@@ -66,7 +67,7 @@ const self = {
             .findAll({
               attributes: ['name', 'slug'],
               order: [
-                ['name', 'ASC']
+                sequelize.fn('lower', sequelize.col('name'))
               ]
             })
             .then((tags) => {
@@ -93,7 +94,7 @@ const self = {
                 publishedAt: { $lt: Moment().utc().toDate() }
               },
               order: [
-                ['title', 'ASC']
+                sequelize.fn('lower', sequelize.col('title'))
               ]
             })
             .then((posts) => {

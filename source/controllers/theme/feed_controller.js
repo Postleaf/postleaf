@@ -11,9 +11,10 @@ module.exports = {
   // Renders the RSS feed.
   //
   view: (req, res, next) => {
-    const models = req.app.locals.Database.sequelize.models;
     const Settings = req.app.locals.Settings;
     const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(Settings);
+    const sequelize = req.app.locals.Database.sequelize;
+    const models = sequelize.models;
 
     // Fetch posts and associated data for feeds
     models.post
@@ -41,7 +42,7 @@ module.exports = {
         ],
         order: [
           ['publishedAt', 'DESC'],
-          [models.tag, 'name', 'ASC']
+          sequelize.literal('LOWER(tags.name)')
         ],
         limit: Settings.postsPerPage
       })

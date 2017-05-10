@@ -16,7 +16,8 @@ module.exports = {
   view: (req, res, next) => {
     const I18n = req.app.locals.I18n;
     const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(req.app.locals.Settings);
-    const models = req.app.locals.Database.sequelize.models;
+    const sequelize = req.app.locals.Database.sequelize;
+    const models = sequelize.models;
 
     let queue = [];
     let timeZones = [];
@@ -42,7 +43,7 @@ module.exports = {
           publishedAt: { $lt: Moment().utc().toDate() }
         },
         order: [
-          ['title', 'ASC']
+          sequelize.fn('lower', sequelize.col('title'))
         ]
       })
     );

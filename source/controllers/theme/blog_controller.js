@@ -15,8 +15,9 @@ module.exports = {
   //
   view: (req, res, next) => {
     const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(req.app.locals.Settings);
-    const models = req.app.locals.Database.sequelize.models;
     const Settings = req.app.locals.Settings;
+    const sequelize = req.app.locals.Database.sequelize;
+    const models = sequelize.models;
     let page = req.params.page || 1;
     let limit = Settings.postsPerPage;
     let offset = limit * (page - 1);
@@ -47,7 +48,7 @@ module.exports = {
         order: [
           ['isSticky', 'DESC'],
           ['publishedAt', 'DESC'],
-          [models.tag, 'name', 'ASC']
+          sequelize.literal('LOWER(tags.name)')
         ]
       })
       // Render the view
