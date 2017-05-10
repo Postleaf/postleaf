@@ -588,17 +588,17 @@ module.exports = {
               isFeatured: false,
               isSticky: false
             };
-          } else if(!post) {
+          } else {
             // Not found
             res.status(HttpCodes.NOT_FOUND);
-            return next('Not Found');
+            throw new Error('Not Found');
           }
         }
 
         // All posts for owners/admins/editors, only yours for contributors
         if(!['owner', 'admin', 'editor'].includes(User.role) && post.userId !== User.id) {
           res.status(HttpCodes.UNAUTHORIZED);
-          return next('Unauthorized');
+          throw new Error('Unauthorized');
         }
 
         // Merge custom post data
