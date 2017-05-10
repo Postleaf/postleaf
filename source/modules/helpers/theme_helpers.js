@@ -470,7 +470,7 @@ module.exports = (dust) => {
             { model: models.tag }
           ],
           order: [
-            sequelize.literal('LOWER(tags.name)')
+            sequelize.fn('lower', sequelize.col('tags.name'))
           ]
         })
         .then((post) => {

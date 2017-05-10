@@ -42,7 +42,7 @@ module.exports = {
         ],
         order: [
           ['publishedAt', 'DESC'],
-          sequelize.literal('LOWER(tags.name)')
+          sequelize.fn('lower', sequelize.col('tags.name'))
         ],
         limit: Settings.postsPerPage
       })

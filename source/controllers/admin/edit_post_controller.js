@@ -68,7 +68,7 @@ module.exports = {
           }
         ],
         order: [
-          sequelize.literal('LOWER(tags.name)')
+          sequelize.fn('lower', sequelize.col('tags.name'))
         ]
       }))
       .then((post) => {

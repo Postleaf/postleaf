@@ -65,7 +65,7 @@ module.exports = {
         order: [
           ['isSticky', 'DESC'],
           ['publishedAt', 'DESC'],
-          sequelize.literal('LOWER(tags.name)')
+          sequelize.fn('lower', sequelize.col('tags.name'))
         ]
       }))
       // Render the view

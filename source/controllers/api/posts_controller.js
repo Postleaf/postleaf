@@ -144,7 +144,7 @@ module.exports = {
           offset: offset,
           order: [
             ['publishedAt', 'DESC'],
-            sequelize.literal('LOWER(tags.name)')
+            sequelize.fn('lower', sequelize.col('tags.name'))
           ]
         });
     }
@@ -322,7 +322,7 @@ module.exports = {
           }
         ],
         order: [
-          sequelize.literal('LOWER(tags.name)')
+          sequelize.fn('lower', sequelize.col('tags.name'))
         ]
       })
       .then((post) => {
@@ -561,7 +561,7 @@ module.exports = {
           }
         ],
         order: [
-          sequelize.literal('LOWER(tags.name)')
+          sequelize.fn('lower', sequelize.col('tags.name'))
         ]
       })
       // Inject srcset attribute for dynamic images
