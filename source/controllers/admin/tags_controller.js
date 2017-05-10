@@ -17,9 +17,7 @@ module.exports = {
       .then(() => {
         return models.tag
           .findAll({
-            order: [
-              ['name', 'ASC']
-            ]
+            order: 'lower(name) ASC'
           });
       })
       .then((tags) => {
