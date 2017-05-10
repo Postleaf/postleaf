@@ -78,7 +78,8 @@ module.exports = {
   //
   index: function(req, res, next) {
     const User = req.User;
-    const models = req.app.locals.Database.sequelize.models;
+    const sequelize = req.app.locals.Database.sequelize;
+    const models = sequelize.models;
     let count = parseInt(req.query.count) || 100;
     let offset = parseInt(req.query.offset) || 0;
     let where = {};
@@ -142,7 +143,8 @@ module.exports = {
           limit: count,
           offset: offset,
           order: [
-            ['publishedAt', 'DESC']
+            ['publishedAt', 'DESC'],
+            sequelize.literal('LOWER(tags.name)')
           ]
         });
     }
@@ -299,7 +301,8 @@ module.exports = {
   //
   read: function(req, res, next) {
     const User = req.User;
-    const models = req.app.locals.Database.sequelize.models;
+    const sequelize = req.app.locals.Database.sequelize;
+    const models = sequelize.models;
 
     models.post
       .findOne({
@@ -317,6 +320,9 @@ module.exports = {
             through: { attributes: [] }, // exclude postTags
             where: null // also return posts that don't have tags
           }
+        ],
+        order: [
+          sequelize.literal('LOWER(tags.name)')
         ]
       })
       .then((post) => {
@@ -523,7 +529,8 @@ module.exports = {
   preview: function(req, res, next) {
     const User = req.User;
     const Settings = req.app.locals.Settings;
-    const models = req.app.locals.Database.sequelize.models;
+    const sequelize = req.app.locals.Database.sequelize;
+    const models = sequelize.models;
     let post;
 
     // Parse custom post data
@@ -552,6 +559,9 @@ module.exports = {
             through: { attributes: [] }, // exclude postTags
             where: null // also return posts that don't have tags
           }
+        ],
+        order: [
+          sequelize.literal('LOWER(tags.name)')
         ]
       })
       // Inject srcset attribute for dynamic images

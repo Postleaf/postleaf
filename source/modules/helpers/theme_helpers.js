@@ -453,7 +453,8 @@ module.exports = (dust) => {
     // Async wrapper
     return chunk.map((chunk) => {
       const locals = context.options.locals;
-      const models = locals.Database.sequelize.models;
+      const sequelize = locals.Database.sequelize;
+      const models = sequelize.models;
       let count = context.resolve(params.count) || 10;
       let offset = context.resolve(params.offset) || 0;
       let post = context.resolve(params.post);
@@ -465,9 +466,12 @@ module.exports = (dust) => {
           where: {
             id: id
           },
-          include: [{
-            model: models.tag
-          }]
+          include: [
+            { model: models.tag }
+          ],
+          order: [
+            sequelize.literal('LOWER(tags.name)')
+          ]
         })
         .then((post) => {
           if(!post) return chunk.end();

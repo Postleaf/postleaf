@@ -66,6 +66,9 @@ module.exports = {
             through: { attributes: [] }, // exclude postTags
             where: null // also return posts that don't have tags
           }
+        ],
+        order: [
+          sequelize.literal('LOWER(tags.name)')
         ]
       }))
       .then((post) => {
