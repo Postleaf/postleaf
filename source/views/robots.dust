@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: {@url type="admin"/}
+Sitemap: {@url path="sitemap.xml" absolute="true"/}

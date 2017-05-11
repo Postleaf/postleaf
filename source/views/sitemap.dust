@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {! Homepage !}
+  {#homepage}
+    <url slug="{slug}">
+      <loc>{@url absolute="true"/}</loc>
+      <lastmod>{@date date=updatedAt format="YYYY-MM-DD[T]HH:mm:ss[Z]" timeZone="utc"/}</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+    </url>
+  {/homepage}
+
+  {! Pages !}
+  {#pages}
+    <url>
+      <loc>{@url type="post" slug=slug absolute="true"/}</loc>
+      <lastmod>{@date date=updatedAt format="YYYY-MM-DD[T]HH:mm:ss[Z]" timeZone="utc"/}</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  {/pages}
+
+  {! Posts !}
+  {#posts}
+    <url>
+      <loc>{@url type="post" slug=slug absolute="true"/}</loc>
+      <lastmod>{@date date=updatedAt format="YYYY-MM-DD[T]HH:mm:ss[Z]" timeZone="utc"/}</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  {/posts}
+
+  {! Authors !}
+  {#authors}
+    <url>
+      <loc>{@url type="author" username=username absolute="true"/}</loc>
+      <lastmod>{@date date=updatedAt format="YYYY-MM-DD[T]HH:mm:ss[Z]" timeZone="utc"/}</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+    </url>
+  {/authors}
+
+  {! Tags !}
+  {#tags}
+    <url>
+      <loc>{@url type="tag" slug=slug absolute="true"/}</loc>
+      <lastmod>{@date date=updatedAt format="YYYY-MM-DD[T]HH:mm:ss[Z]" timeZone="utc"/}</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+    </url>
+  {/tags}
+</urlset>

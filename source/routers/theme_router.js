@@ -23,6 +23,7 @@ module.exports = (app) => {
   const PostController = require(Path.join(__basedir, 'source/controllers/theme/post_controller.js'));
   const RobotsController = require(Path.join(__basedir, 'source/controllers/theme/robots_controller.js'));
   const SearchController = require(Path.join(__basedir, 'source/controllers/theme/search_controller.js'));
+  const SitemapController = require(Path.join(__basedir, 'source/controllers/theme/sitemap_controller.js'));
   const TagController = require(Path.join(__basedir, 'source/controllers/theme/tag_controller.js'));
 
   const slugs = {
@@ -133,6 +134,13 @@ module.exports = (app) => {
   //  GET /robot.txt
   //
   app.use('/robots.txt', RobotsController.view);
+
+  //
+  // Sitemap
+  //
+  //  Get /sitemap.xml
+  //
+  app.use('/sitemap.xml', SitemapController.view);
 
   // Attach the router to the app
   app.use(
