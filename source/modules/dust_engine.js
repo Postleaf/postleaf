@@ -40,7 +40,6 @@
 const Dust = require('dustjs-linkedin');
 const Fs = require('fs');
 const Path = require('path');
-const PathIsAbsolute = require('path-is-absolute');
 
 const templateCache = {};
 let useCache = true;
@@ -106,7 +105,7 @@ Dust.onLoad = (name, options, callback) => {
   let file;
 
   // Absolute path
-  if(PathIsAbsolute(name)) {
+  if(Path.isAbsolute(name)) {
     file = name;
 
     // Try cache first
