@@ -570,7 +570,6 @@ module.exports = (dust) => {
   dust.helpers.head = (chunk, context, bodies, params) => {
     const locals = context.options.locals;
     const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(locals.Settings);
-
     let isEditor = context.options.locals.isEditor;
     let jsonLD = (context.resolve(params.jsonLD) + '') !== 'false';
     let openGraph = (context.resolve(params.openGraph) + '') !== 'false';
