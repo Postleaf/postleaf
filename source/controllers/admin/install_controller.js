@@ -14,7 +14,7 @@ module.exports = {
     // If the app is installed, pretend the page doesn't exist
     if(req.app.locals.isInstalled) {
       res.status(HttpCodes.NOT_FOUND);
-      return next('Not Found');
+      return next('Page Not Found');
     }
 
     // Render the template

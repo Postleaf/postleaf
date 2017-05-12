@@ -31,7 +31,7 @@ module.exports = {
   checkPageNumbers: (req, res, next) => {
     if(req.params.page && parseInt(req.params.page) <= 1) {
       res.status(HttpCodes.NOT_FOUND);
-      throw new Error('Not Found');
+      throw new Error('Page Not Found');
     }
 
     next();

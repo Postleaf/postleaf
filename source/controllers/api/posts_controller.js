@@ -601,7 +601,7 @@ module.exports = {
           } else {
             // Not found
             res.status(HttpCodes.NOT_FOUND);
-            throw new Error('Not Found');
+            throw new Error('Post Not Found');
           }
         }
 
