@@ -31,8 +31,8 @@ const self = module.exports = {
   //  slug* (string) - A post slug.
   //
   view: (req, res, next) => {
-    const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(req.app.locals.Settings);
     const Settings = req.app.locals.Settings;
+    const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(Settings);
     const sequelize = req.app.locals.Database.sequelize;
     const models = sequelize.models;
     let where = {};
