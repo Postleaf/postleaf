@@ -38,7 +38,7 @@ This guide assumes you're installing Postleaf locally for development purposes. 
   git clone https://github.com/Postleaf/postleaf.git && cd postleaf
   git clone https://github.com/Postleaf/empower-theme.git themes/empower-theme
   ```
-2. Make a copy of `.env.example` and name it `.env`. **Open it and change `AUTH_SECRET` to a random string to secure your app.** Then add your SMTP credentials so email can be sent.
+2. Make a copy of `.env.example` and name it `.env`. **Open it and change `AUTH_SECRET` to a random string to secure your app.** Then add your SMTP credentials so email can be sent. You also need to set the `APP_URL` to `http://localhost:3000/`.
 3. Install dependencies and run the build script:
   ```
   npm install
