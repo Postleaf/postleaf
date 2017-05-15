@@ -81,6 +81,7 @@ function buildScripts(source, target) {
       console.error(Chalk.red(err.message));
     })
     .pipe(Babel({
+      compact: false,
       presets: ['es2015']
     }))
     .on('error', (err) => {
