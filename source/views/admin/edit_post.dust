@@ -12,8 +12,8 @@
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-menu dropdown-menu-no-min">
-            <button type="button" class="dropdown-item" data-fullscreen title="{@i18n term="fullscreen"/}">{@i18n term="fullscreen"/}</button>
-            <button type="button" class="dropdown-item" data-zen-mode title="{@i18n term="zen_mode"/}">{@i18n term="zen_mode"/}</button>
+            <button type="button" class="dropdown-item" data-fullscreen>{@i18n term="fullscreen"/}</button>
+            <button type="button" class="dropdown-item" data-zen-mode>{@i18n term="zen_mode"/}</button>
             <div class="dropdown-divider"></div>
             <button type="button" class="dropdown-item" data-word-count>{@i18n term="word_count"/}</button>
             <div class="dropdown-divider"></div>
