@@ -95,6 +95,7 @@ Promise.resolve()
       cache: process.env.NODE_ENV === 'production',
       helpers: [DustHelpers, HtmlHelpers, UtilityHelpers, ThemeHelpers]
     }));
+    app.set('json spaces', process.env.NODE_ENV === 'production' ? undefined : 2);
     app.set('views', [
       Path.join(__basedir, 'themes', app.locals.Settings.theme, 'templates'),
       Path.join(__basedir, 'source/views')
