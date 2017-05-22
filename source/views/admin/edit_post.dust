@@ -50,7 +50,7 @@
             <div class="dropdown-btn-group">
               <button type="button" class="btn btn-icon" data-editor="format:p" title="{@i18n term="paragraph"/}"><i class="fa fa-paragraph"></i></button>
               <button type="button" class="btn btn-icon" data-editor="format:blockquote" title="{@i18n term="quote"/}"><i class="fa fa-quote-right"></i></button>
-              <button type="button" class="btn btn-icon" data-editor="format:pre" title="{@i18n term="preformatted_text"/}"><i class="fa fa-code"></i></button>
+              <button type="button" class="btn btn-icon" data-editor="format:pre" title="{@i18n term="preformatted_text"/}">[&nbsp;]</button>
             </div>
             <div class="dropdown-divider"></div>
             <div class="dropdown-btn-group">
