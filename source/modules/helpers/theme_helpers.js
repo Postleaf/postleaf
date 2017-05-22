@@ -569,14 +569,22 @@ module.exports = (dust) => {
     // Generator meta
     html += '<meta name="generator" content="Postleaf">\n';
 
+    // Feeds
+    html +=
+      '<link rel="alternate" title="RSS Feed" type="application/rss+xml" href="' +
+      He.encode(MakeUrl.feed({ format: 'rss', absolute: true })) +
+      '">\n';
+    html +=
+      '<link rel="alternate" title="JSON Feed" type="application/json" href="' +
+      He.encode(MakeUrl.feed({ format: 'json', absolute: true })) +
+      '">\n';
+
     // Theme toolbar styles
     if(locals.User) {
-      html += `
-        <link
-          rel="stylesheet"
-          href="` + He.encode(MakeUrl.raw('assets/css/theme_toolbar.css')) + `"
-        >
-      `;
+      html +=
+        '<link rel="stylesheet" href="' +
+        He.encode(MakeUrl.raw('assets/css/theme_toolbar.css')) +
+        '">\n';
     }
 
     // Base tag, editor styles, and the Postleaf object
