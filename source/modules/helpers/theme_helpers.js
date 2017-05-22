@@ -11,7 +11,7 @@ const TruncateHtml = require('truncate-html');
 
 // Local modules
 const AdminMenu = require(Path.join(__basedir, 'source/modules/admin_menu.js'));
-const SignedUrl = require(Path.join(__basedir, 'source/modules/signed_url.js'));
+const DynamicImages = require(Path.join(__basedir, 'source/modules/dynamic_images.js'));
 const Slug = require(Path.join(__basedir, 'source/modules/slug.js'));
 
 module.exports = (dust) => {
@@ -77,7 +77,7 @@ module.exports = (dust) => {
   };
 
   //
-  // Generates a signed URL for a dynamic image.
+  // Generates a URL for a dynamic image.
   //
   // Examples:
   //
@@ -86,24 +86,9 @@ module.exports = (dust) => {
   //
   dust.helpers.dynamicImage = (chunk, context, bodies, params) => {
     let src = context.resolve(params.src);
-    let query = [];
+    params.src = undefined;
 
-    // Don't modify full-qualified URLs or hashes
-    if(typeof src === 'string' && src.match(/^(http|https|mailto|#):/i)) {
-      return chunk.write(src);
-    }
-
-    // Build the query string
-    Object.keys(params).forEach((key) => {
-      if(key !== 'src') {
-        query.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
-      }
-    });
-
-    // Generate a signed URL
-    return chunk.write(
-      SignedUrl.sign(src + '?' + query.join('&'), process.env.AUTH_SECRET)
-    );
+    return chunk.write(DynamicImages.generateUrl(src, params));
   };
 
   //

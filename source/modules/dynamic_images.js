@@ -3,6 +3,7 @@
 // Node modules
 const Cheerio = require('cheerio');
 const Crypto = require('crypto');
+const Extend = require('extend');
 const Fs = require('fs');
 const Gm = require('gm');
 const HttpCodes = require('http-codes');
@@ -16,6 +17,35 @@ const Url = require('url');
 const SignedUrl = require(Path.join(__basedir, 'source/modules/signed_url.js'));
 
 const self = {
+
+  //
+  // Generates a dynamic image URL if possible. Ignores URLs that resolve to other hostnames.
+  //
+  //  url* (string) - The URL of the target image.
+  //  params* (object) - One or more properties to append to the query string. These properties will
+  //    be passed to the processImages middleware when the image is requested.
+  //
+  generateUrl: (url, params) => {
+    params = params || {};
+    let hostname = Url.parse(process.env.APP_URL).hostname;
+    let parsed = Url.parse(url, true);
+
+    // Don't modify URLs that point to other hostnames
+    if(parsed.hostname && parsed.hostname !== hostname) {
+      return url;
+    }
+
+    // Append params to query string
+    Object.keys(params).forEach((key) => {
+      if(parsed.search.length) parsed.search += '&';
+      parsed.search += encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+    });
+    parsed.search = parsed.search.replace(/^&/, '');
+    url = Url.format(parsed);
+
+    // Generate a signed URL
+    return SignedUrl.sign(url, process.env.AUTH_SECRET);
+  },
 
   //
   // Parses an HTML string and injects srcset attributes with dynamic images every 200px.
