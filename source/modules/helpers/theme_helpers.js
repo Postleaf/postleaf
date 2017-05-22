@@ -562,6 +562,23 @@ module.exports = (dust) => {
     let meta = context.get('meta') || {};
     let html = '';
 
+    // Base tag, editor styles, and the Postleaf object
+    if(isEditor) {
+      html += `
+        <base href="` + He.encode(MakeUrl.raw()) + `">
+        <link
+          data-postleaf-editor="styles"
+          rel="stylesheet"
+          href="` + He.encode(MakeUrl.raw('assets/css/editor.css')) + `"
+        >
+        <script>
+          window.Postleaf = {
+            isEditor: true
+          };
+        </script>
+      `;
+    }
+
     // Inject head code
     html += locals.Settings.headCode || '';
     html += '\n';
@@ -585,23 +602,6 @@ module.exports = (dust) => {
         '<link rel="stylesheet" href="' +
         He.encode(MakeUrl.raw('assets/css/theme_toolbar.css')) +
         '">\n';
-    }
-
-    // Base tag, editor styles, and the Postleaf object
-    if(isEditor) {
-      html += `
-        <base href="` + He.encode(MakeUrl.raw()) + `">
-        <link
-          data-postleaf-editor="styles"
-          rel="stylesheet"
-          href="` + He.encode(MakeUrl.raw('assets/css/editor.css')) + `"
-        >
-        <script>
-          window.Postleaf = {
-            isEditor: true
-          };
-        </script>
-      `;
     }
 
     // JSON Linked Data
