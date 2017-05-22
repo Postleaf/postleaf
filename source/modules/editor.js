@@ -210,7 +210,9 @@ function initializeTinymce(instance) {
                 event.preventDefault();
                 editor.undoManager.transact(() => {
                   block.innerHTML = '';
-                  if(match[1]) block.setAttribute('data-code', match[1]);
+                  if(match[1]) {
+                    block.setAttribute('class', 'language-' + match[1].toLowerCase());
+                  }
                   editor.formatter.apply('pre');
                 });
               }
