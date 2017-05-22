@@ -117,9 +117,9 @@ module.exports = (app) => {
   //
   // Feed
   //
-  //  GET /feed
+  //  GET /feed/:format
   //
-  router.get('/' + slugs.feed, FeedController.view);
+  router.get('/' + slugs.feed + '/:format', FeedController.view);
 
   //
   // Post

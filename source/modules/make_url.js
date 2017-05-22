@@ -142,11 +142,13 @@ module.exports = (Settings) => {
     // Generates a feed URL.
     //
     //  options (object)
+    //    - format (string) - Either 'rss' or 'json' (default 'rss').
     //    - absolute (bool) - Set to true to return an absolute URL.
     //
     feed: (options) => {
       options = options || {};
-      let url = '/' + process.env.APP_FEED_SLUG;
+      let format = options.format === 'json' ? 'json' : 'rss';
+      let url = '/' + process.env.APP_FEED_SLUG + '/' + format;
 
       return options.absolute ? self.absolute(url) : url;
     },

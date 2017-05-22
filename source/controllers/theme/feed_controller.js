@@ -5,6 +5,9 @@ const Cheerio = require('cheerio');
 const Moment = require('moment');
 const Path = require('path');
 
+// Local modules
+const DynamicImages = require(Path.join(__basedir, 'source/modules/dynamic_images.js'));
+
 module.exports = {
 
   //
@@ -15,8 +18,14 @@ module.exports = {
     const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(Settings);
     const sequelize = req.app.locals.Database.sequelize;
     const models = sequelize.models;
+    let format = req.params.format;
 
-    // Fetch posts and associated data for feeds
+    // Check for a valid feed format
+    if(format !== 'json' && format !== 'rss') {
+      return next();
+    }
+
+    // Fetch posts and associated data
     models.post
       .findAll({
         where: {
@@ -44,12 +53,10 @@ module.exports = {
           ['publishedAt', 'DESC'],
           sequelize.fn('lower', sequelize.col('tags.name'))
         ],
-        limit: Settings.postsPerPage
+        limit: 100
       })
+      // Convert relative URLs to absolute URLs since most aggregators prefer them
       .then((posts) => {
-        let viewData = { posts: posts };
-
-        // Convert relative URLs to absolute URLs since most aggregators prefer them
         for(let i = 0; i < posts.length; i++) {
           let $ = Cheerio.load(posts[i].content);
 
@@ -66,17 +73,51 @@ module.exports = {
           posts[i].content = $.html();
         }
 
-        // Try the custom feed template
-        res
-          .append('Content-Type', 'application/xml')
-          .render('feed', viewData, (err, html) => {
-            if(!err) {
-              res.send(html);
-            } else {
-              // Fallback to system feed template
-              res.render('feed', viewData);
-            }
+        return posts;
+      })
+      // Render the appropriate feed
+      .then((posts) => {
+        let favicon = MakeUrl.raw(Settings.favicon, { absolute: true });
+
+        switch(format) {
+        // JSON feed
+        case 'json':
+          res.json({
+            version: 'https://jsonfeed.org/version/1',
+            title: Settings.title,
+            home_page_url: MakeUrl.raw({ absolute: true }),
+            feed_url: MakeUrl.feed({ format: 'json', absolute: true }),
+            description: Settings.tagline,
+            icon: DynamicImages.generateUrl(favicon, { thumbnail: 512 }),
+            favicon: DynamicImages.generateUrl(favicon, { thumbnail: 128 }),
+            items: posts.map((post) => {
+              return {
+                id: post.id,
+                url: MakeUrl.post(post.slug, { absolute: true }),
+                title: post.title,
+                content_html: post.content,
+                image: post.image ? MakeUrl.raw(post.image, { absolute: true }) : undefined,
+                date_published: Moment(post.publishedAt).tz(Settings.timeZone).format('YYYY-MM-DDTHH:mm:ssZ'),
+                date_modified: Moment(post.updatedAt).tz(Settings.timeZone).format('YYYY-MM-DDTHH:mm:ssZ'),
+                author: {
+                  name: post.author.name,
+                  url: MakeUrl.author(post.author.username, { absolute: true }),
+                  avatar: post.author.avatar ? MakeUrl.raw(post.author.avatar, { absolute: true }) : undefined
+                },
+                tags: post.tags.map((tag) => tag.name)
+              };
+            })
           });
+          break;
+
+        // RSS feed
+        default:
+          res
+            .append('Content-Type', 'application/xml')
+            .render('admin/rss_feed', {
+              posts: posts
+            });
+        }
       })
       .catch((err) => next(err));
   }
