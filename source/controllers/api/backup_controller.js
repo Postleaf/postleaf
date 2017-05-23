@@ -74,17 +74,14 @@ function restoreData(model, zip) {
 
         if(data && data.length) {
           // Empty the table
-          model.destroy({ truncate: true })
+          return model.destroy({ truncate: true })
             .then(() => {
               // Restore all rows
               data.forEach((row) => queue.push(model.create(row)));
 
               // Wait for all rows to populate before proceeding
-              Promise.all(queue)
-                .then(() => resolve(zip))
-                .catch((err) => reject(err));
-            })
-            .catch((err) => reject(err));
+              return Promise.all(queue).then(() => resolve(zip));
+            });
         } else {
           return resolve(zip);
         }
@@ -151,10 +148,7 @@ function restoreFolderFromZip(sourceFolder, targetFolder, zip) {
           });
 
           // Wait for all files to be written before proceeding
-          Promise.all(queue)
-            .then(() => resolve(zip))
-            .catch((err) => reject(err));
-
+          return Promise.all(queue).then(() => resolve(zip));
         } else {
           // No files, continue restoring
           resolve(zip);
