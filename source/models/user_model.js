@@ -141,6 +141,7 @@ module.exports = (sequelize, DataTypes) => {
             // Fetch the user
             user
               .findOne({
+                attributes: { exclude: ['resetToken'] },
                 where: {
                   id: decoded.data.id
                 }
@@ -160,6 +161,9 @@ module.exports = (sequelize, DataTypes) => {
                 if(hash !== decoded.data.hash) {
                   reject(new Error('Invalid auth token.'));
                 }
+
+                // Remove password
+                user.password = undefined;
 
                 return resolve(user);
               })
