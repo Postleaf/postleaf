@@ -32,6 +32,7 @@ $(() => {
         }
       }
     })
+    
     // Trigger change immediately to update initial view
     .selectable('change');
 

@@ -1,5 +1,4 @@
 /* eslint-env browser, jquery */
-
 const NProgress = require('nprogress');
 
 'use strict';

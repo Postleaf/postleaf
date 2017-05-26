@@ -7,8 +7,10 @@
 
 global.TinyMCE = require('tinymce/tinymce');
 
+
 // Default theme is required :-\
 require('tinymce/themes/modern/theme');
+
 
 // Plugins
 require('tinymce/plugins/lists');
