@@ -584,14 +584,20 @@ Editor.prototype.insertEmbed = function(code, options) {
       // Insert a new embed
       let div = document.createElement('div');
       div.setAttribute('data-embed', code);
-      div.setAttribute('data-embed-provider', options.provider);
+      if(options.provider) {
+        div.setAttribute('data-embed-provider', options.provider);
+      }
       div.setAttribute('contenteditable', false);
       div.innerHTML = code;
       this.editor.insertContent(div.outerHTML);
     } else {
       // Update an existing embed
       embed.setAttribute('data-embed', code);
-      embed.setAttribute('data-embed-provider', options.provider);
+      if(options.provider) {
+        embed.setAttribute('data-embed-provider', options.provider);
+      } else {
+        embed.removeAttribute('data-embed-provider');
+      }
       embed.setAttribute('contenteditable', false);
       embed.innerHTML = code;
     }
