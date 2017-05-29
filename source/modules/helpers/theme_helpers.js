@@ -19,6 +19,8 @@ module.exports = (dust) => {
   //
   // Outputs one or more classes that should be applied to the <body> element.
   //
+  // Attributes: none
+  //
   // Examples:
   //
   //  {@bodyClass/}
@@ -50,6 +52,11 @@ module.exports = (dust) => {
   //
   // Outputs the post content. If no post is specified, the current post context will be used.
   //
+  // Attributes:
+  //
+  //  - editable - must appear exactly one time in every post template. Used to tell Postleaf which
+  //    content block is editable.
+  //
   // Examples:
   //
   //  {@content/}
@@ -79,6 +86,11 @@ module.exports = (dust) => {
   //
   // Generates a URL for a dynamic image.
   //
+  // Attributes:
+  //
+  //  - src* - the URL of the image to process.
+  //  - See dynamic_images.js:processImages() for a complete list of attributes.
+  //
   // Examples:
   //
   //  {@dynamicImage src="/uploads/2017/03/image.jpg" width="100"/}
@@ -93,6 +105,15 @@ module.exports = (dust) => {
 
   //
   // Generates an excerpt. If no content is specified, the current post context will be used.
+  //
+  // Attributes:
+  //
+  //  - content - a string of HTML content to obtain the excerpt from. If omitted, the current post
+  //    context will be used.
+  //  - paragraphs - the number of paragraphs to use in the excerpt.
+  //  - words - the number of max number of words to return in the excerpt.
+  //  - tags - a comma-separated list of HTML tags to allow. If omitted, a default list list of tags
+  //    suitable for an excerpt will be used.
   //
   // Examples:
   //
@@ -133,6 +154,8 @@ module.exports = (dust) => {
 
   //
   // Outputs required foot data.
+  //
+  // Attributes: none
   //
   // Examples:
   //
@@ -176,6 +199,8 @@ module.exports = (dust) => {
   //
   // Gets all admin menu items.
   //
+  // Attributes: none
+  //
   // Examples:
   //
   //  {@getAdminMenu}
@@ -199,6 +224,16 @@ module.exports = (dust) => {
 
   //
   // Gets one or more authors.
+  //
+  // Attributes:
+  //
+  //  - id - the id of a single author to fetch.
+  //  - email - the email of a single author to fetch.
+  //  - username - the username of a single author to fetch.
+  //  - sortBy - the property to sort results by (id, name, email, username, createdAt).
+  //  - sortOrder - the sort order (asc for ascending, desc for descending).
+  //  - count - the maximum number of items to return.
+  //  - offset - the offset from which to return items.
   //
   // Examples:
   //
@@ -264,6 +299,13 @@ module.exports = (dust) => {
   // purposes, including finding an image to display as a visual excerpt or parsing elements or
   // attributes. If no content is specified, the current post context will be used.
   //
+  // Attributes:
+  //
+  //  - content - the HTML content to parse. If omitted, the current post context will be used.
+  //  - selector - The CSS selector to use.
+  //  - count - The max number of elements to return.
+  //  - offset - The offset from which to return elements.
+  //
   // Examples:
   //
   //  {@getElements content="<p>...</p>" selector="img" count="1" offset="0"}
@@ -302,6 +344,11 @@ module.exports = (dust) => {
 
   //
   // Gets the next post. If no post is specified, the current post context will be used.
+  //
+  // Attributes:
+  //
+  //  - post - the target post object. If omitted, the current post context will be used.
+  //  - previous - set to true to return the previous post instead of the next post.
   //
   // Examples:
   //
@@ -348,6 +395,15 @@ module.exports = (dust) => {
 
   //
   // Gets one or more posts.
+  //
+  // Attributes:
+  //
+  //  - id - the id of a single post to fetch.
+  //  - slug - the slug of a single post to fetch.
+  //  - sortBy - the property to sort results by (id, slug, title, createdAt).
+  //  - sortOrder - the sort order. Use asc for ascending or desc for descending.
+  //  - count - the maximum number of items to return.
+  //  - offset - the offset from which to return items.
   //
   // Examples:
   //
@@ -422,6 +478,12 @@ module.exports = (dust) => {
   // Gets posts that are related to the source post. If no post is specified, the current post
   // context will be used.
   //
+  // Attributes:
+  //
+  //  - post - the target post object.
+  //  - count - the max number of items to return.
+  //  - offset - the offset from which to return items.
+  //
   // Examples:
   //
   //  {@getRelatedPosts}
@@ -481,6 +543,14 @@ module.exports = (dust) => {
 
   //
   // Gets one or more tags.
+  //
+  // Attributes:
+  //   - id - the id of a single tag to fetch.
+  //   - slug - the slug of a single tag to fetch.
+  //   - sortBy - the property to sort results by (id, slug, name, createdAt).
+  //   - sortOrder - the sort order. Use asc for ascending or desc for descending.
+  //   - count - the maximum number of items to return.
+  //   - offset - the offset from which to return items.
   //
   // Examples:
   //
@@ -543,6 +613,12 @@ module.exports = (dust) => {
 
   //
   // Outputs required head data.
+  //
+  // Attributes:
+  //
+  //  - jsonLD - set to false to disable JSON-LD output.
+  //  - openGraph - set to false to disable OpenGraph output.
+  //  - twitterCard - set to false to disable Twitter Card output.
   //
   // Examples:
   //
@@ -645,6 +721,8 @@ module.exports = (dust) => {
   //
   // Gets the site's navigation.
   //
+  // Attributes: none
+  //
   // Examples:
   //
   //  {@navigation}
@@ -679,6 +757,10 @@ module.exports = (dust) => {
   //
   // Outputs one or more classes that should be applied to posts in your theme. If no post is
   // specified, the current post context will be used.
+  //
+  // Attributes:
+  //
+  //  - the target post object.
   //
   // Examples:
   //
@@ -716,7 +798,15 @@ module.exports = (dust) => {
   // Posts can be filtered by any of the available flags using a `true` or `false` value. If an
   // argument is omitted, the flag will be ignored.
   //
-  // The special flag `isPublic` can be used to filter by posts that are publicly visible.
+  // Attributes:
+  //
+  //  - author - set to a username to only count posts from that author.
+  //  - tag - set to a tag slug to only count posts with that tag.
+  //  - status - set to draft, published, pending, or rejected to only count posts with that status.
+  //  - isFeatured - set to true to only count featured posts.
+  //  - isPage - set to true to only count pages.
+  //  - isSticky - set to true to only count sticky posts.
+  //  - isPublic - set to true to only count posts that are publicly visible.
   //
   // Examples:
   //
@@ -767,8 +857,12 @@ module.exports = (dust) => {
   };
 
   //
-  // Determines if a post is publicly visible (i.e. published but not scheduled). If no post is
-  // specified, the current post context will be used.
+  // Determines if a post is publicly visible (i.e. published but not scheduled).
+  //
+  // Attributes:
+  //
+  //  - post – the target post object. If no post is specified, the current post context will be
+  //    used.
   //
   // Examples:
   //
@@ -806,6 +900,11 @@ module.exports = (dust) => {
   //
   // Returns the approximate number of minutes to read the specified content. If no content is
   // specified, the current post context will be used.
+  //
+  // Attributes:
+  //
+  //  - content - the content to use to estimate the reading time.
+  //  - wordsPerMinute - the number of words per minute to base the calculation on (default 225).
   //
   // Examples:
   //

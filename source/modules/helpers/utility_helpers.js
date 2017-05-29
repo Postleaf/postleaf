@@ -43,17 +43,23 @@ module.exports = (dust) => {
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
   //
-  // Outputs a date in the specified format. If date isn't specified, the current time will be used.
-  // If format isn't specified, 'YYYY-MM-DD HH:mm:ss' will be used. If timeZone isn't specified,
-  // the time zone from settings will be used.
+  // Outputs a date/time in the specified format.
   //
-  // Format can be any format supported by Moment.js: https://momentjs.com/docs/#/displaying/
+  // Attributes:
+  //
+  //  - date - the date to output. If omitted, the current date and time will be used.
+  //  - format - the format to use to output the date. Format can be any format supported by
+  //    Moment.js (https://momentjs.com/docs/#/displaying/). If omitted, 'YYYY-MM-DD HH:mm:ss' will
+  //    be used.
+  //  - relative - Set to true to output a relative date (e.g. "7 days ago").
+  //  - timeZone - the time zone to convert the date to. If omitted, the time zone configured in
+  //    settings will be used.
   //
   // Examples:
   //
-  //  {@date date=publishedAt format="YYYY-MM-DD"/}         ==> 2017-01-02
-  //  {@date date="2017-01-02 12:00:00" format="ddd, hA"/}  ==> Sun, 3PM
-  //  {@date date=publishedAt format="relative"/}           ==> 3 days ago
+  //  {@date date=publishedAt format="YYYY-MM-DD"/}
+  //  {@date date="2017-01-02 12:00:00" format="ddd, hA"/}
+  //  {@date date=publishedAt format="relative"/}
   //
   dust.helpers.date = (chunk, context, bodies, params) => {
     const I18n = context.options.locals.I18n;
@@ -77,10 +83,23 @@ module.exports = (dust) => {
   //
   // Compares two dates.
   //
+  // Attributes:
+  //
+  //  - key - The first date to compare.
+  //  - value - The second date to compare.
+  //  - operand - The type of comparison to perform. Can be <, <=, >, >=, between, or = (default).
+  //
   // Examples:
   //
-  //  {@dateCompare key=publishedAt operand="<" value="now"}...{/dateCompare}
-  //  {@dateCompare key=publishedAt operand="between" start="2016-01-01" end="2016-12-31"}...{/dateCompare}
+  //  {@dateCompare key=publishedAt operand="<" value="now"}
+  //    Date is in the past.
+  //  {:else}
+  //    Date is in the future.
+  //  {/dateCompare}
+  //
+  //  {@dateCompare key=publishedAt operand="between" start="2016-01-01" end="2016-12-31"}
+  //    ...
+  //  {/dateCompare}
   //
   // Notes:
   //
@@ -132,7 +151,11 @@ module.exports = (dust) => {
   };
 
   //
-  // Formats a size in bytes.
+  // Formats bytes into a more readable format.
+  //
+  // Attributes:
+  //
+  //  - bytes - the target size in bytes.
   //
   // Examples:
   //
@@ -149,6 +172,13 @@ module.exports = (dust) => {
 
   //
   // Formats a number.
+  //
+  // Attributes:
+  //
+  //  - number - the target number.
+  //  - places - number of decimal places to use (default 0).
+  //  - decimal - the decimal separator (default .).
+  //  - thousands - the thousands separator (default ,).
   //
   // Examples:
   //
@@ -175,6 +205,15 @@ module.exports = (dust) => {
   //
   // Formats a URL based on the specified arguments. If no arguments are set, only the hostname will
   // be displayed.
+  //
+  // Attributes:
+  //
+  //  - url - the URL to format.
+  //  - protocol - set to true to show the protocol, e.g. https:// (default false).
+  //  - hostname - set to true to output the hostname (default true).
+  //  - path - set to true to output the path (default false).
+  //  - search - set to true to output the query (search) string, e.g. ?page=2 (default false).
+  //  - hash - set to true to output the hash, e.g. #hash (default false).
   //
   // Examples:
   //
@@ -205,6 +244,13 @@ module.exports = (dust) => {
 
   //
   // Outputs a localized language term.
+  //
+  // Attributes:
+  //
+  //  - term - the key of the desired language term.
+  //  - type - the type of key. Can be term (default), symbol, or meta.
+  //  - [placeholders] - If a term has a [placeholder], you can set its value by adding an attribute
+  //    with the same name as the placeholder.
   //
   // Examples:
   //
@@ -247,9 +293,18 @@ module.exports = (dust) => {
   //
   // Checks an array or a CSV string for the given value.
   //
+  // Attributes:
+  //
+  //  - key - the key to check for.
+  //  - value - the values to check. Can be an array or a comma-separated string.
+  //
   // Examples:
   //
-  //  {@in key=User.role value="editor,contributor,admin"}...{:else}...{/in}
+  //  {@in key=User.role value="editor,contributor,admin"}
+  //    Key is in value
+  //  {:else}
+  //    Key is not in value
+  //  {/in}
   //
   dust.helpers.in = (chunk, context, bodies, params) => {
     let key = context.resolve(params.key);
@@ -277,6 +332,13 @@ module.exports = (dust) => {
   //
   // Returns a plural or non-plural string based on a number.
   //
+  // Attributes:
+  //
+  //  - count - the target count.
+  //  - none - the output when count is zero.
+  //  - one - the output when count is one.
+  //  - many - the output when count is greater than one. Use % as a placeholder for count.
+  //
   // Examples:
   //
   //  {@plural count="2" none="No posts" one="One post" many="% posts"/}
@@ -293,6 +355,8 @@ module.exports = (dust) => {
   //
   // Outputs the current Postleaf version number.
   //
+  // Attributes: none
+  //
   // Examples:
   //
   //  {@postleafVersion/}
@@ -304,9 +368,16 @@ module.exports = (dust) => {
   //
   // Truncates text after a certain number of characters or words.
   //
+  // Attributes:
+  //
+  //  - text - the text to truncate.
+  //  - chars - the max number of characters to output (default 140). Only used if words isn't set.
+  //  - words - the max number of words to output.
+  //  - append - optional string to append if the text is longer than the max (default …)
+  //
   // Examples:
   //
-  //  {@truncateWords text="Lorem ipsum..." chars="140" append="…"/}
+  //  {@truncateWords text="Lorem ipsum..." chars="140"/}
   //  {@truncateWords text="Lorem ipsum..." words="20" append="…"/}
   //
   dust.helpers.truncateWords = (chunk, context, bodies, params) => {
@@ -339,7 +410,31 @@ module.exports = (dust) => {
   };
 
   //
-  // Generates a URL.
+  // Generates a URL. You should always use this helper when outputting URLs. This is the only way
+  // to guarantees that URLs will be correct when themes, settings, or environmental variables
+  // change.
+  //
+  // Attributes:
+  //
+  //  - type – the type of URL to generate (default raw).
+  //    - admin – generates a URL to the admin panel.
+  //    - api – generates a URL to the API.
+  //    - author – generates a URL to an author page. Set the page attribute to link to a specific
+  //      page.
+  //    - blog – generates a link to the blog. The blog URL will not be the same as the homepage if
+  //      a custom homepage is used. Set the page attribute to link to a specific page.
+  //    - feed – generates a feed URL. Set the format attribute to json or rss (default) to change
+  //      the feed format.
+  //    - post – generates a post URL. The slug attribute is required for this type of URL.
+  //    - raw – generates a raw URL to the website.
+  //    - search – generates a URL to a search page. Set the page attribute to link to a specific
+  //      page. Set the search attribute to set a search query.
+  //    - tag – generates a link to a tag page. The slug attribute is required for this type of URL.
+  //      Set the page attribute to link to a specific page.
+  //  - path – a path to append to the URL. Only supported for raw, admin, api, and theme types.
+  //  - absolute – set to true to output an absolute URL.
+  //  - query – a query string to append to the URL.
+  //  - hash – a hash to append to the URL.
   //
   // Examples:
   //
@@ -366,11 +461,26 @@ module.exports = (dust) => {
   //
   // Compares two URLs. Compares against the current URL if `to` is not set.
   //
+  // Attributes:
+  //
+  //  - to - a URL.
+  //  - url - a URL to compare against.
+  //
   // Examples:
   //
-  //  {@urlCompare url="/path/to/compare"/}...{/urlCompare}
-  //  {@urlCompare url="/path/to/compare" to="/another/path"}...{/urlCompare}
-  //  {@urlCompare url="/path/to/compare"/}...{:else}...{/urlCompare}
+  //  {@urlCompare url="/path/to/compare"/}
+  //    ...
+  //  {/urlCompare}
+  //
+  //  {@urlCompare url="/path/to/compare" to="/another/path"}
+  //    ...
+  //  {/urlCompare}
+  //
+  //  {@urlCompare url="/path/to/compare"/}
+  //    ...
+  //  {:else}
+  //    ...
+  //  {/urlCompare}
   //
   dust.helpers.urlCompare = (chunk, context, bodies, params) => {
     const locals = context.options.locals;
