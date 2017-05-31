@@ -11,4 +11,5 @@ hr[data-mce-selected]{outline:0!important}
 [data-embed][data-mce-selected]{outline:solid 2px #09d;outline-offset:.25rem}
 figure.image[data-mce-selected] img{outline:solid 2px #09d;outline-offset:.25rem}
 figure.image figcaption:focus{outline:0}
-.mce-offscreen-selection{display:none}
+.mce-floatpanel,.mce-panel{display:none!important}
+.mce-offscreen-selection{display:none!important}

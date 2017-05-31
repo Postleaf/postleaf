@@ -82,9 +82,19 @@ figure.image {
   }
 }
 
-// When a <figure> is selected in Chrome, an mce-offscreen-selection appears below the post content
-// causing the browser to scroll in a strange way. Simply hiding the element seems to fix it. Added
-// for TinyMCE 4.5.5.
+// TinyMCE appends floating panels to the DOM for toolbars and other UI components. In some cases,
+// they can cause the browser to scroll unexpectedly to the bottom of the page. Hiding the panels
+// prevents this since we're not using TinyMCE's UI components anyway.
+.mce-floatpanel,
+.mce-panel {
+  display: none !important;
+}
+
+// When a contentEditable="false" element is selected in Chrome, an mce-offscreen-selection appears
+// below the post content, causing the browser to scroll unexpectedly. Simply hiding the element
+// seems to fix it without any side effects. This only happens after toggling Zen Mode or reloading
+// the post preview, so it probably has something to do with the way we hot swap the title and
+// content elements.
 .mce-offscreen-selection {
-  display: none;
+  display: none !important;
 }
