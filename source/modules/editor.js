@@ -12,7 +12,7 @@ const Promise = require('bluebird');
 // Returns a promise that resolve with the a TinyMCE instance.
 //
 function initializeTinymce(instance) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
 
     let settings = {
       browser_spellcheck: true,
@@ -277,7 +277,7 @@ function initializeTinymce(instance) {
     // Check for required TinyMCE plugins
     settings.plugins.split(',').forEach((plugin) => {
       if(!instance.tinymce.PluginManager.lookup[plugin]) {
-        throw new Error('Required TinyMCE plugin missing: ' + plugin);
+        reject(new Error('Required TinyMCE plugin missing: ' + plugin));
       }
     });
 
