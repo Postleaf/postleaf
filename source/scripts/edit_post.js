@@ -435,8 +435,7 @@ $(() => {
           // Remove the frame
           $(this).remove();
 
-          // Resolve after the next tick to prevent flickering as the browser renders the page
-          setTimeout(() => resolve(), 1);
+          resolve();
         });
 
       // Create a dummy form and submit it
