@@ -579,10 +579,6 @@ $(() => {
     // Show/hide theme toggle
     $('#zen-mode-theme').prop('hidden', !zenMode);
 
-    // Toggle admin menu
-    $('body').toggleClass('no-menu', zenMode);
-    $('.admin-menu').prop('hidden', zenMode);
-
     if(contentEditor && contentEditor.isReady) {
       loadPreview(serializePost());
       updateToolbar();

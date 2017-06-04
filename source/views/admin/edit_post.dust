@@ -1,5 +1,8 @@
 {>"admin/layout"/}
 
+{! No nav for this page !}
+{<nav}{/nav}
+
 {! Header !}
 {<header}
   <header class="admin-toolbar admin-toolbar-collapse-xs disabled">

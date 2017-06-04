@@ -104,7 +104,7 @@ module.exports = {
         // Render the template
         res.render('admin/edit_post', {
           meta: {
-            bodyClass: 'edit-post',
+            bodyClass: 'edit-post no-menu',
             title: I18n.term(create ? 'new_post' : 'edit_post')
           },
           post: post,
