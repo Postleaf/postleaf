@@ -4,7 +4,7 @@
 
 ![Postleaf on a laptop, tablet, and phone](http://postleaf.s3.amazonaws.com/website/images/devices.png)
 
-Postleaf is a simple, beautiful, decentralized publishing platform that anyone can use. It's free, open source, and built for the modern publisher.
+Postleaf is a beautifully designed open source blogging platform built for the modern publisher.
 
 Created by [Cory LaViska](https://twitter.com/claviska)
 
@@ -19,7 +19,11 @@ Postleaf is considered feature complete for the 1.0 roadmap, but you may find bu
 
 Please report bugs to [the issue tracker](https://github.com/Postleaf/postleaf/issues). 🐛
 
-## Dependencies
+## Documentation
+
+Detailed instructions for installing, updating, and creating themes can be found at [postleaf.org/docs](https://www.postleaf.org/docs).
+
+## Installation for Developers
 
 This guide assumes you're installing Postleaf locally for development purposes. Please make sure the following dependencies are installed on your system before continuing:
 
@@ -31,14 +35,14 @@ This guide assumes you're installing Postleaf locally for development purposes. 
 
 **You will also need access to an SMTP server for sending emails.** Otherwise, you won't be able to create users, perform password resets, etc. If you don't already have a transactional email service, the folks over at Discourse have put together a great [list of email providers](https://github.com/discourse/discourse/blob/master/docs/INSTALL-email.md) — many of which offer free plans.
 
-## Installation
+To install Postleaf in a development environment, follow these instructions.
 
 1. Open a terminal and clone the project and default theme:
   ```
-  git clone https://github.com/Postleaf/postleaf.git && cd postleaf
+  git clone https://github.com/Postleaf/postleaf.git
   git clone https://github.com/Postleaf/empower-theme.git themes/empower-theme
   ```
-2. Make a copy of `.env.example` and name it `.env`. **Open it and change `AUTH_SECRET` to a random string to secure your app.** Then add your SMTP credentials so email can be sent. You also need to set the `APP_URL` to `http://localhost:3000/`.
+2. Make a copy of `.env.example` and name it `.env`. Open it and change `AUTH_SECRET` to a random string to secure your app. Then add your SMTP credentials so email can be sent. You also need to set the `APP_URL` to `http://localhost:3000/`.
 3. Install dependencies and run the build script:
   ```
   npm install
@@ -54,21 +58,17 @@ At this point, you should be able to see Postleaf running by pointing your brows
 
 ## Themes
 
-To install more themes, simply add them to the `themes` directory. There are a couple additional themes located in the [main repo](https://github.com/Postleaf).
+To install a theme, simply add it to the `themes` directory. There are a few additional themes located in the [main repo](https://github.com/Postleaf).
 
-To create your own theme, start by duplicating the [default theme](https://github.com/Postleaf/empower-theme). The source is commented to help you, and there's some more info on working with Dust.js templates on the website:
-
-- [Themes Overview](https://www.postleaf.org/themes-overview)
-- [Helper Reference](https://www.postleaf.org/helper-reference)
-- [Filter Reference](https://www.postleaf.org/filter-reference)
+To learn how to create your own theme, refer to the [theme documentation](https://www.postleaf.org/themes-overview).
 
 ## Support
 
-Please [visit the community forum](https://community.postleaf.org/) for support. You can also [hop onto the chat](https://gitter.im/Postleaf/postleaf) for assistance.
+Please visit the [community forum](https://community.postleaf.org/) for support. You can also try the [developer chat](https://gitter.im/Postleaf/postleaf) for assistance.
 
 ## License
 
-©2016 A Beautiful Site, LLC
+©2017 A Beautiful Site, LLC
 
 This software is copyrighted. You may use it under the terms of the MIT license. See LICENSE.md for details.
 
