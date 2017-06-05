@@ -64,7 +64,7 @@ module.exports = (dust) => {
   //
   dust.helpers.content = (chunk, context, bodies, params) => {
     let isEditor = context.options.locals.isEditor;
-    let editable = (context.resolve(params.editable) + '') === 'true';
+    let editable = context.resolve(params.editable) === 'true';
     let post = context.resolve(params.post);
     let content = post ? post.content : context.get('content') || '';
 
@@ -368,7 +368,7 @@ module.exports = (dust) => {
       const locals = context.options.locals;
       const models = locals.Database.sequelize.models;
       let post = context.resolve(params.post);
-      let previous = (context.resolve(params.previous) + '') === 'true';
+      let previous = context.resolve(params.previous) === 'true';
       let id = post ? post.id : context.get('id');
 
       // Fetch the target post
@@ -632,9 +632,9 @@ module.exports = (dust) => {
     const locals = context.options.locals;
     const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(locals.Settings);
     let isEditor = context.options.locals.isEditor;
-    let jsonLD = (context.resolve(params.jsonLD) + '') !== 'false';
-    let openGraph = (context.resolve(params.openGraph) + '') !== 'false';
-    let twitterCard = (context.resolve(params.twitterCard) + '') !== 'false';
+    let jsonLD = context.resolve(params.jsonLD) !== 'false';
+    let openGraph = context.resolve(params.openGraph) !== 'false';
+    let twitterCard = context.resolve(params.twitterCard) !== 'false';
     let meta = context.get('meta') || {};
     let html = '';
 
@@ -932,7 +932,7 @@ module.exports = (dust) => {
   //
   dust.helpers.title = (chunk, context, bodies, params) => {
     let isEditor = context.options.locals.isEditor;
-    let editable = (context.resolve(params.editable) + '') === 'true';
+    let editable = context.resolve(params.editable) === 'true';
     let post = context.resolve(params.post);
     let title = post ? post.title : context.get('title') || '';
 
