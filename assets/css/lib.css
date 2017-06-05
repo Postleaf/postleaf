@@ -2966,6 +2966,7 @@ body:not(.no-menu){padding-left:0;padding-top:2.75rem}
 .admin-toolbar .admin-toolbar-group{padding:.5rem .5rem}
 .admin-toolbar-collapse-xs{display:block}
 .admin-toolbar-collapse-xs .admin-toolbar-group{max-width:none;padding-bottom:0;display:block}
+.admin-toolbar-collapse-xs .admin-toolbar-group .alertable-cancel,.admin-toolbar-collapse-xs .admin-toolbar-group .alertable-ok,.admin-toolbar-collapse-xs .admin-toolbar-group .btn{padding-left:.75rem;padding-right:.75rem}
 .admin-toolbar-collapse-xs .admin-toolbar-group:last-child{padding-bottom:.5rem}
 }
 .alertable{position:fixed;z-index:9999;left:calc(50% - 14rem);width:28rem;background:#fff;border-radius:3px;box-shadow:0 .25rem 2.5rem rgba(0,0,0,.2);padding:2rem;margin:0 auto}
