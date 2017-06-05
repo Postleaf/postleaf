@@ -42,7 +42,7 @@ function initializeTinymce(instance) {
           { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table', classes: 'align-justify' }
         ],
         // Remove certain formatters so shortcut keys and the API won't apply them.
-        div: {}, underline: {},
+        h1: {}, h5: {}, h6: {}, div: {}, underline: {},
         // Enable semantic formatters
         strikethrough: { inline: 'del' },
         insert: { inline: 'ins' },
