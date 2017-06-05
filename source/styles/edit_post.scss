@@ -111,3 +111,11 @@
     }
   }
 }
+
+// Fixes an issue in iOS where hitting enter and various other commands (e.g. cmd+b) cause the
+// editor to scroll to the top of the page. Last tested on iOS 10.3.2.
+.ios {
+  .stretch-down {
+    overflow: visible;
+  }
+}
