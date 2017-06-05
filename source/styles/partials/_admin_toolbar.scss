@@ -111,6 +111,11 @@ $admin-toolbar-padding-y: 1rem;
       max-width: none;
       padding-bottom: 0;
       display: block;
+
+      .btn {
+        padding-left: .75rem;
+        padding-right: .75rem;
+      }
     }
 
     .admin-toolbar-group:last-child {
