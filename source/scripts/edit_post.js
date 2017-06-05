@@ -1330,4 +1330,51 @@ $(() => {
       $('#embed-panel').panel('hide');
     });
   })();
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  // iOS Admin Toolbar Fix
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+
+  (function() {
+    function positionToolbar() {
+      // Move the frame down so the toolbar doesn't block content at the top
+      $('#editor-frame').css('marginTop', $('.admin-toolbar').outerHeight());
+
+      // Position the toolbar in the viewport
+      $('.admin-toolbar').css('top', $(window).scrollTop());
+    }
+
+    let iosToolbarTimeout;
+
+    if($('html').is('.ios')) {
+      // Use absolute positioning
+      $('.admin-toolbar')
+        .css({
+          position: 'absolute',
+          zIndex: 2,
+          top: 0,
+          left: 0,
+          width: '100%'
+        });
+
+      // Update when the editor frame loads
+      $('#editor-frame').on('load', positionToolbar);
+
+      // Update on orientation changes
+      $(window).on('orientationchange', positionToolbar);
+
+      // Update on scroll
+      $(window).on('scroll', () => {
+        // Hide while scrolling
+        $('.admin-toolbar').prop('hidden', true);
+
+        // Debounce scroll events
+        clearTimeout(iosToolbarTimeout);
+        iosToolbarTimeout = setTimeout(() => {
+          $('.admin-toolbar').prop('hidden', false);
+          positionToolbar();
+        }, 100);
+      });
+    }
+  })();
 });
