@@ -16,3 +16,4 @@
 #dropzone .dropzone-target:first-child{height:calc(30% - 3rem);margin-bottom:3rem}
 #dropzone .dropzone-target:last-child{height:70%}
 #dropzone .dropzone-target .dropzone-text{display:table-cell;vertical-align:middle}
+.ios .stretch-down{overflow:visible}
