@@ -83,7 +83,7 @@ $(() => {
     let url = $('#tags').selectable('getElements', true)[0].getAttribute('data-open-action');
 
     if(url) {
-      window.open(url);
+      location.href = url;
     }
   });
 
