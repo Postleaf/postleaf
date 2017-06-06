@@ -13,12 +13,6 @@ Created by [Cory LaViska](https://twitter.com/claviska)
 
 This software is dedicated to my daughter, Sophia, and my son, Calvin. Chase your dreams, lil’ ones. 💙💚
 
-## Alpha testing underway! 🚧
-
-Postleaf is considered feature complete for the 1.0 roadmap, but you may find bugs or see API changes before the stable version is released. This documentation is subject to change as bugs and other issues get ironed out.
-
-Please report bugs to [the issue tracker](https://github.com/Postleaf/postleaf/issues). 🐛
-
 ## Documentation
 
 Detailed instructions for installing, updating, and creating themes can be found at [postleaf.org/docs](https://www.postleaf.org/docs).
