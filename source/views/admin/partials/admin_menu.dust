@@ -58,7 +58,7 @@
         </a>
 
         {! Help and support !}
-        <a class="dropdown-item" href="https://community.postleaf.org/" target="_blank">
+        <a class="dropdown-item" href="https://gitter.im/Postleaf/postleaf/" target="_blank">
           {@i18n term="help_and_support"/}
         </a>
 
