@@ -14,7 +14,7 @@ People from all over the world participate here, and everyone is welcome. Please
 
 ## Support
 
-Please **do not** use the issue tracker for personal support requests. [The Postleaf chat](https://gitter.im/Postleaf/postleaf/) is the preferred place to ask for help.
+Please **do not** use the issue tracker for personal support requests. [The Postleaf chat](https://gitter.im/Postleaf/postleaf) is the preferred place to ask for help.
 
 Remember, Postleaf is open source. We have a great community of users volunteering their time at no cost to you. Attitude and demeanor go a long way in getting help. 😁
 

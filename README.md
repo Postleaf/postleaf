@@ -58,7 +58,7 @@ To learn how to create your own theme, refer to the [theme documentation](https:
 
 ## Support
 
-Please do not submit personal requests to the issue tracker. Instead, visit the [community chat](https://gitter.im/Postleaf/postleaf/) for support.
+Please do not submit personal requests to the issue tracker. Instead, visit the [community chat](https://gitter.im/Postleaf/postleaf) for support.
 
 ## License
 
