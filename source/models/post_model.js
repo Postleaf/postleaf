@@ -318,7 +318,10 @@ module.exports = (sequelize, DataTypes) => {
           // Fetch matching posts and associations
           return post.findAll({
             where: {
-              id: { $in: ids }
+              id: {
+                $not: this.id,
+                $in: ids
+              }
             },
             include: [
               {
