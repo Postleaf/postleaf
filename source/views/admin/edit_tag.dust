@@ -16,8 +16,10 @@
       </h2>
     </div>
     <div class="admin-toolbar-group text-right">
-      {! Save / cancel !}
-      <a class="btn btn-link" href="{@url type="admin" path="tags"/}">{@i18n term="cancel"/}</a>
+      {! Done !}
+      <a class="btn btn-link" href="{@url type="admin" path="tags"/}">{@i18n term="done"/}</a>
+
+      {! Save !}
       <button class="btn btn-primary" type="button" data-save>{@i18n term="save"/}</button>
     </div>
   </header>

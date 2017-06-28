@@ -134,8 +134,8 @@
       </div>
     </div>
     <div class="admin-toolbar-group admin-toolbar-nowrap text-right">
-      {! Cancel !}
-      <a class="btn btn-link" href="{@url type="admin" path="posts"/}">{@i18n term="cancel"/}</a>
+      {! Done !}
+      <a class="btn btn-link" href="{@url type="admin" path="posts"/}">{@i18n term="done"/}</a>
 
       {! Save !}
       <button class="btn btn-primary" type="button" data-save>{@i18n term="save"/}</button>

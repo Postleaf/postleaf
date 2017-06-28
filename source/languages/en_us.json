@@ -59,6 +59,7 @@
     "default": "Default",
     "delete": "Delete",
     "description": "Description",
+    "done": "Done",
     "dont_forget_to_change_your_password_the_first_time_you_login": "Don’t forget to change your password the first time you login.",
     "download_backup": "Download Backup",
     "download": "Download",
