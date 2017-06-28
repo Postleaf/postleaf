@@ -98,7 +98,7 @@ module.exports = (dust) => {
   //
   dust.helpers.dynamicImage = (chunk, context, bodies, params) => {
     let src = context.resolve(params.src);
-    params.src = undefined;
+    delete params.src;
 
     return chunk.write(DynamicImages.generateUrl(src, params));
   };
