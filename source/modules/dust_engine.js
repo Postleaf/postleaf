@@ -170,12 +170,22 @@ const self = {
       }
 
       // Create the base context
-      let baseContext = Dust.makeBase({}, {
-        viewFolders: this.root,
-        template: this.name,
-        extension: this.ext || Path.extname(file),
-        locals: options
-      }).push(options);
+      let baseContext = Dust.makeBase(
+        // Context globals
+        {
+          Template: {
+            // Always the filename without extension
+            name: Path.basename(this.name, '.dust')
+          }
+        },
+        // Context options
+        {
+          viewFolders: this.root,
+          template: this.name,
+          extension: this.ext || Path.extname(file),
+          locals: options
+        }
+      ).push(options);
 
       // Render the requested template (calls Dust.onLoad internally to locate it)
       return Dust.render(file, baseContext, (err, output) => {
