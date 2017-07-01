@@ -17,4 +17,4 @@ Please summarize your issue here.
 
 ---
 
-Note: This issue tracker is ONLY for bug reports and feature requests. If this is a personal support issue, please ask on the chat instead: https://gitter.im/Postleaf/postleaf
+Note: This issue tracker is ONLY for bug reports and feature requests. If this is a personal support issue, please visit postleaf.org/support.

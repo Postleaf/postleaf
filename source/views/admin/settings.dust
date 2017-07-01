@@ -393,6 +393,20 @@
                 </tr>
                 <tr>
                   <td>
+                    <a href="https://www.postleaf.org/support" target="_blank">
+                      postleaf.org/support
+                    </a>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>Help &amp; Support</li>
+                      <li>Troubleshooting</li>
+                      <li>Help with theme design</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
                     <a href="https://github.com/postleaf" target="_blank">
                       github.com/postleaf
                     </a>
@@ -414,8 +428,7 @@
                   <td>
                     <ul>
                       <li>General discussion</li>
-                      <li>Community support</li>
-                      <li>Troubleshooting</li>
+                      <li>Developer chat</li>
                     </ul>
                   </td>
                 </tr>
@@ -429,19 +442,6 @@
                     <ul>
                       <li>News and updates</li>
                       <li>Developer rants</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <a href="https://www.paypal.me/abeautifulsite" target="_blank">
-                      paypal.me/abeautifulsite
-                    </a>
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Donate to the project</li>
-                      <li>Support future development</li>
                     </ul>
                   </td>
                 </tr>

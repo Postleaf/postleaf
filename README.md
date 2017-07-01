@@ -48,7 +48,7 @@ To install Postleaf in a development environment, follow these instructions.
   node app.js
   ```
 
-At this point, you should be able to see Postleaf running by pointing your browser to `http://localhost:3000/`. If not, someone in the [community chat room](https://gitter.im/Postleaf/postleaf) can probably assist.
+At this point, you should be able to see Postleaf running by pointing your browser to `http://localhost:3000/`.
 
 ## Themes
 
@@ -58,7 +58,7 @@ To learn how to create your own theme, refer to the [theme documentation](https:
 
 ## Support
 
-Please do not submit personal requests to the issue tracker. Instead, visit the [community chat](https://gitter.im/Postleaf/postleaf) for support.
+Please **do not** use the issue tracker for personal support requests. Instead, visit postleaf.org/support for support.
 
 ## License
 
