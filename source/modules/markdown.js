@@ -13,7 +13,7 @@ let renderer = new Marked.Renderer();
 renderer.code = (code, lang) => {
   let pre;
 
-  pre = lang ? '<pre data-code="' + He.encode(lang, { useNamedReferences: true }) + '">' : '<pre>';
+  pre = lang ? '<pre class="language-' + He.encode(lang, { useNamedReferences: true }) + '">' : '<pre>';
   pre += He.encode(code, { useNamedReferences: true });
   pre += '</pre>';
 
