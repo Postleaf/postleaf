@@ -1,7 +1,7 @@
 {
-  "code": "sv_se",
+  "code": "sv-se",
   "name": "Svenska (SV)",
-  "momentjs_locale": "se",
+  "momentjs_locale": "sv",
   "direction": "ltr",
   "symbols": {
     "decimal": ".",
