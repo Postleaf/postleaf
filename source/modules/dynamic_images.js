@@ -37,7 +37,7 @@ const self = {
 
     // Append params to query string
     Object.keys(params).forEach((key) => {
-      if(parsed.search.length) parsed.search += '&';
+      if(parsed.search && parsed.search.length) parsed.search += '&';
       parsed.search += encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
     });
     parsed.search = parsed.search.replace(/^&/, '');
