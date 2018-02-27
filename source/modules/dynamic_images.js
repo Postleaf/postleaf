@@ -36,10 +36,14 @@ const self = {
     }
 
     // Append params to query string
-    Object.keys(params).forEach((key) => {
-      if(parsed.search && parsed.search.length) parsed.search += '&';
-      parsed.search += encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
-    });
+    let keys = Object.keys(params);
+    if(keys.length > 0) {
+      if(parsed.search == null) parsed.search = '';
+      keys.forEach((key) => {
+        if(parsed.search.length > 0) parsed.search += '&';
+        parsed.search += encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+      });
+    }
     parsed.search = parsed.search.replace(/^&/, '');
     url = Url.format(parsed);
 
