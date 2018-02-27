@@ -38,8 +38,7 @@ const self = {
     // Append params to query string
     let keys = Object.keys(params);
     if(keys.length > 0) {
-      if(parsed.search == null)
-        parsed.search = '';
+      if(parsed.search == null) parsed.search = '';
       keys.forEach((key) => {
         if(parsed.search.length > 0) parsed.search += '&';
         parsed.search += encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
