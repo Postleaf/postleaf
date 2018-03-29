@@ -673,7 +673,7 @@ module.exports = {
         // Determine which template the post should use
         let themeName = req.app.locals.Settings.theme;
         let template = req.query.template || post.template || 'post';
-        let templatePath = Path.join(__basedir, 'themes', themeName, 'templates', template);
+        let templatePath = Path.join(req.app.locals.Themes.themePath, themeName, 'templates', template);
         if(template !== 'post' && !Fs.existsSync(templatePath)) template = 'post';
 
         // Prevent browsers from identifying XSS attacks when post previews are rendered.

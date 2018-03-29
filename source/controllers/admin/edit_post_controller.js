@@ -7,7 +7,6 @@ const Promise = require('bluebird');
 
 // Local modules
 const AutocompleteSuggestions = require(Path.join(__basedir, 'source/modules/autocomplete_suggestions.js'));
-const Themes = require(Path.join(__basedir, 'source/modules/themes.js'));
 
 module.exports = {
 
@@ -18,6 +17,7 @@ module.exports = {
     const I18n = req.app.locals.I18n;
     const User = req.User;
     const Settings = req.app.locals.Settings;
+    const Themes = req.app.locals.Themes;
     const sequelize = req.app.locals.Database.sequelize;
     const models = sequelize.models;
     let create = typeof req.params.id === 'undefined';

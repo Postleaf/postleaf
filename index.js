@@ -37,6 +37,10 @@ module.exports = function(app, options) {
   // Database
   const Database = require(Path.join(__basedir, 'source/modules/database.js'))(options);
   app.locals.Database = Database;
+  
+  // Themes stored on app.locals so we can access the configured directory
+  const Themes = require(Path.join(__basedir, 'source/modules/themes.js'))(options);
+  app.locals.Themes = Themes;
 
   return Promise.resolve()
     // Initialize the database
@@ -75,7 +79,7 @@ module.exports = function(app, options) {
         .use(Compression())
         .use(DynamicImages.processImages)
         .use('/assets', Express.static(Path.join(__basedir, 'assets')))
-        .use('/themes', Express.static(Path.join(__basedir, 'themes')))
+        .use('/themes', Express.static(Themes.themePath))
         .use('/uploads', Express.static(Path.join(__basedir, 'uploads')))
         .use(BodyParser.urlencoded({ extended: true, limit: '10mb' }))
         .use(AuthMiddleware.attachUser)
@@ -88,7 +92,7 @@ module.exports = function(app, options) {
       }));
       app.set('json spaces', process.env.NODE_ENV === 'production' ? undefined : 2);
       app.set('views', [
-        Path.join(__basedir, 'themes', app.locals.Settings.theme, 'templates'),
+        Path.join(Themes.themePath, app.locals.Settings.theme, 'templates'),
         Path.join(__basedir, 'source/views')
       ]);
       app.set('view engine', 'dust');

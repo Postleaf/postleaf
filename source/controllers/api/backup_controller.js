@@ -222,7 +222,7 @@ module.exports = {
 
     // Export themes
     if(req.query.themes === 'true') {
-      queue.push(addFolderToZip(Path.join(__basedir, 'themes'), zip));
+      queue.push(addFolderToZip(req.app.locals.Themes.themePath, zip));
     }
 
     // Export uploads
@@ -290,7 +290,7 @@ module.exports = {
           // Restore uploads
           .then((zip) => restoreFolderFromZip('uploads', Path.join(__basedir, 'uploads'), zip))
           // // Restore Themes
-          .then((zip) => restoreFolderFromZip('themes', Path.join(__basedir, 'themes'), zip))
+          .then((zip) => restoreFolderFromZip('themes', req.app.locals.Themes.themePath, zip))
           // Restore data in a specific order to prevent foreign key constraint errors
           .then((zip) => restoreData(models.user, zip))
           .then((zip) => restoreData(models.post, zip))
