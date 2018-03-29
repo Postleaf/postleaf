@@ -20,6 +20,8 @@ const app = Express();
 // Configuration options
 const options = {
   databasePath: Path.join(__dirname, 'data/database.sq3'),
+  themePath: Path.join(__dirname, 'themes'),
+  uploadPath: Path.join(__dirname, 'uploads'),
 }
 
 Promise.resolve()

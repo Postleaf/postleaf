@@ -153,7 +153,7 @@ const self = {
       destination: function() {
         let month = Moment().format('MM');
         let year = Moment().format('YYYY');
-        return Path.join(__basedir, 'uploads', year, month);
+        return Path.join(req.app.locals.uploadPath, year, month);
       },
       overwrite: false
     }).single('file');
@@ -178,8 +178,8 @@ const self = {
         filename: req.file.filename,
         // Extension should be lowercase and without a dot
         extension: Path.extname(req.file.filename).toLowerCase().replace(/^\./, ''),
-        // Path should be relative to the base dir. Example: /uploads/2017/01/image.png
-        path: req.file.path.substring(__basedir.length),
+        // Path should be relative to the uploads dir. Example: /2017/01/image.png
+        path: req.file.path.substring(req.app.locals.uploadPath.length),
         mimeType: req.file.mimetype,
         size: req.file.size,
         width: null,
@@ -270,7 +270,7 @@ const self = {
         res.setHeader('Content-type', upload.mimeType);
 
         // Stream the download
-        let stream = Fs.createReadStream(Path.join(__basedir, upload.path));
+        let stream = Fs.createReadStream(Path.join(req.app.locals.uploadPath, upload.path));
         stream.pipe(res);
       })
       .catch((err) => next(err));
@@ -366,7 +366,7 @@ const self = {
         Del(Path.join(__basedir, 'cache/images/' + pathHash + '.*'));
 
         // Delete the file
-        Fs.unlink(Path.join(__basedir, upload.path), () => {
+        Fs.unlink(Path.join(req.app.locals.uploadPath, upload.path), () => {
           // Remove it from the database
           upload.destroy().then(() => {
             res.json({

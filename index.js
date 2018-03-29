@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = function(app, options) {
+  options = options || {}
 
   // Globals
   global.__basedir = __dirname;
@@ -41,6 +42,10 @@ module.exports = function(app, options) {
   // Themes stored on app.locals so we can access the configured directory
   const Themes = require(Path.join(__basedir, 'source/modules/themes.js'))(options);
   app.locals.Themes = Themes;
+  
+  // Stash upload path on app.locals so we can access the configured directory
+  app.locals.uploadPath = options.uploadPath || Path.join(__basedir, 'uploads');
+  
 
   return Promise.resolve()
     // Initialize the database
@@ -80,7 +85,7 @@ module.exports = function(app, options) {
         .use(DynamicImages.processImages)
         .use('/assets', Express.static(Path.join(__basedir, 'assets')))
         .use('/themes', Express.static(Themes.themePath))
-        .use('/uploads', Express.static(Path.join(__basedir, 'uploads')))
+        .use('/uploads', Express.static(app.locals.uploadPath))
         .use(BodyParser.urlencoded({ extended: true, limit: '10mb' }))
         .use(AuthMiddleware.attachUser)
         .use(ViewMiddleware.attachViewData);
