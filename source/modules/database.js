@@ -5,7 +5,10 @@ const Mkdirp = require('mkdirp');
 const Path = require('path');
 const Promise = require('bluebird');
 const Sequelize = require('sequelize');
-let databasePath = Path.join(__basedir, 'data/database.sq3');
+
+module.exports = function(options) {
+  options = options || {}
+  let databasePath = options.databasePath || Path.join(__basedir, 'data/database.sq3');
 
   const sequelize = new Sequelize(null, null, null, {
     dialect: 'sqlite',
@@ -30,7 +33,7 @@ let databasePath = Path.join(__basedir, 'data/database.sq3');
   //
   function init() {
     // Create the data directory if it doesn't exist
-    let path = Path.join(__basedir, 'data');
+    let path = Path.dirname(databasePath);
     Mkdirp.sync(path);
 
     // Create missing tables and sync models
@@ -115,8 +118,9 @@ let databasePath = Path.join(__basedir, 'data/database.sq3');
   setting.removeAttribute('id');
 
   // Exports
-  module.exports = {
+  return {
     init,
     loadSettings,
     sequelize
   };
+}

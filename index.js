@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(app) {
+module.exports = function(app, options) {
 
   // Globals
   global.__basedir = __dirname;
@@ -35,7 +35,7 @@ module.exports = function(app) {
   const ErrorController = require(Path.join(__basedir, 'source/controllers/error_controller.js'));
 
   // Database
-  const Database = require(Path.join(__basedir, 'source/modules/database.js'));
+  const Database = require(Path.join(__basedir, 'source/modules/database.js'))(options);
   app.locals.Database = Database;
 
   return Promise.resolve()

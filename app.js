@@ -17,6 +17,11 @@ const Postleaf = require(Path.join(__dirname, 'index.js'));
 // Express app
 const app = Express();
 
+// Configuration options
+const options = {
+  databasePath: Path.join(__dirname, 'data/database.sq3'),
+}
+
 Promise.resolve()
   // Make sure .env exists
   .then(() => {
@@ -25,7 +30,7 @@ Promise.resolve()
     }
   })
   // Initialize Postleaf
-  .then(() => Postleaf(app))
+  .then(() => Postleaf(app, options))
   .then(() => {
 
     // Start sailing! ⚓️
