@@ -1,7 +1,6 @@
 'use strict';
 
 // Node modules
-const Path = require('path');
 const Promise = require('bluebird');
 
 module.exports = {

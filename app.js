@@ -21,8 +21,8 @@ const app = Express();
 const options = {
   databasePath: Path.join(__dirname, 'data/database.sq3'),
   themePath: Path.join(__dirname, 'themes'),
-  uploadPath: Path.join(__dirname, 'uploads'),
-}
+  uploadPath: Path.join(__dirname, 'uploads')
+};
 
 Promise.resolve()
   // Make sure .env exists

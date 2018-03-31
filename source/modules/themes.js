@@ -7,8 +7,8 @@ const Path = require('path');
 const Promise = require('bluebird');
 
 module.exports = function(options) {
-  options = options || {}
-  let themePath = options.themePath || Path.join(__basedir, 'themes')
+  options = options || {};
+  let themePath = options.themePath || Path.join(__basedir, 'themes');
 
   const self = {
 

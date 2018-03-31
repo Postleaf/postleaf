@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app, options) {
-  options = options || {}
+  options = options || {};
 
   // Globals
   global.__basedir = __dirname;
@@ -14,7 +14,6 @@ module.exports = function(app, options) {
   const Compression = require('compression');
   const DustHelpers = require('dustjs-helpers');
   const Express = require('express');
-  const Fs = require('fs');
   const Path = require('path');
   const Promise = require('bluebird');
   const Slashes = require('connect-slashes');

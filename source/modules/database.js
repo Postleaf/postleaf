@@ -7,7 +7,7 @@ const Promise = require('bluebird');
 const Sequelize = require('sequelize');
 
 module.exports = function(options) {
-  options = options || {}
+  options = options || {};
   let databasePath = options.databasePath || Path.join(__basedir, 'data/database.sq3');
 
   const sequelize = new Sequelize(null, null, null, {
