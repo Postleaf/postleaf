@@ -150,7 +150,7 @@ const self = module.exports = {
         // to the default.
         let themeName = req.app.locals.Settings.theme;
         let template = post.template || 'post';
-        let templatePath = Path.join(__basedir, 'themes', themeName, 'templates', template);
+        let templatePath = Path.join(req.app.locals.Themes.themePath, themeName, 'templates', template);
         if(template !== 'post' && !Fs.existsSync(templatePath)) template = 'post';
 
         // Render the template

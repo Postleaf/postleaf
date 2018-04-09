@@ -91,7 +91,7 @@ module.exports = {
       // Update view folders
       .then(() => {
         req.app.set('views', [
-          Path.join(__basedir, 'themes', settings.theme, 'templates'),
+          Path.join(req.app.locals.Themes.themePath, settings.theme, 'templates'),
           Path.join(__basedir, 'source/views')
         ]);
       })

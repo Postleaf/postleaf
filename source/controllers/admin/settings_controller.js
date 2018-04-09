@@ -5,9 +5,6 @@ const Moment = require('moment');
 const Path = require('path');
 const Promise = require('bluebird');
 
-// Local modules
-const Themes = require(Path.join(__basedir, 'source/modules/themes.js'));
-
 module.exports = {
 
   //
@@ -16,6 +13,7 @@ module.exports = {
   view: (req, res, next) => {
     const I18n = req.app.locals.I18n;
     const MakeUrl = require(Path.join(__basedir, 'source/modules/make_url.js'))(req.app.locals.Settings);
+    const Themes = req.app.locals.Themes;
     const sequelize = req.app.locals.Database.sequelize;
     const models = sequelize.models;
 

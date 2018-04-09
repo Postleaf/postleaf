@@ -222,12 +222,12 @@ module.exports = {
 
     // Export themes
     if(req.query.themes === 'true') {
-      queue.push(addFolderToZip(Path.join(__basedir, 'themes'), zip));
+      queue.push(addFolderToZip(req.app.locals.Themes.themePath, zip));
     }
 
     // Export uploads
     if(req.query.uploads === 'true') {
-      queue.push(addFolderToZip(Path.join(__basedir, 'uploads'), zip));
+      queue.push(addFolderToZip(req.app.locals.uploadPath, zip));
     }
 
     // Wait for all queue to resolve
@@ -288,9 +288,9 @@ module.exports = {
         JSZip.loadAsync(data)
           .then((zip) => verifyBackup(zip))
           // Restore uploads
-          .then((zip) => restoreFolderFromZip('uploads', Path.join(__basedir, 'uploads'), zip))
+          .then((zip) => restoreFolderFromZip('uploads', req.app.locals.uploadPath, zip))
           // // Restore Themes
-          .then((zip) => restoreFolderFromZip('themes', Path.join(__basedir, 'themes'), zip))
+          .then((zip) => restoreFolderFromZip('themes', req.app.locals.Themes.themePath, zip))
           // Restore data in a specific order to prevent foreign key constraint errors
           .then((zip) => restoreData(models.user, zip))
           .then((zip) => restoreData(models.post, zip))

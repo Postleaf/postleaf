@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git@github.com:Postleaf/postleaf.git"
   },
+  "scripts": {
+    "start": "node app.js"
+  },
   "devDependencies": {
     "@claviska/jquery-ajax-submit": "^2.0.4",
     "@claviska/jquery-alertable": "^1.0.2",

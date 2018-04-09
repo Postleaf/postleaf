@@ -1,11 +1,7 @@
 'use strict';
 
 // Node modules
-const Path = require('path');
 const Promise = require('bluebird');
-
-// Local modules
-const Themes = require(Path.join(__basedir, 'source/modules/themes.js'));
 
 module.exports = {
 
@@ -15,6 +11,7 @@ module.exports = {
   view: (req, res, next) => {
     const I18n = req.app.locals.I18n;
     const Settings = req.app.locals.Settings;
+    const Themes = req.app.locals.Themes;
 
     let templates;
 
