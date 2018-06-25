@@ -15,7 +15,7 @@ module.exports = {
       cookies: req.cookies,
       host: req.get('Host'),
       hostname: req.hostname,
-      isHomepage: req.path === '/',
+      isHomepage: req.path === process.env.APP_LOCATION,
       path: req.path,
       query: req.query,
       secure: req.secure,
