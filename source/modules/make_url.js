@@ -65,7 +65,11 @@ module.exports = (Settings) => {
 
       let url = process.env.APP_LOCATION + process.env.APP_ADMIN_SLUG;
       if(path) url += '/' + encodeURI(path || '').replace(/^\/+/, '');
-      if(options.query) url = appendQueryString(url, options.query);
+      if(options.query) {
+        if (options.query.redirect)
+          options.query.redirect = process.env.APP_LOCATION + options.query.redirect;
+        url = appendQueryString(url, options.query);
+      }
       if(options.hash) url += '#' + options.hash;
 
       return options.absolute ? self.absolute(url) : url;
