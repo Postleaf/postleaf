@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="{@url path="assets/images/favicon.png"/}">
   <link rel="apple-touch-icon" href="{@url path="assets/images/app_icon.png"/}">
-  <link rel="stylesheet" href="{@url path="assets/css/lib.css" absolute="true"/}">
+  <link rel="stylesheet" href="{@url path="assets/css/lib.css"/}">
   {! Styles !}
   {#styles}
     <link rel="stylesheet" href="{@url path=./}">
