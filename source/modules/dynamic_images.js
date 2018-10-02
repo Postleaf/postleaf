@@ -84,7 +84,7 @@ const self = {
               if(!upload || upload.width < 200) return;
 
               // Create dynamic images at 200px intervals up to the original width or the max width set in .env
-              let maxWidth = process.env.IMG_MAX_WIDTH ? process.env.IMG_MAX_WIDTH : upload.width;
+              let maxWidth = process.env.IMG_MAX_WIDTH ? process.env.IMG_MAX_WIDTH + 1: upload.width;
               for(let width = 200; width < maxWidth; width += 200) {
                 let url = SignedUrl.sign(src + '?width=' + width, process.env.AUTH_SECRET);
                 srcset.push(url + ' ' + width + 'w');
