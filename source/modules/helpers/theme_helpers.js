@@ -439,7 +439,7 @@ module.exports = (dust) => {
       if(slug) where.slug = { $in: slug.split(',').map(Trim) };
 
       // Sort
-      sortBy = (sortBy || '').match(/^(id|slug|title|createdAt)$/) ? sortBy : 'title';
+      sortBy = 'post.' + ((sortBy || '').match(/^(id|slug|title|createdAt)$/) ? sortBy : 'title');
       sortOrder = (sortOrder || '').match(/^(asc|desc)$/) ? sortOrder.toUpperCase() : 'ASC';
 
       // Fetch authors
