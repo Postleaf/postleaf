@@ -1,6 +1,7 @@
 # Files
 .DS_Store
 .env
+.idea
 
 # Directories
 .vscode/
