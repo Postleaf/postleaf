@@ -1,3 +1,19 @@
+# A note from the author
+
+Postleaf — at least in its current form — has been discontinued. In the future, I'd like to bring it back as something different. Maybe an open source project. Maybe a SaaS product. I'm not sure at this point.
+
+The world still needs a simple platform to encourage blogging and the decentralization of publishing. Unfortunately, This version of Postleaf didn't fill that gap because it was too difficult and expensive for the majority of users to install and host. Aside from that, the world of web hosting has changed significantly in recent years.
+
+For now, I'm taking some time to focus on other projects and interests. I hope to revisit Postleaf again when the time is right for me, but I'm not exactly sure when that might be.
+
+That said, I'm archiving the Postleaf repository. Anyone is welcome to fork the project and carry the torch, but I'm hanging onto the "Postleaf" name, U.S. trademark, and website, so new maintainers will need to release it under a different name.
+
+Thanks for the many years of encouragement. While my vision for Postleaf wasn't fully realized, I've learned so much from this project and its community. I'm still excited for Postleaf's future.
+
+— Cory
+
+---
+
 # <img src="http://postleaf.s3.amazonaws.com/website/images/postleaf_wordmark.svg" alt="Postleaf" width="300">
 
 **Simple, beautiful publishing.**
